@@ -1,0 +1,30 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {american}{}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.1}{\ignorespaces \textbf {Classification accuracy on ImageNet-1K.} Similar to Transformers, ConvNeXt{} also shows promising scaling behavior with higher-capacity models and a larger (pre-training) dataset. Inference throughput is measured on a V100 GPU, following~\cite {Liu2021swin}. On an A100 GPU, ConvNeXt{} can have a much higher throughput than Swin Transformer. See Appendix~\ref {sec:a100}. ({\fontfamily {mvs}\fontencoding {U}\fontseries {m}\fontshape {n}\selectfont \char 84})ViT results with 90-epoch AugReg~\cite {steiner2021train} training, provided through personal communication with the authors.\relax }}{15}{table.caption.28}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.2}{\ignorespaces \textbf {Comparing isotropic ConvNeXt{} and ViT.} Training memory is measured on V100 GPUs with 32 per-GPU batch size.\relax }}{16}{table.caption.33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.3}{\ignorespaces caption}}{17}{table.caption.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.4}{\ignorespaces caption}}{18}{table.caption.37}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.5}{\ignorespaces \textbf {ImageNet-1K/22K (pre-)training settings}. Multiple stochastic depth rates (e.g., 0.1/0.4/0.5/0.5) are for each model (e.g., ConvNeXt{}-T/S/B/L) respectively.\relax }}{20}{table.caption.43}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.6}{\ignorespaces \textbf {ImageNet-1K fine-tuning settings}. Multiple values (e.g., 0.8/0.95) are for each model (e.g., ConvNeXt{}-B/L) respectively. \relax }}{21}{table.caption.44}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.7}{\ignorespaces caption}}{22}{table.caption.47}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.8}{\ignorespaces caption}}{23}{table.caption.48}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.9}{\ignorespaces \textbf {Detailed architecture specifications} for ResNet-50, ConvNeXt{}-T and Swin-T.\relax }}{24}{table.caption.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.10}{\ignorespaces \textbf {Detailed results for modernizing a ResNet-50.} Mean and standard deviation are obtained by training the network with three different random seeds.\relax }}{25}{table.caption.50}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.11}{\ignorespaces \textbf {Detailed results for modernizing a ResNet-200.}\relax }}{26}{table.caption.51}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.12}{\ignorespaces \textbf {Inference throughput comparisons on an A100 GPU.} Using TF32 data format and ``channel last'' memory layout, ConvNeXt{} enjoys up to $\sim $49\% higher throughput compared with a Swin Transformer with similar FLOPs.\relax }}{27}{table.caption.52}%

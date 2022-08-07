@@ -1,0 +1,2053 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.9)  7 AUG 2022 01:22
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**thesis.tex
+(./thesis.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18> (./ucbthesis.cls
+Document Class: ucbthesis 2019/07/19 v3.6 University of California, Berkeley Th
+esis Class
+(/usr/local/texlive/2021/texmf-dist/tex/latex/memoir/memoir.cls
+Document Class: memoir 2021/03/23 v3.7o configurable book, report, article docu
+ment class
+\onelineskip=\skip47
+\lxvchars=\skip48
+\xlvchars=\skip49
+\@memcnta=\count179
+\c@@memmarkcntra=\count180
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+\stockheight=\skip50
+\stockwidth=\skip51
+\trimtop=\skip52
+\trimedge=\skip53
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/memoir/mem12.clo
+File: mem12.clo 2010/10/19 v0.4b memoir class 12pt size option
+)
+\binding=\skip54
+\spinemargin=\skip55
+\foremargin=\skip56
+\uppermargin=\skip57
+\lowermargin=\skip58
+\headdrop=\skip59
+\normalrulethickness=\skip60
+\mem@maxheadheight=\skip61
+\mem@maxfootheight=\skip62
+\headwidth=\skip63
+\c@storedpagenumber=\count181
+\memPD=\dimen138
+\m@mabparskip=\skip64
+\thanksmarkwidth=\skip65
+\thanksmarksep=\skip66
+\droptitle=\skip67
+\c@book=\count182
+\c@part=\count183
+\c@chapter=\count184
+\c@section=\count185
+\c@subsection=\count186
+\c@subsubsection=\count187
+\c@paragraph=\count188
+\c@subparagraph=\count189
+\beforechapskip=\skip68
+\midchapskip=\skip69
+\afterchapskip=\skip70
+\chapindent=\skip71
+\bottomsectionskip=\skip72
+\secindent=\skip73
+\beforesecskip=\skip74
+\aftersecskip=\skip75
+\subsecindent=\skip76
+\beforesubsecskip=\skip77
+\aftersubsecskip=\skip78
+\subsubsecindent=\skip79
+\beforesubsubsecskip=\skip80
+\aftersubsubsecskip=\skip81
+\paraindent=\skip82
+\beforeparaskip=\skip83
+\afterparaskip=\skip84
+\subparaindent=\skip85
+\beforesubparaskip=\skip86
+\aftersubparaskip=\skip87
+\pfbreakskip=\skip88
+\c@@ppsavesec=\count190
+\c@@ppsaveapp=\count191
+\ragrparindent=\dimen139
+\everylistparindent=\dimen140
+\parsepi=\skip89
+\topsepi=\skip90
+\itemsepi=\skip91
+\parsepii=\skip92
+\topsepii=\skip93
+\topsepiii=\skip94
+\itemsepii=\skip95
+\itemsepiii=\skip96
+\partopsepii=\skip97
+\partopsepiii=\skip98
+\m@msavetopsep=\skip99
+\m@msavepartopsep=\skip100
+\@enLab=\toks15
+\abstitleskip=\skip101
+\absleftindent=\skip102
+\abs@leftindent=\dimen141
+\absrightindent=\skip103
+\absparindent=\skip104
+\absparsep=\skip105
+\c@vslineno=\count192
+\c@poemline=\count193
+\c@modulo@vs=\count194
+\c@memfvsline=\count195
+\vleftskip=\skip106
+\vrightskip=\skip107
+\stanzaskip=\skip108
+\versewidth=\skip109
+\vgap=\skip110
+\vindent=\skip111
+\vleftmargin=\dimen142
+\c@verse=\count196
+\c@chrsinstr=\count197
+\beforepoemtitleskip=\skip112
+\afterpoemtitleskip=\skip113
+\c@poem=\count198
+\beforePoemTitleskip=\skip114
+\midPoemTitleskip=\skip115
+\afterPoemTitleskip=\skip116
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen143
+\ar@mcellbox=\box47
+\extrarowheight=\dimen144
+\NC@list=\toks16
+\extratabsurround=\skip117
+\backup@length=\skip118
+\ar@cellbox=\box48
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/delarray.sty
+Package: delarray 2014/10/28 v1.01 array delimiter package (DPC)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen145
+\TX@old@table=\dimen146
+\TX@old@col=\dimen147
+\TX@target=\dimen148
+\TX@delta=\dimen149
+\TX@cols=\count199
+\TX@ftn=\toks17
+)
+\heavyrulewidth=\dimen150
+\lightrulewidth=\dimen151
+\cmidrulewidth=\dimen152
+\belowrulesep=\dimen153
+\belowbottomsep=\dimen154
+\aboverulesep=\dimen155
+\abovetopsep=\dimen156
+\cmidrulesep=\dimen157
+\cmidrulekern=\dimen158
+\defaultaddspace=\dimen159
+\@cmidla=\count266
+\@cmidlb=\count267
+\@aboverulesep=\dimen160
+\@belowrulesep=\dimen161
+\@thisruleclass=\count268
+\@lastruleclass=\count269
+\@thisrulewidth=\dimen162
+\ctableftskip=\skip119
+\ctabrightskip=\skip120
+\abovecolumnspenalty=\count270
+\@linestogo=\count271
+\@cellstogo=\count272
+\@cellsincolumn=\count273
+\crtok=\toks18
+\@mincolumnwidth=\dimen163
+\c@newflo@tctr=\count274
+\mem@margin@floatbox=\box49
+\@contcwidth=\skip121
+\@contindw=\skip122
+\abovecaptionskip=\skip123
+\belowcaptionskip=\skip124
+\subfloattopskip=\skip125
+\subfloatcapskip=\skip126
+\subfloatcaptopadj=\skip127
+\subfloatbottomskip=\skip128
+\subfloatlabelskip=\skip129
+\subfloatcapmargin=\dimen164
+\c@@contsubnum=\count275
+\m@mscap@capbox=\box50
+\m@mscap@fbox=\box51
+\sidecapsep=\dimen165
+\sidecapwidth=\dimen166
+\m@m@tempdima=\dimen167
+\m@mscapraise=\dimen168
+\sidecapraise=\dimen169
+\m@mscapmainwidth=\dimen170
+\m@mscaplkern=\dimen171
+\beforeepigraphskip=\skip130
+\afterepigraphskip=\skip131
+\epigraphwidth=\skip132
+\epigraphrule=\skip133
+LaTeX Info: Redefining \em on input line 7650.
+LaTeX Info: Redefining \emph on input line 7658.
+\tocentryskip=\skip134
+\tocbaseline=\skip135
+\cftparskip=\skip136
+\cftbeforebookskip=\skip137
+\cftbookindent=\dimen172
+\cftbooknumwidth=\dimen173
+\cftbeforepartskip=\skip138
+\cftpartindent=\skip139
+\cftpartnumwidth=\skip140
+\cftbeforechapterskip=\skip141
+\cftchapterindent=\skip142
+\cftchapternumwidth=\skip143
+\cftbeforesectionskip=\skip144
+\cftsectionindent=\skip145
+\cftsectionnumwidth=\skip146
+\cftbeforesubsectionskip=\skip147
+\cftsubsectionindent=\skip148
+\cftsubsectionnumwidth=\skip149
+\cftbeforesubsubsectionskip=\skip150
+\cftsubsubsectionindent=\skip151
+\cftsubsubsectionnumwidth=\skip152
+\cftbeforeparagraphskip=\skip153
+\cftparagraphindent=\skip154
+\cftparagraphnumwidth=\skip155
+\cftbeforesubparagraphskip=\skip156
+\cftsubparagraphindent=\skip157
+\cftsubparagraphnumwidth=\skip158
+\prechapterprecisshift=\dimen174
+\c@maxsecnumdepth=\count276
+\bibindent=\dimen175
+\bibitemsep=\skip159
+\indexcolsep=\skip160
+\indexrule=\skip161
+\indexmarkstyle=\toks19
+\@indexbox=\insert252
+\glossarycolsep=\dimen176
+\glossaryrule=\dimen177
+\sideparvshift=\skip162
+\sideins=\insert251
+\sidebartopsep=\skip163
+\sidebarhsep=\skip164
+\sidebarvsep=\skip165
+\sidebarwidth=\skip166
+\footmarkwidth=\skip167
+\footmarksep=\skip168
+\footparindent=\skip169
+\footinsdim=\skip170
+\footinsv@r=\insert250
+\@mpfootinsv@r=\insert249
+\m@m@k=\count277
+\m@m@h=\dimen178
+\m@mipn@skip=\skip171
+\sidefootins=\insert248
+\sidefootadjust=\skip172
+\sidefootheight=\skip173
+\sidefoothsep=\skip174
+\sidefootvsep=\skip175
+\sidefootwidth=\skip176
+\m@mdownsf=\skip177
+\c@sidefootnote=\count278
+\sidefootmarkwidth=\skip178
+\sidefootmarksep=\skip179
+\sidefootparindent=\skip180
+\c@pagenote=\count279
+\c@pagenoteshadow=\count280
+\mem@pn@lastkern=\skip181
+\every@verbatim=\toks20
+\afterevery@verbatim=\toks21
+\verbatim@line=\toks22
+\tab@position=\count281
+\verbatim@in@stream=\read2
+\verbatimindent=\skip182
+\verbatim@out=\write3
+\bvboxsep=\skip183
+\c@memfbvline=\count282
+\c@bvlinectr=\count283
+\bvnumlength=\skip184
+\fb@frw=\dimen179
+\fb@frh=\dimen180
+\FrameRule=\dimen181
+\FrameSep=\dimen182
+\c@cp@cntr=\count284
+\c@ism@mctr=\count285
+\c@xsm@mctr=\count286
+\c@csm@mctr=\count287
+\c@ksm@mctr=\count288
+\c@xksm@mctr=\count289
+\c@cksm@mctr=\count290
+\c@msm@mctr=\count291
+\c@xmsm@mctr=\count292
+\c@cmsm@mctr=\count293
+\c@bsm@mctr=\count294
+\c@workm@mctr=\count295
+\c@sheetsequence=\count296
+\c@lastsheet=\count297
+\c@lastpage=\count298
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2019/09/14 v1.00 Text only upper/lower case changing (DPC)
+)
+\c@figure=\count299
+\c@lofdepth=\count300
+\cftbeforefigureskip=\skip185
+\cftfigureindent=\skip186
+\cftfigurenumwidth=\skip187
+\c@table=\count301
+\c@lotdepth=\count302
+\cftbeforetableskip=\skip188
+\cfttableindent=\skip189
+\cfttablenumwidth=\skip190
+Package abstract [2008/07/23] emulated by memoir.
+Package appendix [2008/07/23] emulated by memoir.
+Package booktabs [2016/05/16] emulated by memoir.
+Package ccaption [2008/07/23] emulated by memoir.
+Package changepage [2008/07/23] emulated by memoir.
+Package chngcntr [2008/07/23] emulated by memoir.
+Package chngpage [2008/07/23] emulated by memoir.
+Package crop emulated by memoir.
+Package enumerate [2008/07/23] emulated by memoir.
+Package epigraph [2008/07/23] emulated by memoir.
+Package ifmtarg [2008/07/23] emulated by memoir.
+Package index [2008/07/23] emulated by memoir.
+Package makeidx [2008/07/23] emulated by memoir.
+Package moreverb [2008/07/23] emulated by memoir.
+Package needspace [2008/07/23] emulated by memoir.
+Package newfile [2008/07/23] emulated by memoir.
+Package nextpage [2008/07/23] emulated by memoir.
+Package pagenote [2008/07/23] emulated by memoir.
+Package parskip [2008/07/23] emulated by memoir.
+Package patchcmd [2008/07/23] emulated by memoir.
+Package setspace [2008/07/23] emulated by memoir.
+Package shortvrb [2008/07/23] emulated by memoir.
+Package showidx [2008/07/23] emulated by memoir.
+Package titleref [2008/07/23] emulated by memoir.
+Package titling [2008/07/23] emulated by memoir.
+Package tocbibind [2008/07/23] emulated by memoir.
+Package tocloft [2008/07/23] emulated by memoir.
+Package tocvsec2 [2008/07/23] emulated by memoir.
+Package verbatim [2008/07/23] emulated by memoir.
+Package verse [2008/07/23] emulated by memoir.
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2020/12/31 v3.16 programmable bibliographies (PK/MW)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count303
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count304
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count305
+\c@listtotal=\count306
+\c@listcount=\count307
+\c@liststart=\count308
+\c@liststop=\count309
+\c@citecount=\count310
+\c@citetotal=\count311
+\c@multicitecount=\count312
+\c@multicitetotal=\count313
+\c@instcount=\count314
+\c@maxnames=\count315
+\c@minnames=\count316
+\c@maxitems=\count317
+\c@minitems=\count318
+\c@citecounter=\count319
+\c@maxcitecounter=\count320
+\c@savedcitecounter=\count321
+\c@uniquelist=\count322
+\c@uniquename=\count323
+\c@refsection=\count324
+\c@refsegment=\count325
+\c@maxextratitle=\count326
+\c@maxextratitleyear=\count327
+\c@maxextraname=\count328
+\c@maxextradate=\count329
+\c@maxextraalpha=\count330
+\c@abbrvpenalty=\count331
+\c@highnamepenalty=\count332
+\c@lownamepenalty=\count333
+\c@maxparens=\count334
+\c@parenlevel=\count335
+\blx@tempcnta=\count336
+\blx@tempcntb=\count337
+\blx@tempcntc=\count338
+\blx@maxsection=\count339
+\blx@maxsegment@0=\count340
+\blx@notetype=\count341
+\blx@parenlevel@text=\count342
+\blx@parenlevel@foot=\count343
+\blx@sectionciteorder@0=\count344
+\blx@entrysetcounter=\count345
+\blx@biblioinstance=\count346
+\labelnumberwidth=\skip191
+\labelalphawidth=\skip192
+\biblabelsep=\skip193
+\bibnamesep=\skip194
+\bibinitsep=\skip195
+\bibparsep=\skip196
+\bibhang=\skip197
+\blx@bcfin=\read3
+\blx@bcfout=\write4
+\blx@langwohyphens=\language87
+\c@mincomprange=\count347
+\c@maxcomprange=\count348
+\c@mincompwidth=\count349
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count350
+\c@savedafterword=\count351
+\c@annotator=\count352
+\c@savedannotator=\count353
+\c@author=\count354
+\c@savedauthor=\count355
+\c@bookauthor=\count356
+\c@savedbookauthor=\count357
+\c@commentator=\count358
+\c@savedcommentator=\count359
+\c@editor=\count360
+\c@savededitor=\count361
+\c@editora=\count362
+\c@savededitora=\count363
+\c@editorb=\count364
+\c@savededitorb=\count365
+\c@editorc=\count366
+\c@savededitorc=\count367
+\c@foreword=\count368
+\c@savedforeword=\count369
+\c@holder=\count370
+\c@savedholder=\count371
+\c@introduction=\count372
+\c@savedintroduction=\count373
+\c@namea=\count374
+\c@savednamea=\count375
+\c@nameb=\count376
+\c@savednameb=\count377
+\c@namec=\count378
+\c@savednamec=\count379
+\c@translator=\count380
+\c@savedtranslator=\count381
+\c@shortauthor=\count382
+\c@savedshortauthor=\count383
+\c@shorteditor=\count384
+\c@savedshorteditor=\count385
+\c@labelname=\count386
+\c@savedlabelname=\count387
+\c@institution=\count388
+\c@savedinstitution=\count389
+\c@lista=\count390
+\c@savedlista=\count391
+\c@listb=\count392
+\c@savedlistb=\count393
+\c@listc=\count394
+\c@savedlistc=\count395
+\c@listd=\count396
+\c@savedlistd=\count397
+\c@liste=\count398
+\c@savedliste=\count399
+\c@listf=\count400
+\c@savedlistf=\count401
+\c@location=\count402
+\c@savedlocation=\count403
+\c@organization=\count404
+\c@savedorganization=\count405
+\c@origlocation=\count406
+\c@savedoriglocation=\count407
+\c@origpublisher=\count408
+\c@savedorigpublisher=\count409
+\c@publisher=\count410
+\c@savedpublisher=\count411
+\c@language=\count412
+\c@savedlanguage=\count413
+\c@origlanguage=\count414
+\c@savedoriglanguage=\count415
+\c@pageref=\count416
+\c@savedpageref=\count417
+\shorthandwidth=\skip198
+\shortjournalwidth=\skip199
+\shortserieswidth=\skip256
+\shorttitlewidth=\skip257
+\shortauthorwidth=\skip258
+\shorteditorwidth=\skip259
+\locallabelnumberwidth=\skip260
+\locallabelalphawidth=\skip261
+\localshorthandwidth=\skip262
+\localshortjournalwidth=\skip263
+\localshortserieswidth=\skip264
+\localshorttitlewidth=\skip265
+\localshortauthorwidth=\skip266
+\localshorteditorwidth=\skip267
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+\c@textcitecount=\count418
+\c@textcitetotal=\count419
+\c@textcitemaxnames=\count420
+\c@biburlbigbreakpenalty=\count421
+\c@biburlbreakpenalty=\count422
+\c@biburlnumpenalty=\count423
+\c@biburlucpenalty=\count424
+\c@biburllcpenalty=\count425
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count426
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count427
+\c@bbx:relatedtotal=\count428
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2020/12/31 v3.16 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen183
+\Gin@req@width=\dimen184
+)
+\c@r@tfl@t=\count429
+\rotFPtop=\skip268
+\rotFPbot=\skip269
+\rot@float@box=\box52
+\rot@mess@toks=\toks24
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen185
+\WF@size=\dimen186
+\c@WF@wrappedlines=\count430
+\WF@box=\box53
+\WF@everypar=\toks25
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen187
+\captionmargin@=\dimen188
+\captionwidth=\dimen189
+\caption@tempdima=\dimen190
+\caption@indent=\dimen191
+\caption@parindent=\dimen192
+\caption@hangindent=\dimen193
+Package caption Info: memoir document class detected.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption-memoir.sto
+File: caption-memoir.sto 2020/10/10 v2.1 Adaption of the caption package to the
+ memoir document class (AR)
+))
+\c@caption@flags=\count431
+\c@continuedfloat=\count432
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen194
+\caption@adjustwidth@linewidth=\dimen195
+Package caption Info: rotating package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+\c@subfigure=\count433
+\c@subtable=\count434
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
+\epsfxsize=\dimen196
+\epsfysize=\dimen197
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip270
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks26
+\ex@=\dimen198
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen199
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count435
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count436
+\leftroot@=\count437
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count438
+\DOTSCASE@=\count439
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box54
+\strutbox@=\box55
+\big@size=\dimen256
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count440
+\c@MaxMatrixCols=\count441
+\dotsspace@=\muskip21
+\c@parentequation=\count442
+\dspbrk@lvl=\count443
+\tag@help=\toks27
+\row@=\count444
+\column@=\count445
+\maxfields@=\count446
+\andhelp@=\toks28
+\eqnshift@=\dimen257
+\alignsep@=\dimen258
+\tagshift@=\dimen259
+\tagwidth@=\dimen260
+\totwidth@=\dimen261
+\lineht@=\dimen262
+\@envbody=\toks29
+\multlinegap=\skip271
+\multlinetaggap=\skip272
+\mathdisplay@stack=\toks30
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip273
+\enit@outerparindent=\dimen263
+\enit@toks=\toks31
+\enit@inbox=\box56
+\enit@count@id=\count447
+\enitdp@description=\count448
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip274
+\multirow@cntb=\count449
+\multirow@dima=\skip275
+\bigstrutjot=\dimen264
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count450
+\float@exts=\toks32
+\float@box=\box57
+\@float@everytoks=\toks33
+\@floatcapt=\box58
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen265
+\Hy@linkcounter=\count451
+\Hy@pagecounter=\count452
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
+nguages
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count453
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count454
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen266
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count455
+\Field@Width=\dimen267
+\Fld@charsize=\dimen268
+Package hyperref Info: Hyper figures OFF on input line 6075.
+Package hyperref Info: Link nesting OFF on input line 6080.
+Package hyperref Info: Hyper index ON on input line 6083.
+Package hyperref Info: backreferencing OFF on input line 6090.
+Package hyperref Info: Link coloring OFF on input line 6095.
+Package hyperref Info: Link coloring with OCG OFF on input line 6100.
+Package hyperref Info: PDF/A mode OFF on input line 6105.
+LaTeX Info: Redefining \ref on input line 6145.
+LaTeX Info: Redefining \pageref on input line 6149.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+\Hy@abspage=\count456
+\c@Item=\count457
+\c@Hfootnote=\count458
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/memoir/memhfixc.sty
+Package: memhfixc 2019/10/24 v1.18 nameref/hyperref package fixes for memoir cl
+ass
+\c@memhycontfloat=\count459
+\c@Hpagenote=\count460
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2021-02-27 v7.00k Hyperref driver for pdfTeX
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
+)
+\Fld@listcount=\count461
+\c@bookmark@seq@number=\count462
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip276
+)
+\savewidth=\skip277
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/overpic/overpic.sty
+Package: overpic 2020/02/22 1.3 picture overlays (RN)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/eepic/epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count463
+\d@lta=\count464
+\@delta=\dimen269
+\@@delta=\dimen270
+\@gridcnt=\count465
+\@joinkind=\count466
+\@dotgap=\dimen271
+\@ddotgap=\dimen272
+\@x@diff=\count467
+\@y@diff=\count468
+\x@diff=\dimen273
+\y@diff=\dimen274
+\@dotbox=\box59
+\num@segments=\count469
+\num@segmentsi=\count470
+\@datafile=\read4
+)
+\OVP@box=\box60
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/24 3.56 The Babel package
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/24 3.56 Babel common definitions
+\babel@savecnt=\count471
+\U@D=\dimen275
+\l@babelnohyphens=\language88
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read5
+)
+\bbl@dirlevel=\count472
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/british.ldf
+Language: british 2017/06/06 v3.3r English support from the babel system
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 108.
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/american.ldf
+Language: american 2017/06/06 v3.3r English support from the babel system
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+)))
+
+Package Babel Warning: The package option `english' should not be used
+(Babel)                with a more specific one (like `american') on input line
+ 54.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/textpos/textpos.sty
+Package: textpos 2020/09/26 v1.10
+
+Package: textpos 2020/09/26 1.10, absolute positioning of text on the page
+Package textpos Info: choosing support for LaTeX3 on input line 61.
+\TP@textbox=\box61
+\TPHorizModule=\dimen276
+\TPVertModule=\dimen277
+\TP@margin=\dimen278
+\TP@absmargin=\dimen279
+Grid set 16 x 16 = 38.39343pt x 49.68562pt
+\TPboxrulesize=\dimen280
+\TP@tbargs=\toks34
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/marvosym/marvosym.sty
+Package: marvosym 2011/07/20 v2.2 Martin Vogel's Symbols font definitions
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip278
+\L@UnitsRaiseTextstyle=\skip279
+\L@UnitsRaiseScriptstyle=\skip280
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2021/03/14 v2.8c Micro-typographical refinements (RS)
+\MT@toks=\toks35
+\MT@count=\count473
+LaTeX Info: Redefining \textls on input line 790.
+\MT@outer@kern=\dimen281
+LaTeX Info: Redefining \textmicrotypecontext on input line 1374.
+\MT@listname@count=\count474
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2021/03/14 v2.8c Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip281
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2021/03/14 v2.8c microtype main configuration file (RS)
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tabulary/tabulary.sty
+Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
+\TY@count=\count475
+\TY@linewidth=\dimen282
+\tymin=\dimen283
+\tymax=\dimen284
+\TY@tablewidth=\dimen285
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen286
+\c@nlinenum=\count476
+\TeXr@lab=\toks36
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+\everycr=\toks37
+\minrowclearance=\skip282
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
+\symboldwasy=\mathgroup10
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 209.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1enc.sty
+Package: t1enc 1994/06/01 Standard LaTeX package
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lipsum/lipsum.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-02-18 L3 programming layer (loader) 
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count477
+\l__pdf_internal_box=\box62
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-
+01.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.
+tex)))
+Package: lipsum 2021-03-03 v2.3 150 paragraphs of Lorem Ipsum dummy text
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex
+File: lipsum.ltd.tex 2021-03-03 v2.3 The Lorem ipsum dummy text
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count478
+\@quotereset=\count479
+(./thesis.aux (./abstract.aux) (./chap1.aux) (./chap4.aux))
+\openout1 = `thesis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+
+
+******************************************************
+Stock height and width: 794.96999pt by 614.295pt
+Top and edge trims: 0pt and 0pt
+Page height and width: 794.96999pt by 614.295pt
+Text height and width: 606.5pt by 469pt
+Spine and edge margins: 72.26999pt and 72.26999pt
+Upper and lower margins: 111.76999pt and 76.7pt
+Headheight and headsep: 14.5pt and 19.8738pt
+Footskip: 30pt
+Columnsep and columnseprule: 10pt and 0pt
+Marginparsep and marginparwidth: 7pt and 58.26999pt
+Sidecapsep and sidecapwidth: 7pt and 50pt
+Sidebarhsep and sidebarwidth: 7pt and 50pt
+Sidebarvsep and sidebartopsep: 14.5pt and 0pt
+Sidebarheight: 546.64995pt
+Sidefoothsep and sidefootwidth: 7pt and 50pt
+Sidefootvsep and sidefootheight: 14.5pt and 546.64995pt
+******************************************************
+
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/american.lbx
+File: american.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+))
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'british'...
+Package biblatex Info: ... file 'british.lbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/british.lbx
+File: british.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+))
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2021-02-18 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
+)
+\openout4 = `thesis.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'thesis.bbl' found.
+
+(./thesis.bbl)
+Package biblatex Info: Reference section=0 on input line 132.
+Package biblatex Info: Reference segment=0 on input line 132.
+
+(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count480
+\scratchdimen=\dimen287
+\scratchbox=\box63
+\nofMPsegments=\count481
+\nofMParguments=\count482
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count483
+\MPscratchDim=\dimen288
+\MPnumerator=\count484
+\makeMPintoPDFobject=\count485
+\everyMPtoPDFconversion=\toks39
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring OFF on input line 132.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count486
+)
+Redoing nameref's sectioning
+Redoing nameref's label
+LaTeX Info: Redefining \nameref on input line 132.
+LaTeX Info: Redefining \ref on input line 132.
+LaTeX Info: Redefining \pageref on input line 132.
+LaTeX Info: Redefining \nameref on input line 132.
+(./thesis.out) (./thesis.out)
+\@outlinefile=\write5
+\openout5 = `thesis.out'.
+
+LaTeX Info: Redefining \microtypecontext on input line 132.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 132.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+) [1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+\openout2 = `abstract.aux'.
+
+
+(./abstract.texpdfTeX warning (ext4): destination with the same identifier (nam
+e{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.13 \end{abstract}
+                    [1
+
+]) [1
+
+
+] (./thesis.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 4.
+
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 4.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 4.
+
+) [2] (./thesis.lof) [3
+
+] (./thesis.lot
+LaTeX Font Info:    Trying to load font information for U+mvs on input line 8.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/marvosym/umvs.fd)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-mvs.cfg
+File: mt-mvs.cfg 2006/07/05 v1.1 microtype config. file: Marvosym Euro (RS)
+)) [4
+
+]
+[5]
+\openout2 = `chap1.aux'.
+
+ (./chap1.tex)pdfTeX warning (ext4): destination with the same identifier (name
+{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.207 \include{chap1}
+                      [1
+
+
+]
+\openout2 = `chap4.aux'.
+
+ (./chap4.tex
+
+LaTeX Warning: Citation 'LeCun1989' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'alexnet' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Russakovsky2015' on page 2 undefined on input line 14.
+
+
+
+LaTeX Warning: Citation 'Simonyan2014' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Szegedy2015' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'resnet' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Xie2017' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'densenet' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Howard2017' on page 2 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Tan2019efficientnet' on page 2 undefined on input line
+ 14.
+
+
+LaTeX Warning: Citation 'Radosavovic2020designing' on page 2 undefined on input
+ line 14.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15 
+      [2
+
+
+
+
+]
+
+pdfTeX warning: pdflatex (file ./convnext_figures//teaser.pdf): PDF inclusion: 
+found PDF version <1.6>, but at most version <1.5> allowed
+<./convnext_figures//teaser.pdf, id=211, 831.29945pt x 538.4416pt>
+File: ./convnext_figures//teaser.pdf Graphic file (type pdf)
+<use ./convnext_figures//teaser.pdf>
+Package pdftex.def Info: ./convnext_figures//teaser.pdf  used on input line 18.
+
+(pdftex.def)             Requested size: 375.20143pt x 243.01947pt.
+
+LaTeX Warning: Citation 'Sermanet2014' on page 3 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'lecun1998gradient' on page 3 undefined on input line 2
+3.
+
+
+LaTeX Warning: Citation 'vaillant1994original' on page 3 undefined on input lin
+e 23.
+
+
+LaTeX Warning: Citation 'rowley1998neural' on page 3 undefined on input line 23
+.
+
+
+LaTeX Warning: Citation 'sermanet2013pedestrian' on page 3 undefined on input l
+ine 23.
+
+
+LaTeX Warning: Citation 'dollar2010fastest' on page 3 undefined on input line 2
+3.
+
+
+LaTeX Warning: Citation 'rcnn' on page 3 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'Girshick2015' on page 3 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'Ren2015' on page 3 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'He2017' on page 3 undefined on input line 23.
+
+[3 <./convnext_figures//teaser.pdf>]
+
+LaTeX Warning: Citation 'Liu2021swin' on page 4 undefined on input line 27.
+
+
+LaTeX Warning: Citation 'ramachandran2019stand' on page 4 undefined on input li
+ne 30.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 4 undefined on input line 30.
+
+
+Overfull \hbox (3.759pt too wide) in paragraph at lines 30--32
+\T1/cmr/m/n/12 (-20) im-ple-men-ta-tion of slid-ing win-dow self-attention can 
+be ex-pen-sive [[]];
+ []
+
+[4]
+
+LaTeX Warning: Citation 'Deng2009' on page 5 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'Lin2014' on page 5 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'Zhou2019' on page 5 undefined on input line 39.
+
+
+
+pdfTeX warning: pdflatex (file ./convnext_figures//morph_main_v3.pdf): PDF incl
+usion: found PDF version <1.6>, but at most version <1.5> allowed
+<./convnext_figures//morph_main_v3.pdf, id=351, 407.14107pt x 534.9767pt>
+File: ./convnext_figures//morph_main_v3.pdf Graphic file (type pdf)
+<use ./convnext_figures//morph_main_v3.pdf>
+Package pdftex.def Info: ./convnext_figures//morph_main_v3.pdf  used on input l
+ine 47.
+(pdftex.def)             Requested size: 309.54172pt x 406.74161pt.
+[5] [6 <./convnext_figures//morph_main_v3.pdf>]
+
+LaTeX Warning: Citation 'bello2021revisiting' on page 7 undefined on input line
+ 65.
+
+
+LaTeX Warning: Citation 'Wightman2021resnet' on page 7 undefined on input line 
+65.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Loshchilov2019' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Zhang2018a' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Yun2019' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Cubuk2020' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Zhong2020' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Huang2017' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'Szegedy2016a' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'torchvision' on page 7 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'vgg' on page 7 undefined on input line 68.
+
+
+LaTeX Warning: Citation 'resnet' on page 7 undefined on input line 68.
+
+
+LaTeX Warning: Citation 'Radosavovic2019network' on page 7 undefined on input l
+ine 71.
+
+
+LaTeX Warning: Citation 'Radosavovic2020designing' on page 7 undefined on input
+ line 71.
+
+[7]
+
+LaTeX Warning: Citation 'Xie2017' on page 8 undefined on input line 82.
+
+
+LaTeX Warning: Citation 'Howard2017' on page 8 undefined on input line 84.
+
+
+LaTeX Warning: Citation 'Chollet2017' on page 8 undefined on input line 84.
+
+[8]
+
+LaTeX Warning: Citation 'Sandler2018' on page 9 undefined on input line 89.
+
+
+LaTeX Warning: Citation 'Tan2019efficientnet' on page 9 undefined on input line
+ 89.
+
+
+LaTeX Warning: Citation 'tan2019mnasnet' on page 9 undefined on input line 89.
+
+
+LaTeX Warning: Citation 'alexnet' on page 9 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'Szegedy2015' on page 9 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'vgg' on page 9 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'Lavin2016FastAF' on page 9 undefined on input line 98.
+
+
+
+
+pdfTeX warning: pdflatex (file ./convnext_figures//inverted_v2.pdf): PDF inclus
+ion: found PDF version <1.6>, but at most version <1.5> allowed
+<./convnext_figures//inverted_v2.pdf, id=425, 373.09389pt x 125.32321pt>
+File: ./convnext_figures//inverted_v2.pdf Graphic file (type pdf)
+<use ./convnext_figures//inverted_v2.pdf>
+Package pdftex.def Info: ./convnext_figures//inverted_v2.pdf  used on input lin
+e 104.
+(pdftex.def)             Requested size: 375.20143pt x 126.04pt.
+[9]
+
+LaTeX Warning: Citation 'Nair2010' on page 10 undefined on input line 121.
+
+
+LaTeX Warning: Citation 'Vaswani2017' on page 10 undefined on input line 121.
+
+
+LaTeX Warning: Citation 'Hendrycks2016' on page 10 undefined on input line 121.
+
+
+
+LaTeX Warning: Citation 'Devlin2019' on page 10 undefined on input line 121.
+
+
+LaTeX Warning: Citation 'Radford2019' on page 10 undefined on input line 121.
+
+[10 <./convnext_figures//inverted_v2.pdf>]
+
+pdfTeX warning: pdflatex (file ./convnext_figures//block_v4.pdf): PDF inclusion
+: found PDF version <1.6>, but at most version <1.5> allowed
+<./convnext_figures//block_v4.pdf, id=454, 315.54889pt x 339.68204pt>
+File: ./convnext_figures//block_v4.pdf Graphic file (type pdf)
+<use ./convnext_figures//block_v4.pdf>
+Package pdftex.def Info: ./convnext_figures//block_v4.pdf  used on input line 1
+32.
+(pdftex.def)             Requested size: 351.75pt x 378.66864pt.
+[11 <./convnext_figures//block_v4.pdf>]
+
+LaTeX Warning: Citation 'Ioffe2017' on page 12 undefined on input line 141.
+
+
+LaTeX Warning: Citation 'wu2021rethinking' on page 12 undefined on input line 1
+41.
+
+
+LaTeX Warning: Citation 'Salimans2016' on page 12 undefined on input line 141.
+
+
+LaTeX Warning: Citation 'Ulyanov2016' on page 12 undefined on input line 141.
+
+
+LaTeX Warning: Citation 'Wu2018' on page 12 undefined on input line 141.
+
+
+LaTeX Warning: Citation 'Ba2016' on page 12 undefined on input line 142.
+
+
+LaTeX Warning: Citation 'Wu2018' on page 12 undefined on input line 144.
+
+[12]
+
+LaTeX Warning: Citation 'Liu2021swin' on page 13 undefined on input line 171.
+
+
+LaTeX Warning: Citation 'Loshchilov2019' on page 13 undefined on input line 187
+.
+
+
+LaTeX Warning: Citation 'Zhang2018a' on page 13 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'Yun2019' on page 13 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'Cubuk2020' on page 13 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'Zhong2020' on page 13 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'Huang2016deep' on page 13 undefined on input line 187.
+
+
+
+LaTeX Warning: Citation 'Szegedy2016a' on page 13 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'Touvron2021GoingDW' on page 13 undefined on input line
+ 187.
+
+
+LaTeX Warning: Citation 'Polyak1992' on page 13 undefined on input line 187.
+
+
+Overfull \hbox (32.04066pt too wide) in paragraph at lines 187--188
+ []\T1/cmr/bx/n/12 (-20) Training on ImageNet-1K.[] \T1/cmr/m/n/12 (-20) We tra
+in Con-vNeXts for 300 epochs us-ing AdamW [[]]
+ []
+
+[13]
+
+LaTeX Warning: Citation 'Clark2020' on page 14 undefined on input line 192.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 14 undefined on input line 192.
+
+
+Overfull \hbox (6.785pt too wide) in paragraph at lines 192--194
+ []\T1/cmr/bx/n/12 (-20) Fine-tuning on ImageNet-1K.[] \T1/cmr/m/n/12 (-20) We 
+fine-tune ImageNet-22K pre-trained mod-els on ImageNet-
+ []
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 203.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 203.
+
+
+LaTeX Warning: Citation 'Radosavovic2020designing' on page 14 undefined on inpu
+t line 207.
+
+
+LaTeX Warning: Citation 'Tan2019efficientnet' on page 14 undefined on input lin
+e 208.
+
+
+LaTeX Warning: Citation 'tan2021efficientnetv2' on page 14 undefined on input l
+ine 209.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 14 undefined on input line 213.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 14 undefined on input line 214.
+
+
+LaTeX Warning: Citation 'Kolesnikov2020' on page 14 undefined on input line 240
+.
+
+
+LaTeX Warning: Citation 'Kolesnikov2020' on page 14 undefined on input line 241
+.
+
+
+LaTeX Warning: Citation 'tan2021efficientnetv2' on page 14 undefined on input l
+ine 242.
+
+
+LaTeX Warning: Citation 'tan2021efficientnetv2' on page 14 undefined on input l
+ine 243.
+
+
+LaTeX Warning: Citation 'steiner2021train' on page 14 undefined on input line 2
+46.
+
+
+LaTeX Warning: Citation 'steiner2021train' on page 14 undefined on input line 2
+47.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 14 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'steiner2021train' on page 14 undefined on input line 2
+83.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 14 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'steiner2021train' on page 14 undefined on input line 2
+83.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 14 undefined on input line 289.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 14 undefined on input line 289.
+
+
+LaTeX Warning: Citation 'Radosavovic2020designing' on page 14 undefined on inpu
+t line 289.
+
+
+LaTeX Warning: Citation 'Tan2019efficientnet' on page 14 undefined on input lin
+e 289.
+
+
+LaTeX Warning: Citation 'tan2021efficientnetv2' on page 14 undefined on input l
+ine 289.
+
+
+LaTeX Warning: Citation 'Radosavovic2020designing' on page 14 undefined on inpu
+t line 289.
+
+
+LaTeX Warning: Citation 'Tan2019efficientnet' on page 14 undefined on input lin
+e 289.
+
+
+LaTeX Warning: Citation 'hu2018squeeze' on page 14 undefined on input line 298.
+
+
+[14] [15]
+
+LaTeX Warning: Citation 'Dosovitskiy2021' on page 16 undefined on input line 30
+4.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 16 undefined on input line 305.
+
+
+LaTeX Warning: Citation 'he2021masked' on page 16 undefined on input line 305.
+
+
+LaTeX Warning: Citation 'Dosovitskiy2021' on page 16 undefined on input line 30
+5.
+
+
+Overfull \hbox (60.30653pt too wide) in paragraph at lines 304--306
+\T1/cmr/m/n/12 (-20) In this ab-la-tion, we ex-am-ine if our Con-vNeXt block de
+-sign is gen-er-al-iz-able to ViT-style [[]]
+ []
+
+
+LaTeX Warning: Citation 'He2017' on page 16 undefined on input line 333.
+
+
+LaTeX Warning: Citation 'Cai2018' on page 16 undefined on input line 333.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 16 undefined on input line 333.
+
+[16]
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <9> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 375.
+
+
+LaTeX Warning: Citation 'swindetcode' on page 17 undefined on input line 378.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 17 undefined on input line 378.
+
+
+LaTeX Warning: Citation 'swindetcode' on page 17 undefined on input line 378.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 17 undefined on input line 378.
+
+
+LaTeX Warning: Citation 'Xiao2018' on page 17 undefined on input line 383.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 17 undefined on input line 383.
+
+
+LaTeX Warning: Citation 'Xiao2018' on page 17 undefined on input line 414.
+
+
+LaTeX Warning: Citation 'swincode' on page 17 undefined on input line 414.
+
+
+LaTeX Warning: Citation 'Xiao2018' on page 17 undefined on input line 414.
+
+
+LaTeX Warning: Citation 'swincode' on page 17 undefined on input line 414.
+
+[17]
+
+LaTeX Warning: Citation 'Wang2018' on page 18 undefined on input line 426.
+
+
+LaTeX Warning: Citation 'bello2019attention' on page 18 undefined on input line
+ 426.
+
+
+LaTeX Warning: Citation 'srinivas2021bottleneck' on page 18 undefined on input 
+line 426.
+
+
+LaTeX Warning: Citation 'ramachandran2019stand' on page 18 undefined on input l
+ine 426.
+
+
+LaTeX Warning: Citation 'Dosovitskiy2021' on page 18 undefined on input line 42
+7.
+
+
+LaTeX Warning: Citation 'wu2021cvt' on page 18 undefined on input line 427.
+
+
+LaTeX Warning: Citation 'xu2021co' on page 18 undefined on input line 427.
+
+
+LaTeX Warning: Citation 'd2021convit' on page 18 undefined on input line 427.
+
+
+LaTeX Warning: Citation 'dai2021coatnet' on page 18 undefined on input line 427
+.
+
+
+LaTeX Warning: Citation 'Xiao2021' on page 18 undefined on input line 427.
+
+
+LaTeX Warning: Citation 'fan2021multiscale' on page 18 undefined on input line 
+427.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 18 undefined on input line 427.
+
+[18]
+
+LaTeX Warning: Citation 'han2021demystifying' on page 19 undefined on input lin
+e 429.
+
+
+LaTeX Warning: Citation 'convmixer' on page 19 undefined on input line 429.
+
+
+LaTeX Warning: Citation 'rao2021global' on page 19 undefined on input line 429.
+
+
+[19]
+
+LaTeX Warning: Citation 'Clark2020' on page 20 undefined on input line 474.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 20 undefined on input line 474.
+
+
+LaTeX Warning: Citation 'Cubuk2020' on page 20 undefined on input line 475.
+
+
+LaTeX Warning: Citation 'Zhang2018a' on page 20 undefined on input line 476.
+
+
+LaTeX Warning: Citation 'Yun2019' on page 20 undefined on input line 477.
+
+
+LaTeX Warning: Citation 'Zhong2020' on page 20 undefined on input line 478.
+
+
+LaTeX Warning: Citation 'Szegedy2016a' on page 20 undefined on input line 479.
+
+
+LaTeX Warning: Citation 'Huang2016deep' on page 20 undefined on input line 480.
+
+
+
+LaTeX Warning: Citation 'Touvron2021GoingDW' on page 20 undefined on input line
+ 481.
+
+
+LaTeX Warning: Citation 'Touvron2021GoingDW' on page 20 undefined on input line
+ 482.
+
+
+LaTeX Warning: Citation 'Polyak1992' on page 20 undefined on input line 484.
+
+
+LaTeX Warning: Citation 'Touvron2020' on page 20 undefined on input line 532.
+
+[20] [21]
+
+LaTeX Warning: Citation 'Clark2020' on page 22 undefined on input line 534.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 22 undefined on input line 534.
+
+
+LaTeX Warning: Citation 'rw2019timm' on page 22 undefined on input line 534.
+
+
+LaTeX Warning: Citation 'Touvron2021GoingDW' on page 22 undefined on input line
+ 534.
+
+
+LaTeX Warning: Citation 'swincode' on page 22 undefined on input line 534.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 22 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 22 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'mmdetection' on page 22 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'mmseg2020' on page 22 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'Bao2021' on page 22 undefined on input line 543.
+
+
+LaTeX Warning: Citation 'swindetcode' on page 22 undefined on input line 543.
+
+
+LaTeX Warning: Citation 'hendrycks2021natural' on page 22 undefined on input li
+ne 572.
+
+
+LaTeX Warning: Citation 'hendrycks2021many' on page 22 undefined on input line 
+572.
+
+
+LaTeX Warning: Citation 'wang2019learning' on page 22 undefined on input line 5
+72.
+
+
+LaTeX Warning: Citation 'hendrycks2018benchmarking' on page 22 undefined on inp
+ut line 572.
+
+
+LaTeX Warning: Citation 'mintun2021interaction' on page 22 undefined on input l
+ine 572.
+
+
+Overfull \hbox (146.7905pt too wide) in paragraph at lines 572--573
+\T1/cmr/m/n/12 (-20) R [[]], ImageNet-Sketch [[]] and ImageNet-C/$[]$ [[],
+ []
+
+[22]
+
+LaTeX Warning: Citation 'mao2021towards' on page 23 undefined on input line 574
+.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 23 undefined on input line 601.
+
+
+LaTeX Warning: Citation 'mao2021towards' on page 23 undefined on input line 601
+.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 23 undefined on input line 601.
+
+
+LaTeX Warning: Citation 'mao2021towards' on page 23 undefined on input line 601
+.
+
+
+Overfull \hbox (49.00569pt too wide) in paragraph at lines 601--602
+ [][] 
+ []
+
+[23]
+
+LaTeX Warning: Citation 'torchvision' on page 24 undefined on input line 706.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 24 undefined on input line 726.
+
+
+LaTeX Warning: Citation 'He2016a' on page 24 undefined on input line 744.
+
+
+LaTeX Warning: Citation 'Liu2021swin' on page 24 undefined on input line 764.
+
+[24]
+
+LaTeX Warning: Citation 'Liu2021swin' on page 25 undefined on input line 788.
+
+
+LaTeX Warning: Citation 'pytorch' on page 25 undefined on input line 788.
+
+
+LaTeX Warning: Citation 'clpytorch' on page 25 undefined on input line 788.
+
+[25] [26]) [27]
+
+LaTeX Warning: Empty bibliography on input line 220.
+
+
+Package caption Warning: Unused \captionsetup[sub] on input line 52.
+See the caption package documentation for explanation.
+
+\tf@toc=\write6
+\openout6 = `thesis.toc'.
+
+\tf@lof=\write7
+\openout7 = `thesis.lof'.
+
+\tf@lot=\write8
+\openout8 = `thesis.lot'.
+
+(./thesis.aux (./abstract.aux) (./chap1.aux) (./chap4.aux))
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 488FB7239B309FE4AC1A7ECAE7B6C4EF;2939.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                thesis
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'thesis.run.xml'.
+\openout1 = `thesis.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 26060 strings out of 478994
+ 423969 string characters out of 5858184
+ 1400823 words of memory out of 5000000
+ 42733 multiletter control sequences out of 15000+600000
+ 448310 words of font info for 262 fonts, out of 8000000 for 9000
+ 1143 hyphenation exceptions out of 8191
+ 83i,32n,88p,1528b,2919s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loca
+l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
+e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/
+2021/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb></usr/local/texlive/20
+21/texmf-dist/fonts/type1/public/cm-super/sfbi1440.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2021/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf
+-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dis
+t/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/
+fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fo
+nts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/font
+s/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/
+type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
+pe1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type
+1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/
+public/cm-super/sfti1200.pfb>
+Output written on thesis.pdf (35 pages, 857701 bytes).
+PDF statistics:
+ 723 PDF objects out of 1000 (max. 8388607)
+ 565 compressed objects within 6 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 73901 words of extra memory for PDF output out of 74296 (max. 10000000)
+

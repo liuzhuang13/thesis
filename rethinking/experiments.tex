@@ -1,0 +1,243 @@
+
+\vspace{-2ex}
+\section{Methodology}
+\vspace{-2ex}
+In this section, we describe in detail our methodology for training a small target model from scratch.
+
+
+\textbf{Target Pruned Architectures.} We first divide network pruning methods into two categories. In a pruning pipeline, the target pruned model's architecture can be determined by either a human (i.e., predefined) or the pruning algorithm (i.e., automatic) (see \autoref{auto}).
+
+When a human predefines the target architecture, a common criterion is the ratio of channels to prune in each layer. For example, we may want to prune 50\% channels in each layer of VGG. In this case, no matter which specific channels are pruned, the pruned target architecture remains the same, because the pruning algorithm only \emph{locally} prunes the least important 50\% channels in each layer. In practice, the ratio in each layer is usually selected through empirical studies or heuristics. Examples of predefined structured pruning include \cite{li2016pruning}, \cite{luo2017thinet}, \cite{ he2017channel} and \cite{he2018sfp}
+
+When the target architecture is automatically determined by a pruning algorithm, it is usually based on a pruning criterion that \emph{globally} compares the importance of structures (e.g., channels) across layers. Examples of automatic structured pruning include \cite{liu2017learning}, \cite{huang2018data}, \cite{nvidia} and \cite{pfa}. 
+
+Unstructured pruning \citep{han2015learning, vdropout, l0sparse} also falls in the category of automatic methods, where the positions of pruned weights are determined by the training process and the pruning algorithm, and it is usually not possible to predefine the positions of zeros before training starts.
+
+\textbf{Datasets, Network Architectures and Pruning Methods.}
+In the network pruning literature, CIFAR-10, CIFAR-100 \citep{cifar}, and ImageNet \citep{imagenet} datasets are the de-facto benchmarks, while VGG \citep{vgg}, ResNet \citep{resnet} and DenseNet  \citep{densenet} are the common network architectures. 
+We evaluate four predefined pruning methods, \cite{li2016pruning}, \cite{luo2017thinet}, \cite{he2017channel}, \cite{he2018sfp}, two automatic structured pruning methods, \cite{liu2017learning}, \cite{ huang2018data}, and one unstructured pruning method \citep{han2015learning}. For the first six methods, we evaluate using the same (target model, dataset) pairs as presented in the original paper to keep our results comparable. For the last one \citep{han2015learning}, we use the aforementioned architectures instead, since the ones in the original paper are no longer state-of-the-art. On CIFAR datasets, we run each experiment with 5 random seeds, and report the mean and standard deviation of the accuracy. 
+
+\textbf{Training Budget.}
+One crucial question is how long we should train the small pruned model from scratch. Naively training for the same number of epochs as we train the large model might be unfair, since the small pruned model requires significantly less computation for one epoch. Alternatively, we could compute the floating point operations (FLOPs) for both the pruned and large models, and choose the number of training epoch for the pruned model that would lead to the same amount of computation as training the large model. Note that it is not clear how to train the models to ``full convergence'' given the stepwise decaying learning rate schedule commonly used in the CIFAR/ImageNet classification tasks. 
+
+In our experiments, we use \textbf{Scratch-E} to denote training the small pruned models for the same epochs, and \textbf{Scratch-B} to denote training for the same amount of computation budget (on ImageNet, if the pruned model saves more than 2$\times$ FLOPs, we just double the number of epochs for training Scratch-B, which amounts to less computation budget than large model training). When extending the number of epochs in Scratch-B, we also extend the learning rate decay schedules proportionally. One may argue that we should instead train the small target model for fewer epochs since it may converge faster. However, in practice we found that increasing the training epochs within a reasonable range is rarely harmful. In our experiments we found in most times Scratch-E is enough while in other cases Scratch-B is needed for a comparable accuracy as fine-tuning. Note that our evaluations use the same computation as large model training without considering the computation in fine-tuning, since in our evaluated methods fine-tuning does not take too long; if anything this still favors the pruning and fine-tuning pipeline.
+
+\textbf{Implementation.}
+In order to keep our setup as close to the original papers as possible, we use the following protocols: 1) ff a previous pruning method's training setup is publicly available, e.g. \cite{liu2017learning}, \cite{huang2018data} and \cite{he2018sfp}, we adopt the original implementation; 2) otherwise, for simpler pruning methods, e.g., \cite{li2016pruning} and  \cite{han2015learning}, we re-implement the three-stage pruning procedure and generally achieve similar results as in the original papers; 3) for the remaining two methods \citep{luo2017thinet, he2017channel}, the pruned models are publicly available but without the training setup, thus we choose to re-train both large and small target models from scratch. Interestingly, the accuracy of our re-trained large model is higher than what is reported in the original papers. This could be due to the difference in the deep learning frameworks: we used Pytorch~\citep{pytorch} while the original papers used Caffe~\citep{caffe}. In this case, to accommodate the effects of different frameworks and training setups, we report the relative accuracy drop from the unpruned large model.
+
+We use standard training hyper-parameters and data-augmentation schemes, which are used both in standard image classification models \citep{resnet, densenet} and network pruning methods \citep{li2016pruning, liu2017learning, huang2018data, he2018sfp}. The optimization method is SGD with Nesterov momentum, using an stepwise decay learning rate schedule.
+
+For random weight initialization, we adopt the scheme proposed in ~\citep{he2015delving}. For results of models fine-tuned from inherited weights, we either use the released models from original papers (case 3 above) or follow the common practice of fine-tuning the model using the lowest learning rate when training the large model \citep{li2016pruning, he2017channel}. For CIFAR, training/fine-tuning takes 160/40 epochs. For ImageNet, training/fine-tuning takes 90/20 epochs. For reproducing the results and a more detailed knowledge about the settings, see our code at: \url{https://github.com/Eric-mingjie/rethinking-network-pruning}.
+
+\section{Experiments}
+\label{sec:exp}
+In this section we present our experimental results comparing training pruned models from scratch and fine-tuning from inherited weights, for both predefined and automatic (Figure \ref{auto}) structured pruning, as well as a magnitude-based unstructured pruning method \citep{han2015learning}. We put the results and discussions on a pruning method (Soft Filter pruning \citep{he2018sfp}) in Appendix \ref{sec:sfp}, and include an experiment on transfer learning from image classification to object detection in Appendix \ref{sec:transfer}.
+
+
+\subsection{Predefined Structured Pruning}
+\textbf{$L_1$-norm based Filter Pruning \citep{li2016pruning}} is one of the earliest works on filter/channel pruning for convolutional networks. In each layer, a certain percentage of filters with smaller $L_1$-norm will be pruned. 
+\autoref{pruning-filters} shows our results. The Pruned Model column shows the list of predefined target models (see \citep{li2016pruning} for configuration details on each model). We observe that in each row, scratch-trained models achieve at least the same level of accuracy as fine-tuned models, with Scratch-B slightly higher than Scratch-E in most cases. On ImageNet, both Scratch-B models are better than the fine-tuned ones by a noticeable margin. 
+
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htbp]
+\small
+\vspace{-2ex}
+\centering
+\resizebox{1.0\textwidth}{!}{
+\begin{tabular}{c|c|ccccl}
+\hline
+Dataset                   & Model                       & Unpruned                                               & Pruned Model & Fine-tuned                                  & Scratch-E                                   & \multicolumn{1}{c}{Scratch-B} \\ \hline
+\multirow{5}{*}{CIFAR-10} & VGG-16                      & 93.63 ($\pm$0.16)                                      & VGG-16-A     & 93.41 ($\pm$0.12)                           & 93.62 ($\pm$0.11) &    \textbf{93.78} ($\pm$0.15)                           \\ \cline{2-7} 
+                          & \multirow{2}{*}{ResNet-56}  & \multicolumn{1}{l}{\multirow{2}{*}{93.14 ($\pm$0.12)}} & ResNet-56-A  & 92.97 ($\pm$0.17) & 92.96 ($\pm$0.26)             & \textbf{93.09} ($\pm$0.14)                              \\
+                          &                             & \multicolumn{1}{l}{}                                   & ResNet-56-B  & 92.67 ($\pm$0.14) & 92.54 ($\pm$0.19)     &  \textbf{93.05} ($\pm$0.18)                             \\ \cline{2-7} 
+                          & \multirow{2}{*}{ResNet-110} & \multirow{2}{*}{93.14 ($\pm$0.24)}                     & ResNet-110-A & 93.14 ($\pm$0.16)                           & \textbf{93.25} ($\pm$0.29) &     93.22 ($\pm$0.22)                          \\
+                          &                             &                                                        & ResNet-110-B & 92.69 ($\pm$0.09)                           & 92.89 ($\pm$0.43) &  \textbf{93.60} ($\pm$0.25)                             \\ \hline
+\multirow{2}{*}{ImageNet} & \multirow{2}{*}{ResNet-34}  & \multirow{2}{*}{73.31}                                 & ResNet-34-A  & 72.56                                       & 72.77                                       & \multicolumn{1}{c}{\textbf{73.03}}     \\
+                          &                             &                                                        & ResNet-34-B  & 72.29                                       & 72.55                                       & \multicolumn{1}{c}{\textbf{72.91}}     \\ \hline
+\end{tabular}
+}
+\vspace{1ex}
+\caption{Results (accuracy) for $L_1$-norm based filter pruning \citep{li2016pruning}. 
+``Pruned Model'' is the model pruned from the large model. Configurations of Model and Pruned Model are both from the original paper. 
+}
+\label{pruning-filters}
+\vspace{-3ex}
+\end{table}
+
+
+
+
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htbp]
+\small
+\centering
+\resizebox{0.85\textwidth}{!}{
+\begin{tabular}{c|c|cccc}
+\hline
+Dataset                   & Unpruned               & Strategy                           & \multicolumn{3}{c}{Pruned Model}                                                                           \\ \hline
+\multirow{8}{*}{ImageNet} & VGG-16                 & \multicolumn{1}{l}{}               & VGG-Conv                          & VGG-GAP                           & VGG-Tiny                           \\ \cline{2-6} 
+                          & 71.03                  & Fine-tuned                         & $-$1.23                                 & $-$3.67                           & $-$11.61                           \\ \cline{2-6} 
+                          & \multirow{2}{*}{71.51} & Scratch-E                            & $-$2.75                           & $-$4.66                           & $-$14.36                           \\
+                          &                        &       Scratch-B                     & \textbf{$+$0.21} & \textbf{$-$2.85} & \textbf{$-$11.58} \\ \cline{2-6}
+                          & ResNet-50              & \multicolumn{1}{l}{}               & \multicolumn{1}{l}{ResNet50-30\%} & \multicolumn{1}{l}{ResNet50-50\%} & \multicolumn{1}{l}{ResNet50-70\%}  \\ \cline{2-6} 
+                          & 75.15                  & Fine-tuned                         & $-$6.72                           & $-$4.13                           & $-$3.10                            \\ \cline{2-6} 
+                          & \multirow{2}{*}{76.13} & Scratch-E                            & $-$5.21                           & $-$2.82                           & $-$1.71                            \\
+                          &                        &    \multicolumn{1}{c}{Scratch-B} & \textbf{$-$4.56} & \textbf{$-$2.23} & \textbf{$-$1.01} \\ 
+                        \hline
+\end{tabular}
+}
+\vspace{1ex}
+\caption{Results (accuracy) for ThiNet \citep{luo2017thinet}. Names such as ``VGG-GAP'' and ``ResNet50-30\%'' are pruned models whose configurations are defined in \cite{luo2017thinet}. To accommodate the effects of different frameworks between our implementation and the original paper's, we compare relative accuracy drop from the unpruned large model. For example, for the pruned model VGG-Conv, $-$1.23 is relative to 71.03 on the left, which is the reported accuracy of the unpruned large model VGG-16 in the original paper; $-$2.75 is relative to 71.51 on the left, which is VGG-16's accuracy in our implementation.
+}
+\label{thinet}
+\vspace{-2ex}
+\end{table}
+
+\textbf{ThiNet \citep{luo2017thinet}} greedily prunes the channel that has the smallest effect on the next layer's activation values.  As shown in \autoref{thinet}, for VGG-16 and ResNet-50, both Scratch-E and Scratch-B can almost always achieve better performance than the fine-tuned model, often by a significant margin. The only exception is Scratch-E for VGG-Tiny, where the model is pruned very aggressively from VGG-16 (FLOPs reduced by 15$\times$), and as a result, drastically reducing the training budget for Scratch-E. The training budget of Scratch-B for this model is also 7 times smaller than the original large model, yet it can achieve the same level of accuracy as the fine-tuned model.
+
+
+\textbf{Regression based Feature Reconstruction \citep{he2017channel}} prunes channels by minimizing the feature map reconstruction error of the next layer. In contrast to ThiNet \citep{luo2017thinet}, this optimization problem is solved by LASSO regression. Results are shown in \autoref{channel-pruning}. Again, in terms of relative accuracy drop from the large models, scratch-trained models are better than the fine-tuned models.
+
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htbp]
+\small
+\centering
+\resizebox{0.51\textwidth}{!}{
+\begin{tabular}{c|c|cc}
+\hline
+Dataset                   & Unpruned              & Strategy             & Pruned Model                                      \\ \hline
+\multirow{8}{*}{ImageNet} & VGG-16                 & \multicolumn{1}{c}{} & VGG-16-5x                                         \\ \cline{2-4} 
+                          & 71.03                  & Fine-tuned           & $-$2.67                                           \\ \cline{2-4} 
+                          & \multirow{2}{*}{71.51} & Scratch-E              & $-$3.46                                           \\
+                          &                        & Scratch-B       & \textbf{$-$0.51} \\ \cline{2-4}\cline{2-4}
+                          & ResNet-50              & \multicolumn{1}{l}{} & ResNet-50-2x                                      \\ \cline{2-4} 
+                          & 75.51                  & Fine-tuned           & $-$3.25                                           \\ \cline{2-4} 
+                          & \multirow{2}{*}{76.13} & Scratch-E              & $-$1.55 \\
+                          &                        & Scratch-B       & \textbf{$-$1.07}
+                        \\ \hline
+\end{tabular}}
+\vspace{1ex}
+\caption{Results (accuracy) for Regression based Feature Reconstruction \citep{he2017channel}. Pruned models such as ``VGG-16-5x'' are defined in \cite{he2017channel}. Similar to \autoref{thinet}, we compare relative accuracy drop from unpruned large models.}
+\label{channel-pruning}
+\vspace{-4ex}
+\end{table}
+
+\subsection{Automatic Structured Pruning}
+
+
+
+
+
+\textbf{Network Slimming \citep{liu2017learning}}
+ imposes $L_1$-sparsity on channel-wise scaling factors from Batch Normalization layers \citep{bn} during training, and prunes channels with lower scaling factors afterward. Since the channel scaling factors are compared across layers, this method produces automatically discovered target architectures. As shown in \autoref{network-slimming}, for all networks, the small models trained from scratch can reach the same accuracy as the fine-tuned models. More specifically, we found that Scratch-B consistently outperforms (8 out of 10 experiments) the fine-tuned models, while Scratch-E is slightly worse but still mostly within the standard deviation.
+ 
+ \setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htbp]
+\small
+% \vspace{-1ex}
+\centering
+\resizebox{1.0\textwidth}{!}{
+\begin{tabular}{c|c|ccccc}
+\hline
+Dataset     
+& Model                        & \multicolumn{1}{c}{Unpruned} & \multicolumn{1}{c}{Prune Ratio} & Fine-tuned               & Scratch-E              & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Scratch-B\\ \end{tabular}} \\ \hline
+\multirow{5}{*}{CIFAR-10}        & VGG-19         &  93.53 ($\pm$0.16)  &  70\%   &  93.60 ($\pm$0.16)    &    93.30 ($\pm$0.11)  &   \textbf{93.81} ($\pm$0.14)   \\ \cline{2-7} 
+    & \multirow{2}{*}{PreResNet-164}  & \multirow{2}{*}{95.04 ($\pm$0.16)}    &  40\%&   94.77 ($\pm$0.12) &  94.70 ($\pm$0.11) & \textbf{94.90} ($\pm$0.04) \\
+    &       &   & 60\%                       & 94.23 ($\pm$0.21)   & 94.58 ($\pm$0.18) & \textbf{94.71} ($\pm$0.21)\\ \cline{2-7} 
+    & \multirow{2}{*}{DenseNet-40} & \multirow{2}{*}{94.10 ($\pm$0.12)}             &    40\%         &   94.00 ($\pm$0.20)   &     93.68 ($\pm$0.18)             & \textbf{94.06} ($\pm$0.12) \\
+    &                              &             &     60\%       &   \textbf{93.87} ($\pm$0.13)    &      93.58 ($\pm$0.21)         &   93.85 ($\pm$0.25)                                                                                    \\ \hline
+\multicolumn{1}{l|}{\multirow{5}{*}{CIFAR-100}} & VGG-19   & 72.63 ($\pm$0.21)  &  50\%  &  72.32 ($\pm$0.28) & 71.94 ($\pm$0.17)  &      \textbf{73.08} ($\pm$0.22)    \\ \cline{2-7} 
+\multicolumn{1}{l|}{}                           & \multirow{2}{*}{PreResNet-164}  &      \multirow{2}{*}{76.80 ($\pm$0.19)}      &      40\%   &    76.22 ($\pm$0.20)      &  76.36 ($\pm$0.32)   &     \textbf{76.68} ($\pm$0.35)                  \\
+\multicolumn{1}{l|}{}                           &        &      & 60\%                                &     74.17 ($\pm$0.33)     &             75.05 ($\pm$ 0.08)  &   \textbf{75.73} ($\pm$0.29)                                                \\ \cline{2-7} 
+\multicolumn{1}{l|}{} & \multirow{2}{*}{DenseNet-40} &     \multirow{2}{*}{73.82 ($\pm$0.34)}   &   40\%  &   \textbf{73.35} ($\pm$0.17)  & 73.24 ($\pm$0.29)  & 73.19 ($\pm$0.26)      \\
+\multicolumn{1}{l|}{} &   &   & \multicolumn{1}{c}{60\%} & \multicolumn{1}{c}{72.46 ($\pm$0.22)} & \multicolumn{1}{c}{72.62 ($\pm$0.36)} &  \textbf{72.91} ($\pm$0.34)        \\ \hline
+ImageNet     & VGG-11   & \multicolumn{1}{c}{70.84}   & \multicolumn{1}{c}{50\%}   & \multicolumn{1}{c}{68.62}   & \multicolumn{1}{c}{70.00}  & \textbf{71.18} \\ \hline
+\end{tabular}
+}
+\vspace{2ex}
+\caption{Results (accuracy) for Network Slimming~\citep{liu2017learning}. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. The same ratios for each model are used as the original paper. 
+}
+\label{network-slimming}
+\vspace{-3ex}
+\end{table}
+
+\textbf{Sparse Structure Selection \citep{huang2018data}} also uses sparsified scaling factors to prune structures, and can be seen as a generalization of Network Slimming. Other than channels, pruning can be on residual blocks in ResNet or groups in ResNeXt \citep{xie2017aggregated}. We examine residual blocks pruning, where ResNet-50 are pruned to be ResNet-41, ResNet-32 and ResNet-26. \autoref{sparse} shows our results. On average Scratch-E outperforms pruned models, and for all models Scratch-B is better than both.
+
+\vspace{-0.5ex}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htbp]
+\small
+\centering
+\begin{tabular}{l|c|ccccc}
+\hline
+\multicolumn{1}{c|}{Dataset} & Model                      & Unpruned               & Pruned Model & Pruned                          & Scratch-E  & Scratch-B                      \\ \hline
+\multirow{3}{*}{ImageNet}    & \multirow{3}{*}{ResNet-50} & \multirow{3}{*}{76.12} & ResNet-41    & 75.44                           & 75.61     & \textbf{76.17} \\
+                             &                            &                        & ResNet-32    & 74.18 & 73.77    & \textbf{74.67}       \\
+                             &                            &                        & ResNet-26    & 71.82                           & 72.55 & \textbf{73.41}    \\ \hline
+\end{tabular}
+% }
+\vspace{1.5ex}
+\caption{Results (accuracy) for residual block pruning using Sparse Structure Selection \citep{huang2018data}. In the original paper no fine-tuning is required so there is a ``Pruned'' column instead of ``Fine-tuned'' as before. 
+% On average, Scratch-E  outperforms models obtained after pruning.
+}
+\label{sparse}
+\vspace{-3ex}
+\end{table}
+
+\subsection{Unstructured Magnitude-based Pruning \citep{han2015learning}}
+\label{sec:unstructured}
+Unstructured magnitude-based weight pruning \citep{han2015learning} can also be treated as automatically discovering architectures, since the positions of exact zeros cannot be determined before training, but we highlight its differences with structured pruning using another subsection. 
+Because all the network architectures we evaluated are fully-convolutional (except for the last fully-connected layer), for simplicity, we only prune weights in convolution layers here. Before training the pruned sparse model from scratch, we re-scale the standard deviation of the Gaussian distribution for weight initialization, based on how many non-zero weights remain in this layer. This is to keep a constant scale of backward gradient signal as in  \citep{he2015delving}, which however in our observations does not bring gains compared with unscaled counterparts.
+
+
+
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{table}[!htbp]
+\vspace{-1ex}
+\centering
+\small
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c|c|ccccc}
+\hline
+\multicolumn{1}{c|}{Dataset}                   & Model                            & Unpruned                           & Prune Ratio & Fine-tuned                                  & Scratch-E                                   & Scratch-B                                   \\ \hline
+\multicolumn{1}{c|}{\multirow{9}{*}{CIFAR-10}} & \multirow{3}{*}{VGG-19}          & \multirow{3}{*}{93.50 ($\pm$0.11)} & 30\%        & 93.51 ($\pm$0.05)                           & \textbf{93.71} ($\pm$0.09) & 93.31 ($\pm$0.26)                           \\
+\multicolumn{1}{c|}{}                          &                                  &                                    & 80\%        & 93.52   ($\pm$0.10)                         & \textbf{93.71} ($\pm$0.08) & 93.64 ($\pm$0.09)                           \\
+\multicolumn{1}{c|}{}                          &                                  &                                    & 95\%        &   93.34 ($\pm$0.13)                         & 93.21 ($\pm$0.17) &  \textbf{93.63} ($\pm$0.18)                           \\ \cline{2-7} 
+\multicolumn{1}{c|}{}                          & \multirow{3}{*}{PreResNet-110}   & \multirow{3}{*}{95.04 ($\pm$0.15)} & 30\%        & 95.06  ($\pm$0.05)                          & 94.84 ($\pm$0.07)                           & \textbf{95.11} ($\pm$0.09) \\
+\multicolumn{1}{c|}{}                          &                                  &                                    & 80\%        & \textbf{94.55} ($\pm$0.11) & 93.76 ($\pm$0.10)                           & 94.52 ($\pm$0.13)                           \\  \multicolumn{1}{c|}{}                          &                                  &                                    & 95\%        & \textbf{92.35} ($\pm$0.20) & 91.23 ($\pm$0.11)                           & 91.55 ($\pm$0.34)      \\ \cline{2-7} 
+\multicolumn{1}{c|}{}                          & \multirow{3}{*}{DenseNet-BC-100} & \multirow{3}{*}{95.24 ($\pm$0.17)} & 30\%        & 95.21 ($\pm$0.17)                           & 95.22 ($\pm$0.18)                           & \textbf{95.23} ($\pm$0.14) \\
+\multicolumn{1}{c|}{}                          &                                  &                                    & 80\%        & 95.04 ($\pm$0.15)                           & 94.42  ($\pm$0.12)                          & \textbf{95.12} ($\pm$0.04) \\ \multicolumn{1}{c|}{}                          &                                  &                                    & 95\%        & \textbf{94.19} ($\pm$0.15)                           &  92.91 ($\pm$0.22)  & 93.44 ($\pm$0.19) \\ \hline
+\multirow{9}{*}{CIFAR-100}                                      & \multirow{3}{*}{VGG-19}          & \multirow{3}{*}{71.70 ($\pm$0.31)} & 30\%        & 71.96 ($\pm$0.36)                           & 72.81 ($\pm$0.31)                           & \textbf{73.30} ($\pm$0.25)                           \\
+                                               &                                  &                                    & 50\%        & 71.85 ($\pm$0.30)                           & 73.12 ($\pm$0.36)                           & \textbf{73.77} ($\pm$0.23) \\
+                                             &                                  &                                    & 95\%        & 70.22 ($\pm$0.38)                           & 70.88 ($\pm$0.35)                           & \textbf{72.08} ($\pm$0.15) \\ \cline{2-7} 
+                                               & \multirow{3}{*}{PreResNet-110}   & \multirow{3}{*}{76.96 ($\pm$0.34)} & 30\%        & \multicolumn{1}{c}{76.88 ($\pm$0.31)}       & \multicolumn{1}{c}{76.36 ($\pm$0.26)}       & \textbf{76.96} ($\pm$0.31)                           \\
+                                               &                                  &                                    & 50\%        & \textbf{76.60} ($\pm$0.36) & 75.45 ($\pm$0.23)                           & 76.42 ($\pm$0.39)                           \\
+                                                                                              &                                  &                                    & 95\%        & 68.55 ($\pm$0.51) & 68.13 ($\pm$0.64)                           & \textbf{68.99} ($\pm$0.32)                           \\ \cline{2-7} 
+                                               & \multirow{3}{*}{DenseNet-BC-100}                  & \multirow{3}{*}{77.59 ($\pm$0.19)}                  & 30\%        & \multicolumn{1}{l}{77.23 ($\pm$0.05)}       & 77.58 ($\pm$0.25)                           & \textbf{77.97} ($\pm$0.31) \\
+                                               &                                  &                                    & 50\%        & \multicolumn{1}{l}{77.41 ($\pm$0.14)}       & \multicolumn{1}{l}{77.65 ($\pm$0.09)}       & \multicolumn{1}{l}{\textbf{77.80} ($\pm$0.23)}                        \\                                       &                                  &                                    & 95\%        & \multicolumn{1}{l}{\textbf{73.67} ($\pm$0.03)}       & \multicolumn{1}{l}{71.47 ($\pm$0.46)}       & \multicolumn{1}{l}{72.57 ($\pm$0.37)}                        \\ \hline
+\multirow{4}{*}{ImageNet}      
+& \multirow{2}{*}{VGG-16}          & \multirow{2}{*}{73.37}             & 30\%        & \multicolumn{1}{c}{73.68}                        & \multicolumn{1}{c}{72.75}                        & \multicolumn{1}{c}{\textbf{74.02}}                        \\ 
+%\cline{4-7}
+                                              &                                  &                                    & 60\%        & \multicolumn{1}{c}{\textbf{73.63}}                        & \multicolumn{1}{c}{71.50}                        & \multicolumn{1}{c}{73.42}                        \\
+                                              \cline{2-7} 
+                                               & \multirow{2}{*}{ResNet-50}       & \multirow{2}{*}{76.15}             & 30\%            & \multicolumn{1}{c}{\textbf{76.06}}                        & \multicolumn{1}{c}{74.77}                        & \multicolumn{1}{c}{75.70}                        \\
+                                              &                                  &                                    &    60\%         & \multicolumn{1}{c}{\textbf{76.09}}                        & \multicolumn{1}{c}{73.69}                        & \multicolumn{1}{c}{74.91}                        \\
+                                               \hline
+\end{tabular}
+}
+\vspace{2ex}
+\caption{Results (accuracy) for unstructured pruning \citep{han2015learning}. ``Prune Ratio'' denotes the percentage of parameters pruned in the set of all convolutional weights. }
+\label{weight-level}
+\vspace{-4ex}
+\end{table}
+
+As shown in \autoref{weight-level}, on the smaller-scale CIFAR datasets, when the pruned ratio is small ($\le$ 80\%), 
+Scratch-E sometimes falls short of the fine-tuned results, but Scratch-B is able to perform at least on par with the latter. However, we observe that in some cases, when the prune ratio is large (95\%), fine-tuning can outperform training from scratch. 
+On the large-scale ImageNet dataset, we note that the Scratch-B result is mostly worse than fine-tuned result by a noticable margin, despite at a decent accuracy level. 
+ This could be due to the increased difficulty of directly training on the highly sparse networks (CIFAR), or the scale/complexity of the dataset itself (ImageNet). Another possible reason is that compared with structured pruning, unstructured pruning significantly changes the weight distribution (more details in Appendix \ref{sec:dist}). The difference in scratch-training behaviors also suggests an important difference between structured and unstructured pruning.

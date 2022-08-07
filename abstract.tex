@@ -1,0 +1,13 @@
+% (This file is included by thesis.tex; you do not latex it by itself.)
+
+\begin{abstract}
+
+% The text of the abstract goes here.  If you need to use a \section
+% command you will need to use \section*, \subsection*, etc. so that
+% you don't get any numbering.  You probably won't be using any of
+% these commands in the abstract anyway.
+
+The successful application of ConvNets and other neural architectures to computer vision is central to the AI revolution seen in the past decade. There have been strong needs for scaling vision architectures to be both smaller and larger. Small models represent the demand for efficiency, as the deployment of visual recognition systems is often on edge devices; large models highlight the pursuit for scalability - the ability to utilize increasingly abundant compute and data to achieve ever-higher accuracy. Research in both directions are fruitful, producing many useful design principles, and the quest for more performant models never stops. Meanwhile, the very fast development pace in the literature can sometimes obscure the main mechanism responsible for certain methods' favorable results.
+
+In this dissertation, we will present our research from two aspects in this area: (1) developing intuitive algorithms for efficient and flexible ConvNet model inference; (2) studying baseline approaches to reveal what is behind popular scaling methods' success. First, we will introduce our work on one of the first anytime algorithm for  dense prediction. We will then examine the effectiveness of model pruning algorithms by comparing them with an extremely simple baseline, and argue their true value may lie in learning architectures. Finally, We present our work on questioning whether self-attention is responsible for Transformer's recent exceptional scalability in vision, by modernizing a traditional ConvNet with design techniques adapted from Transformers.
+\end{abstract}

@@ -1,0 +1,254 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10pt}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10pt}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\chapternumberline {2}Anytime Dense Prediction with Confidence Adaptivity}{2}{chapter.2}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.1}Overview}{2}{section.2.1}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.2}Introduction}{2}{section.2.2}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Anytime inference produces a progression of outputs. \relax }}{3}{figure.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:teaser}{{\M@TitleReference {2.1}{Anytime inference produces a progression of outputs. \relax }}{3}{Anytime inference produces a progression of outputs. \relax }{figure.caption.4}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.3}Approach}{4}{section.2.3}\protected@file@percent }
+\newlabel{sec:approach}{{\M@TitleReference {2.3}{Approach}}{4}{Approach}{section.2.3}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Anytime Setting}{4}{section*.5}\protected@file@percent }
+\newlabel{sec:anytime}{{\M@TitleReference {2.3}{Anytime Setting}}{4}{Anytime Setting}{section*.5}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Our anytime dense prediction with confidence (ADP-C) approach. We equip the model with intermediate exits for anytime inference. We redesign each exit with encoder-decoder architecture to compensate for spatial resolution across model stages. At each exit's output, sufficiently confident predictions (green squares) are identified to skip further computation in the following layers. \relax }}{5}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:fig1}{{\M@TitleReference {2.2}{Our anytime dense prediction with confidence (ADP-C) approach. We equip the model with intermediate exits for anytime inference. We redesign each exit with encoder-decoder architecture to compensate for spatial resolution across model stages. At each exit's output, sufficiently confident predictions (green squares) are identified to skip further computation in the following layers. \relax }}{5}{Our anytime dense prediction with confidence (ADP-C) approach. We equip the model with intermediate exits for anytime inference. We redesign each exit with encoder-decoder architecture to compensate for spatial resolution across model stages. At each exit's output, sufficiently confident predictions (green squares) are identified to skip further computation in the following layers. \relax }{figure.caption.6}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Early Exiting}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Head Redesign}{6}{section*.8}\protected@file@percent }
+\newlabel{sec:rh}{{\M@TitleReference {2.3}{Head Redesign}}{6}{Head Redesign}{section*.8}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Confidence Adaptivity}{7}{section*.9}\protected@file@percent }
+\newlabel{eqn:mask}{{2.2}{7}{Confidence Adaptivity}{equation.2.3.2}{}}
+\newlabel{eqn:mask_conv}{{2.3}{7}{Confidence Adaptivity}{equation.2.3.3}{}}
+\newlabel{eqn:lambda}{{2.6}{8}{Confidence Adaptivity}{equation.2.3.6}{}}
+\newlabel{eqn:carry}{{2.7}{8}{Confidence Adaptivity}{equation.2.3.7}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.4}Experiments}{8}{section.2.4}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Architectures}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Baselines}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{HRNet.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{MDEQ.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{Feature-Based Stochastic Sampling.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Experimental Settings}{9}{section*.15}\protected@file@percent }
+\newlabel{app:train}{{\M@TitleReference {2.4}{Experimental Settings}}{9}{Experimental Settings}{section*.15}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Semantic Segmentation}{10}{section*.16}\protected@file@percent }
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits. Our approach achieves higher accuracy in less computation than the HRNet and MDEQ baselines across exits. Early exiting (EE) makes progressive predictions. Redesigned heads (RH) improve early predictions (exits 1 and 2). Confidence Adaptivity (CA) reduces computation. \relax }}{11}{table.caption.17}\protected@file@percent }
+\newlabel{tab:semseg}{{\M@TitleReference {2.1}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits. Our approach achieves higher accuracy in less computation than the HRNet and MDEQ baselines across exits. Early exiting (EE) makes progressive predictions. Redesigned heads (RH) improve early predictions (exits 1 and 2). Confidence Adaptivity (CA) reduces computation. \relax }}{11}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits. Our approach achieves higher accuracy in less computation than the HRNet and MDEQ baselines across exits. Early exiting (EE) makes progressive predictions. Redesigned heads (RH) improve early predictions (exits 1 and 2). Confidence Adaptivity (CA) reduces computation. \relax }{table.caption.17}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Accuracy ($y$) and computation ($x$) at four exits across architectures (HRNet-W48/W32/W18) and tasks (semantic segmentation and pose estimation). Anytime performance improves with higher $y$ (more accuracy) and lower $x$ (less computation). Redesigned heads (RH) boost the accuracy at early exits, while confidence adaptivity (CA) reduces computation by up to more than half. ADP-C outperforms baseline methods (MDEQ and Feature-based Stochastic Sampling) across the accuracy-computation tradeoff curve. \relax }}{11}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:result}{{\M@TitleReference {2.3}{Accuracy ($y$) and computation ($x$) at four exits across architectures (HRNet-W48/W32/W18) and tasks (semantic segmentation and pose estimation). Anytime performance improves with higher $y$ (more accuracy) and lower $x$ (less computation). Redesigned heads (RH) boost the accuracy at early exits, while confidence adaptivity (CA) reduces computation by up to more than half. ADP-C outperforms baseline methods (MDEQ and Feature-based Stochastic Sampling) across the accuracy-computation tradeoff curve. \relax }}{11}{Accuracy ($y$) and computation ($x$) at four exits across architectures (HRNet-W48/W32/W18) and tasks (semantic segmentation and pose estimation). Anytime performance improves with higher $y$ (more accuracy) and lower $x$ (less computation). Redesigned heads (RH) boost the accuracy at early exits, while confidence adaptivity (CA) reduces computation by up to more than half. ADP-C outperforms baseline methods (MDEQ and Feature-based Stochastic Sampling) across the accuracy-computation tradeoff curve. \relax }{figure.caption.18}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Human Pose Estimation}{12}{section*.19}\protected@file@percent }
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Accuracy (PCKh@0.5) and computation (GFLOPs) on MPII pose estimation at the last exit and averaged for all exits. Early exits (EE) make progress predictions, redesigned heads (RH) improve accuracy, and confidence adaptivity (CA) reduces computation. \relax }}{13}{table.caption.20}\protected@file@percent }
+\newlabel{tab:pose}{{\M@TitleReference {2.2}{Accuracy (PCKh@0.5) and computation (GFLOPs) on MPII pose estimation at the last exit and averaged for all exits. Early exits (EE) make progress predictions, redesigned heads (RH) improve accuracy, and confidence adaptivity (CA) reduces computation. \relax }}{13}{Accuracy (PCKh@0.5) and computation (GFLOPs) on MPII pose estimation at the last exit and averaged for all exits. Early exits (EE) make progress predictions, redesigned heads (RH) improve accuracy, and confidence adaptivity (CA) reduces computation. \relax }{table.caption.20}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{13}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:vis}{{\M@TitleReference {2.4}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{13}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }{figure.caption.21}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.5}Analysis}{13}{section.2.5}\protected@file@percent }
+\newlabel{sec:analysis}{{\M@TitleReference {2.5}{Analysis}}{13}{Analysis}{section.2.5}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Visualizations}{13}{section*.22}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Downsampling at Early Exits.}{14}{section*.23}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces \emph  {Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph  {Right:} comparison between different masking criteria.\relax }}{14}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:twofigs}{{\M@TitleReference {2.5}{\emph  {Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph  {Right:} comparison between different masking criteria.\relax }}{14}{\emph {Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph {Right:} comparison between different masking criteria.\relax }{figure.caption.24}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Masking Criterion}{14}{section*.25}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.6}Related Work}{15}{section.2.6}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Anytime Inference}{15}{section*.26}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Adaptive Computation}{15}{section*.27}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.7}Additional Studies}{16}{section.2.7}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Ablation on Interpolation Radius}{16}{section*.28}\protected@file@percent }
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius. \relax }}{16}{table.caption.29}\protected@file@percent }
+\newlabel{tab:radius}{{\M@TitleReference {2.3}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius. \relax }}{16}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius. \relax }{table.caption.29}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{Inference-Only Confidence Adaptivity}{16}{section*.30}\protected@file@percent }
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different adaptivity settings. \relax }}{17}{table.caption.31}\protected@file@percent }
+\newlabel{tab:inference-only}{{\M@TitleReference {2.4}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different adaptivity settings. \relax }}{17}{Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different adaptivity settings. \relax }{table.caption.31}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{PASCAL-Context Results}{17}{section*.32}\protected@file@percent }
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2.5}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for PASCAL-Context semantic segmentation. \relax }}{17}{table.caption.33}\protected@file@percent }
+\newlabel{tab:pascal}{{\M@TitleReference {2.5}{Accuracy (mIoU) and inference computation (GFLOPs) for PASCAL-Context semantic segmentation. \relax }}{17}{Accuracy (mIoU) and inference computation (GFLOPs) for PASCAL-Context semantic segmentation. \relax }{table.caption.33}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{More Visualizations}{18}{section*.34}\protected@file@percent }
+\newlabel{app:vis}{{\M@TitleReference {2.7}{More Visualizations}}{18}{More Visualizations}{section*.34}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Input and ground truth of the example validation images visualized in Fig.~\ref  {fig:vis1} and Fig.~\ref  {fig:vis2}\relax }}{18}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:gt}{{\M@TitleReference {2.6}{Input and ground truth of the example validation images visualized in Fig.~\ref  {fig:vis1} and Fig.~\ref  {fig:vis2}\relax }}{18}{Input and ground truth of the example validation images visualized in Fig.~\ref {fig:vis1} and Fig.~\ref {fig:vis2}\relax }{figure.caption.35}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2.8}Conclusion}{18}{section.2.8}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{19}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:vis1}{{\M@TitleReference {2.7}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{19}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }{figure.caption.36}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{20}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:vis2}{{\M@TitleReference {2.8}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }}{20}{Top: prediction results at all exits. Middle: confidence maps, lighter color (yellow) indicates higher confidence. Bottom: correct/wrong predictions at the exit drawn as white/black. The confident points selected for masking are in green. Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.\relax }{figure.caption.37}{}}
+\@setckpt{chap2}{
+\setcounter{page}{21}
+\setcounter{equation}{7}
+\setcounter{enumi}{0}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{@memmarkcntra}{-1}
+\setcounter{storedpagenumber}{1}
+\setcounter{book}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{2}
+\setcounter{section}{8}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{@ppsavesec}{0}
+\setcounter{@ppsaveapp}{0}
+\setcounter{vslineno}{0}
+\setcounter{poemline}{0}
+\setcounter{modulo@vs}{0}
+\setcounter{memfvsline}{0}
+\setcounter{verse}{0}
+\setcounter{chrsinstr}{0}
+\setcounter{poem}{0}
+\setcounter{newflo@tctr}{4}
+\setcounter{@contsubnum}{0}
+\setcounter{maxsecnumdepth}{1}
+\setcounter{sidefootnote}{0}
+\setcounter{pagenote}{0}
+\setcounter{pagenoteshadow}{0}
+\setcounter{memfbvline}{0}
+\setcounter{bvlinectr}{0}
+\setcounter{cp@cntr}{0}
+\setcounter{ism@mctr}{0}
+\setcounter{xsm@mctr}{0}
+\setcounter{csm@mctr}{0}
+\setcounter{ksm@mctr}{0}
+\setcounter{xksm@mctr}{0}
+\setcounter{cksm@mctr}{0}
+\setcounter{msm@mctr}{0}
+\setcounter{xmsm@mctr}{0}
+\setcounter{cmsm@mctr}{0}
+\setcounter{bsm@mctr}{0}
+\setcounter{workm@mctr}{0}
+\setcounter{sheetsequence}{35}
+\setcounter{lastsheet}{96}
+\setcounter{lastpage}{82}
+\setcounter{figure}{8}
+\setcounter{lofdepth}{1}
+\setcounter{table}{5}
+\setcounter{lotdepth}{1}
+\setcounter{tabx@nest}{0}
+\setcounter{listtotal}{0}
+\setcounter{listcount}{0}
+\setcounter{liststart}{0}
+\setcounter{liststop}{0}
+\setcounter{citecount}{0}
+\setcounter{citetotal}{0}
+\setcounter{multicitecount}{0}
+\setcounter{multicitetotal}{0}
+\setcounter{instcount}{117}
+\setcounter{maxnames}{3}
+\setcounter{minnames}{1}
+\setcounter{maxitems}{3}
+\setcounter{minitems}{1}
+\setcounter{citecounter}{0}
+\setcounter{maxcitecounter}{0}
+\setcounter{savedcitecounter}{0}
+\setcounter{uniquelist}{0}
+\setcounter{uniquename}{0}
+\setcounter{refsection}{0}
+\setcounter{refsegment}{0}
+\setcounter{maxextratitle}{0}
+\setcounter{maxextratitleyear}{0}
+\setcounter{maxextraname}{7}
+\setcounter{maxextradate}{0}
+\setcounter{maxextraalpha}{0}
+\setcounter{abbrvpenalty}{50}
+\setcounter{highnamepenalty}{50}
+\setcounter{lownamepenalty}{25}
+\setcounter{maxparens}{3}
+\setcounter{parenlevel}{0}
+\setcounter{mincomprange}{10}
+\setcounter{maxcomprange}{100000}
+\setcounter{mincompwidth}{1}
+\setcounter{afterword}{0}
+\setcounter{savedafterword}{0}
+\setcounter{annotator}{0}
+\setcounter{savedannotator}{0}
+\setcounter{author}{0}
+\setcounter{savedauthor}{0}
+\setcounter{bookauthor}{0}
+\setcounter{savedbookauthor}{0}
+\setcounter{commentator}{0}
+\setcounter{savedcommentator}{0}
+\setcounter{editor}{0}
+\setcounter{savededitor}{0}
+\setcounter{editora}{0}
+\setcounter{savededitora}{0}
+\setcounter{editorb}{0}
+\setcounter{savededitorb}{0}
+\setcounter{editorc}{0}
+\setcounter{savededitorc}{0}
+\setcounter{foreword}{0}
+\setcounter{savedforeword}{0}
+\setcounter{holder}{0}
+\setcounter{savedholder}{0}
+\setcounter{introduction}{0}
+\setcounter{savedintroduction}{0}
+\setcounter{namea}{0}
+\setcounter{savednamea}{0}
+\setcounter{nameb}{0}
+\setcounter{savednameb}{0}
+\setcounter{namec}{0}
+\setcounter{savednamec}{0}
+\setcounter{translator}{0}
+\setcounter{savedtranslator}{0}
+\setcounter{shortauthor}{0}
+\setcounter{savedshortauthor}{0}
+\setcounter{shorteditor}{0}
+\setcounter{savedshorteditor}{0}
+\setcounter{labelname}{0}
+\setcounter{savedlabelname}{0}
+\setcounter{institution}{0}
+\setcounter{savedinstitution}{0}
+\setcounter{lista}{0}
+\setcounter{savedlista}{0}
+\setcounter{listb}{0}
+\setcounter{savedlistb}{0}
+\setcounter{listc}{0}
+\setcounter{savedlistc}{0}
+\setcounter{listd}{0}
+\setcounter{savedlistd}{0}
+\setcounter{liste}{0}
+\setcounter{savedliste}{0}
+\setcounter{listf}{0}
+\setcounter{savedlistf}{0}
+\setcounter{location}{0}
+\setcounter{savedlocation}{0}
+\setcounter{organization}{0}
+\setcounter{savedorganization}{0}
+\setcounter{origlocation}{0}
+\setcounter{savedoriglocation}{0}
+\setcounter{origpublisher}{0}
+\setcounter{savedorigpublisher}{0}
+\setcounter{publisher}{0}
+\setcounter{savedpublisher}{0}
+\setcounter{language}{0}
+\setcounter{savedlanguage}{0}
+\setcounter{origlanguage}{0}
+\setcounter{savedoriglanguage}{0}
+\setcounter{pageref}{0}
+\setcounter{savedpageref}{0}
+\setcounter{textcitecount}{0}
+\setcounter{textcitetotal}{0}
+\setcounter{textcitemaxnames}{0}
+\setcounter{biburlbigbreakpenalty}{100}
+\setcounter{biburlbreakpenalty}{200}
+\setcounter{biburlnumpenalty}{0}
+\setcounter{biburlucpenalty}{0}
+\setcounter{biburllcpenalty}{0}
+\setcounter{smartand}{1}
+\setcounter{bbx:relatedcount}{0}
+\setcounter{bbx:relatedtotal}{0}
+\setcounter{r@tfl@t}{0}
+\setcounter{caption@flags}{0}
+\setcounter{continuedfloat}{0}
+\setcounter{subfigure}{0}
+\setcounter{subtable}{0}
+\setcounter{parentequation}{0}
+\setcounter{float@type}{4}
+\setcounter{Item}{0}
+\setcounter{Hfootnote}{0}
+\setcounter{memhycontfloat}{0}
+\setcounter{Hpagenote}{0}
+\setcounter{bookmark@seq@number}{13}
+\setcounter{nlinenum}{0}
+\setcounter{section@level}{1}
+}

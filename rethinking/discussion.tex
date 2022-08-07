@@ -1,0 +1,11 @@
+Our results encourage more careful and fair baseline evaluations of structured pruning methods. In addition to high accuracy, training predefined target models from scratch has the following benefits over conventional network pruning procedures:
+a) since the model is smaller, we can train the model using less GPU memory and possibly faster than training the original large model;
+b) there is no need to implement the pruning criterion and procedure, which sometimes  requires fine-tuning layer by layer \citep{luo2017thinet} and/or needs to be customized for different network architectures \citep{li2016pruning, liu2017learning};
+c) we avoid tuning additional hyper-parameters involved in the pruning procedure.
+
+ Our results do support the viewpoint that  automatic structured pruning finds efficient architectures in some cases. However, if the accuracy of pruning and fine-tuning is achievable by training the pruned model from scratch, it is also important to evaluate the pruned architectures against uniformly pruned baselines (both training from scratch), to demonstrate the method's value in identifying efficient architectures. If the uniformly pruned models are not worse, one could also skip the pipeline and train them from scratch.
+%\textbf{Use cases of network pruning.}
+
+ Even if pruning and fine-tuning fails to outperform the mentioned baselines in terms of accuracy, there are still some cases where using this conventional wisdom can be much faster than training from scratch:
+a) when a pre-trained large model is already given and little or no training budget is available; we also note that pre-trained models can only be used when the method does not require modifications to the large model training process;
+b) there is a need to obtain multiple models of different sizes, or one does not know what the desirable size is, in which situations one can train a large model and then prune it by different ratios.

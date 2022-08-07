@@ -1,0 +1,93 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2019_conference,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+\usepackage[toc, page]{appendix}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{graphicx}
+% \usepackage{subcaption}
+\usepackage[font=small,labelfont=bf,tableposition=top]{caption}
+
+\let\appendixpagenameorig\appendixpagename
+\renewcommand{\appendixpagename}{\sffamily}
+
+\usepackage{wrapfig}
+\usepackage[T1]{fontenc}
+\newcommand{\zl}[1]{\textcolor{blue}{[ZL: #1]}}
+\newcommand{\td}[1]{\textcolor{red}{[TD: #1]}}
+
+% \newcommand{\zl}[1]{\textcolor{blue}{}}
+
+\newcommand{\tz}[1]{\textcolor{blue}{[TZ: #1]}}
+\newcommand{\mj}[1]{\textcolor{red}{}}
+
+
+\title{Rethinking the Value of Network Pruning}
+% emphasis on structured pruning or channel pruning or just pruning?
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\iclrfinalcopy
+% \begin{center}
+\author{
+Zhuang Liu$^1$\thanks{Equal contribution.} ,  Mingjie Sun$^{2}{}^{*}$\thanks{Work done while visiting UC Berkeley.} , Tinghui Zhou$^1$, Gao Huang$^2$, Trevor Darrell$^1$ \vspace{0.30ex} \\
+$^1$University of California, Berkeley ~~$^2$Tsinghua University\\}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\cmt}[1]{}
+
+\iclrfinalcopy 
+\begin{document}
+
+
+\maketitle
+
+
+% \vspace{-2ex}
+\begin{abstract}
+Network pruning is widely used for reducing the heavy inference cost of deep models in low-resource settings. A typical pruning algorithm is a three-stage pipeline, i.e., training (a large model), pruning and fine-tuning. During pruning, according to a certain criterion, redundant weights are pruned and important weights are kept to best preserve the accuracy. In this work, we make several surprising observations which contradict common beliefs. For all state-of-the-art structured pruning algorithms we examined, fine-tuning a pruned model only gives comparable or worse performance than training that model with randomly initialized weights. 
+For pruning algorithms which assume a predefined target network architecture, one can get rid of the full pipeline and directly train the target network from scratch.
+Our observations are consistent for multiple network architectures, datasets, and tasks, which imply that: 1) training a large, over-parameterized model is often not necessary to obtain an efficient final model, 2) learned ``important'' weights of the large model are typically not useful for the small pruned model, 3) the pruned architecture itself, rather than a set of inherited ``important'' weights, is more crucial to the efficiency in the final model, which suggests that in some cases pruning can be useful as an architecture search paradigm.
+Our results suggest the need for more careful baseline evaluations in future research on structured pruning methods. 
+We also compare with the ``Lottery Ticket Hypothesis'' \citep{lottery}, and find that with optimal learning rate, the ``winning ticket'' initialization as used in \citet{lottery} does not bring improvement over random initialization.
+\end{abstract}
+
+\vspace{-1ex}
+\section{Introduction}
+\input{introduction}
+
+\vspace{-1ex}
+\section{Background}
+\input{background}
+
+\input{experiments}
+
+\section{Network Pruning as Architecture search}
+\label{sec:arch}
+\input{architecture}
+
+\input{lottery.tex}
+
+\section{Discussion and Conclusion}
+\input{discussion}
+
+\bibliography{iclr2019_conference}
+\bibliographystyle{iclr2019_conference}
+
+\clearpage
+\begin{appendices}
+% \section*{appendix}
+ \input{sp}
+
+\end{appendices}
+\end{document}
