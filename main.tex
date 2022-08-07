@@ -1,0 +1,224 @@
+%% thesis.tex 2014/04/11
+%
+% Based on sample files of unknown authorship.
+%
+% The Current Maintainer of this work is Paul Vojta.
+
+\documentclass{ucbthesis}
+
+\usepackage{biblatex}
+\usepackage{rotating} % provides sidewaystable and sidewaysfigure
+\usepackage{url}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{hyperref}
+
+% convnext
+
+\newlength\savewidth\newcommand\shline{\noalign{\global\savewidth\arrayrulewidth
+  \global\arrayrulewidth 1pt}\hline\noalign{\global\arrayrulewidth\savewidth}}
+\newcommand{\tablestyle}[2]{\setlength{\tabcolsep}{#1}\renewcommand{\arraystretch}{#2}\centering\footnotesize}
+\renewcommand{\paragraph}[1]{\vspace{1.25mm}\noindent\textbf{#1}}
+\newcommand\blfootnote[1]{\begingroup\renewcommand\thefootnote{}\footnote{#1}\addtocounter{footnote}{-1}\endgroup}
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1pt}}
+\newcolumntype{y}[1]{>{\raggedright\arraybackslash}p{#1pt}}
+\newcolumntype{z}[1]{>{\raggedleft\arraybackslash}p{#1pt}}
+
+\newcommand{\dt}[1]{\fontsize{8pt}{.1em}\selectfont \emph{#1}}
+\makeatletter\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+	{.5em \@plus1ex \@minus.2ex}{-.5em}{\normalfont\normalsize\bfseries}}\makeatother
+
+\newcommand{\app}{\raise.17ex\hbox{$\scriptstyle\sim$}}
+\newcommand{\mypm}[1]{\color{gray}{\tiny{$\pm$#1}}}
+\newcommand{\x}{{\times}}
+\definecolor{deemph}{gray}{0.6}
+\newcommand{\gc}[1]{\textcolor{deemph}{#1}}
+\definecolor{baselinecolor}{gray}{.92}
+\newcommand{\baseline}[1]{\cellcolor{baselinecolor}{#1}}
+\newcommand{\authorskip}{\hspace{2.5mm}}
+
+\usepackage{graphicx, amsmath, amssymb, caption, subcaption, multirow, overpic}
+% \usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage[british, english, american]{babel}
+\usepackage{textpos}
+\usepackage{marvosym}
+\usepackage{wasysym}
+
+\usepackage{color}
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabulary,multirow,overpic,xcolor}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{bm}
+\usepackage{t1enc}
+\usepackage{lipsum}  
+
+\definecolor{convcolor}{HTML}{412F8A}
+\definecolor{resnetcolor}{HTML}{8DA0CB}
+\definecolor{vitcolor}{HTML}{fc8e62}
+
+
+\newcommand{\convcolor}[1]{\textcolor{convcolor}{#1}}
+\newcommand{\vitcolor}[1]{\textcolor{vitcolor}{#1}}
+\newcommand{\cnn}{ConvNeXt}
+
+
+\newcommand{\vb}{\vitcolor{$\mathbf{\circ}$\,}}
+\newcommand{\cb}{\convcolor{$\bullet$\,}}
+\newcommand{\gr}{\rowcolor[gray]{.95}}
+
+
+% added from https://stackoverflow.com/questions/3282319/correct-way-to-define-macros-etc-ie-in-latex
+\usepackage{xspace}
+
+% Add a period to the end of an abbreviation unless there's one
+% already, then \xspace.
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{c.f}\onedot} \def\Cf{\emph{C.f}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{\emph{et al}\onedot}
+\makeatother
+
+
+
+% \renewcommand{\cite}{\citep}
+% \renewcommand{\cite}{\citet}
+
+
+% To compile this file, run "latex thesis", then "biber thesis"
+% (or "bibtex thesis", if the output from latex asks for that instead),
+% and then "latex thesis" (without the quotes in each case).
+
+% Double spacing, if you want it.  Do not use for the final copy.
+% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+% \dsp
+
+% If the Grad. Division insists that the first paragraph of a section
+% be indented (like the others), then include this line:
+% \usepackage{indentfirst}
+
+\addtolength{\abovecaptionskip}{\baselineskip}
+
+% \newtheorem{theorem}{Jibberish}
+
+\bibliography{references}
+
+\hyphenation{mar-gin-al-ia}
+\hyphenation{bra-va-do}
+
+\begin{document}
+
+% Declarations for Front Matter
+
+\title{Efficient and Scalable Neural Architectures for Visual Recognition}
+\author{Zhuang Liu}
+\degreesemester{Summer}
+\degreeyear{2022}
+\degree{Doctor of Philosophy}
+\chair{Professor Trevor Darrell}
+\othermembers{Professor Joseph Gonzalez  \\
+  Professor Jiantao Jiao \\
+  Dr. Saining Xie}
+% For a co-chair who is subordinate to the \chair listed above
+% \cochair{Professor Benedict Francis Pope}
+% For two co-chairs of equal standing (do not use \chair with this one)
+% \cochairs{Professor Richard Francis Sony}{Professor Benedict Francis Pope}
+\numberofmembers{4}
+% Previous degrees are no longer to be listed on the title page.
+% \prevdegrees{B.A. (University of Northern South Dakota at Hoople) 1978 \\
+%   M.S. (Ed's School of Quantum Mechanics and Muffler Repair) 1989}
+\field{Computer Science}
+% Designated Emphasis -- this is optional, and rare
+% \emphasis{Colloidal Telemetry}
+% This is optional, and rare
+% \jointinstitution{University of Western Maryland}
+% This is optional (default is Berkeley)
+% \campus{Berkeley}
+
+% For a masters thesis, replace the above \documentclass line with
+% \documentclass[masters]{ucbthesis}
+% This affects the title and approval pages, which by default calls this
+% document a "dissertation", not a "thesis".
+
+\maketitle
+% Delete (or comment out) the \approvalpage line for the final version.
+% \approvalpage
+\copyrightpage
+
+\include{abstract}
+
+\begin{frontmatter}
+
+\begin{dedication}
+\null\vfil
+\begin{center}
+To my family
+% To Ossie Bernosky\\\vspace{12pt}
+% And exposition? Of go. No upstairs do fingering. Or obstructive, or purposeful.
+% In the glitter. For so talented. Which is confines cocoa accomplished.
+% Masterpiece as devoted. My primal the narcotic. For cine? To by recollection
+% bleeding. That calf are infant. In clause. Be a popularly. A as midnight
+% transcript alike. Washable an acre. To canned, silence in foreign.
+\end{center}
+\vfil\null
+\end{dedication}
+
+% You can delete the \clearpage lines if you don't want these to start on
+% separate pages.
+
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+
+\begin{acknowledgements}
+I want to thank everyone who helped me.
+\end{acknowledgements}
+
+\end{frontmatter}
+
+\pagestyle{headings}
+
+
+\include{chap1}
+
+\graphicspath{ {./anytime_figures/} }
+\include{chap2}
+
+\graphicspath{ {./rethinking_figures/} }
+\include{chap3}
+
+\graphicspath{ {./convnext_figures/} }
+\include{chap4}
+
+% \include{chap5}
+
+\printbibliography
+
+
+
+\end{document}

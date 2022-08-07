@@ -1,0 +1,226 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {american}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Contents}{ii}{section*.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Figures}{iv}{section*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of Tables}{vii}{section*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {2}Anytime Dense Prediction with Confidence Adaptivity}{2}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Overview}{2}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Introduction}{2}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Approach}{4}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Anytime Setting}{4}{section*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Early Exiting}{5}{section*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Head Redesign}{6}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Confidence Adaptivity}{7}{section*.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Experiments}{8}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Architectures}{8}{section*.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Baselines}{9}{section*.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{HRNet.}{9}{section*.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{MDEQ.}{9}{section*.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Feature-Based Stochastic Sampling.}{9}{section*.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Experimental Settings}{9}{section*.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Semantic Segmentation}{10}{section*.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Human Pose Estimation}{12}{section*.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Analysis}{12}{section.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Visualizations}{12}{section*.22}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Downsampling at Early Exits.}{14}{section*.23}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Masking Criterion}{14}{section*.25}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Related Work}{15}{section.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Anytime Inference}{15}{section*.26}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Adaptive Computation}{15}{section*.27}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Additional Studies}{16}{section.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Ablation on Interpolation Radius}{16}{section*.28}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Inference-Only Confidence Adaptivity}{16}{section*.30}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{PASCAL-Context Results}{17}{section*.32}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{More Visualizations}{18}{section*.34}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.8}Conclusion}{18}{section.2.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {3}Rethinking the Value of Network Pruning}{21}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Overview}{21}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Introduction}{22}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Background}{24}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Methodology}{25}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Target Pruned Architectures}{25}{section*.40}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Datasets, Network Architectures and Pruning Methods}{26}{section*.41}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Training Budget}{26}{section*.42}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Implementation}{26}{section*.43}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Experiments}{27}{section.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Predefined Structured Pruning}{27}{section*.44}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Automatic Structured Pruning}{29}{section*.48}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Unstructured Magnitude-based Pruning}{30}{section*.51}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Network Pruning as Architecture search}{31}{section.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Parameter Efficiency of Pruned Architectures}{32}{section*.53}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{More Analysis}{33}{section*.57}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Generalizable Design Principles from Pruned Architectures}{34}{section*.58}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Discussions with Conventional Architecture Search Methods}{35}{section*.60}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Experimenting with Lottery Ticket Hypothesis}{35}{section.3.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Additional Studies}{39}{section.3.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Results on Soft Filter Pruning}{39}{section*.64}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Transfer Learning to Object Detection}{40}{section*.67}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Aggressively Pruned Models}{41}{section*.69}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Extending Fine-tuning Epochs}{41}{section*.73}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Extending the Standard Training Schedule}{42}{section*.75}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Weight Distributions}{43}{section*.77}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{More Sparsity Patterns for Pruned Architectures}{44}{section*.79}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.9}Conclusions}{46}{section.3.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {4}A ConvNet for the 2020s}{47}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Overview}{47}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Introduction}{48}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Modernizing a ConvNet: a Roadmap}{50}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Training Techniques}{52}{section*.86}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Macro Design}{52}{section*.87}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Changing stage compute ratio.}{52}{section*.88}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Changing stem to ``Patchify''.}{53}{section*.89}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{ResNeXt-ify}{53}{section*.90}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Inverted Bottleneck}{54}{section*.91}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Large Kernel Sizes}{54}{section*.92}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Moving up depthwise conv layer.}{55}{figure.caption.94}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Increasing the kernel size.}{55}{section*.95}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Micro Design}{55}{section*.96}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Replacing ReLU with GELU}{55}{section*.97}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Fewer activation functions.}{55}{section*.98}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Fewer normalization layers.}{56}{section*.100}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Substituting BN with LN.}{57}{section*.101}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Separate downsampling layers.}{57}{section*.102}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Closing remarks.}{57}{section*.103}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Experiments on ImageNet}{58}{section.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Settings}{58}{section*.104}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Training on ImageNet-1K.}{58}{section*.105}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Pre-training on ImageNet-22K.}{58}{section*.106}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Fine-tuning on ImageNet-1K.}{59}{section*.107}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Results}{59}{section*.109}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{ImageNet-1K.}{59}{section*.110}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{ImageNet-22K.}{59}{section*.111}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Isotropic ConvNeXt{} \emph {vs}\onedot ViT}{61}{section*.112}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Experiments on Downstream Tasks}{61}{section.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Object detection and segmentation on COCO.}{61}{section*.114}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Semantic segmentation on ADE20K.}{62}{section*.116}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Remarks on model efficiency.}{62}{section*.118}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.6}Related Work}{63}{section.4.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Hybrid models}{63}{section*.119}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Recent convolution-based approaches}{64}{section*.120}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.7}Full Experimental Settings}{64}{section.4.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{ImageNet (Pre-)training}{64}{section*.121}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{ImageNet Fine-tuning}{64}{section*.124}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Downstream Tasks}{67}{section*.125}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Detailed Architectures}{67}{section*.127}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.8}Additional Studies}{68}{section.4.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Robustness Evaluation}{68}{section*.131}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Modernizing ResNets: Detailed Results}{69}{section*.132}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Benchmarking on A100 GPUs}{72}{section*.135}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.9}Discussions}{73}{section.4.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Limitations}{73}{section*.137}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Societal Impact}{73}{section*.138}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.10}Conclusions}{73}{section.4.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliography}{75}{section*.140}%

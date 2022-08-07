@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1659710227 "chap4.tex" "chap4.pdf" "chap4" 1659710234
+["pdflatex"] 1659861142 "chap4.tex" "chap4.pdf" "chap4" 1659861148
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -9,8 +9,8 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1633780133 2724739 b0013e6e3027e44d58028ea99b658c70 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "chap4.aux" 1659709956 29013 b24580b0d8aebe115f59c01234937b2a ""
-  "chap4.tex" 1659710224 71370 8bf1c6a35669819c9021c2e2280602eb ""
+  "chap4.aux" 1659861075 29207 5942c3fc869adfd79c3822467493429c ""
+  "chap4.tex" 1659861137 73435 1bfeb93bb2d55b20071e393e0f9ab907 ""
   (generated)
-  "chap4.log"
   "chap4.pdf"
+  "chap4.log"

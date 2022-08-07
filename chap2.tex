@@ -80,7 +80,7 @@ This leads to the expected training loss to be $\mathop{\mathbb{E}}_{(x,y)\sim (
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{fig1.pdf}
 \caption{%
-Our anytime dense prediction with confidence (ADP-C) approach. 
+Proposed anytime dense prediction with confidence (ADP-C) approach. 
 We equip the model with intermediate exits for anytime inference.
 We redesign each exit with encoder-decoder architecture to compensate for spatial resolution across model stages.
 At each exit's output, sufficiently confident predictions (green squares) are identified to skip further computation in the following layers.
@@ -313,10 +313,9 @@ The full model reaches the same-level of accuracy as the baseline HRNet with muc
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{result_20220317.pdf}
 \caption{%
-Accuracy ($y$) and computation ($x$) at four exits across architectures (HRNet-W48/W32/W18) and tasks (semantic segmentation and pose estimation).
-Anytime performance improves with higher $y$ (more accuracy) and lower $x$ (less computation).
+Accuracy and computation at four exits across architectures and tasks.
 Redesigned heads (RH) boost the accuracy at early exits, while confidence adaptivity (CA) reduces computation by up to more than half.
-ADP-C outperforms baseline methods (MDEQ and Feature-based Stochastic Sampling) across the accuracy-computation tradeoff curve.
+ADP-C outperforms baseline methods across the accuracy-computation tradeoff curve.
 }
 \label{fig:result}
 \end{figure}
@@ -385,8 +384,9 @@ In this case, ADP-C reduces computation by 59.1\% (9.49 to 3.88 GFLOPs) while ac
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{visualize_final.png}
 \caption{%
+Visualizations of ADP-C results.
 Top: prediction results at all exits.
-Middle: confidence maps, lighter color (yellow) indicates higher confidence.
+Middle: confidence maps, lighter color indicates higher confidence.
 Bottom: correct/wrong predictions at the exit drawn as white/black.
 The confident points selected for masking are in green.
 Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.}
@@ -426,7 +426,7 @@ Fig.~\ref{fig:twofigs} (left) shows that our adopted $D=3/2/1$ strategy obtains 
    \begin{subfigure}{0.45\linewidth} \centering
      \includegraphics[scale=0.47]{crit.pdf}
    \end{subfigure}
-\caption{\emph{Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph{Right:} comparison between different masking criteria.} 
+\caption{Analysis of ADP-C. \emph{Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph{Right:} comparison between different masking criteria.} 
 \label{fig:twofigs}
 \end{figure}
 
@@ -565,11 +565,13 @@ We present more visualizations of the same type as Fig.~\ref{fig:vis} in the mai
 \includegraphics[width=\textwidth]{vis_supp/visualize_final_frankfurt_000001_005184.png}
 \includegraphics[width=\textwidth]{vis_supp/visualize_final_frankfurt_000001_028335.png}
 \caption{%
-Top: prediction results at all exits.
-Middle: confidence maps, lighter color (yellow) indicates higher confidence.
-Bottom: correct/wrong predictions at the exit drawn as white/black.
-The confident points selected for masking are in green.
-Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.}
+Additional visualizations of ADP-C results, part 1.
+% Top: prediction results at all exits.
+% Middle: confidence maps, lighter color (yellow) indicates higher confidence.
+% Bottom: correct/wrong predictions at the exit drawn as white/black.
+% The confident points selected for masking are in green.
+% Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.
+}
 \label{fig:vis1}
 \end{figure}
 
@@ -578,11 +580,13 @@ Confidence adaptivity excludes calculation on already confident pixels (green) i
 \includegraphics[width=\textwidth]{vis_supp/visualize_final_frankfurt_000001_064130.png}
 \includegraphics[width=\textwidth]{vis_supp/visualize_final_frankfurt_000001_080391.png}
 \caption{%
-Top: prediction results at all exits.
-Middle: confidence maps, lighter color (yellow) indicates higher confidence.
-Bottom: correct/wrong predictions at the exit drawn as white/black.
-The confident points selected for masking are in green.
-Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.}
+Additional visualizations of ADP-C results, part 2.
+% Top: prediction results at all exits.
+% Middle: confidence maps, lighter color (yellow) indicates higher confidence.
+% Bottom: correct/wrong predictions at the exit drawn as white/black.
+% The confident points selected for masking are in green.
+% Confidence adaptivity excludes calculation on already confident pixels (green) in early exits, mostly located at inner parts of large segments.
+}
 \label{fig:vis2}
 \end{figure}
 

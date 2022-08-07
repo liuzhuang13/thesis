@@ -1,0 +1,29 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'main.blg'
+[104] biber-darwin:340> INFO - === Sun Aug  7, 2022, 02:48:33
+[152] Biber.pm:415> INFO - Reading 'main.bcf'
+[445] Biber.pm:952> INFO - Found 195 citekeys in bib section 0
+[471] Biber.pm:4340> INFO - Processing section 0
+[487] Biber.pm:4531> INFO - Looking for bibtex format file 'references.bib' for section 0
+[546] bibtex.pm:1689> INFO - LaTeX decoding ...
+[1144] bibtex.pm:1494> INFO - Found BibTeX data source 'references.bib'
+[1152] Utils.pm:395> WARN - Duplicate entry key: 'li2016pruning' in file 'references.bib', skipping ...
+[1152] Utils.pm:395> WARN - Duplicate entry key: 'lin2017runtime' in file 'references.bib', skipping ...
+[1153] Utils.pm:395> WARN - Duplicate entry key: 'han2015learning' in file 'references.bib', skipping ...
+[1184] Utils.pm:395> WARN - Duplicate entry key: 'lecun1998gradient' in file 'references.bib', skipping ...
+[1185] Utils.pm:395> WARN - Duplicate entry key: 'han2015learning' in file 'references.bib', skipping ...
+[1185] Utils.pm:395> WARN - Duplicate entry key: 'li2016pruning' in file 'references.bib', skipping ...
+[1198] Utils.pm:395> WARN - Possible typo (case mismatch) between datasource keys: 'Tan2019efficientnet' and 'tan2019efficientnet' in file 'references.bib'
+[2045] Utils.pm:395> WARN - Possible typo (case mismatch) between citation and datasource keys: 'deng2009' and 'Deng2009' in file 'references.bib'
+[3000] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/zg/pqc2w6kj1ysfljd581nsqcrc0000gn/T/biber_tmp_M6n9/33e59b5ca9ec342068223d604c3f8d55_71837.utf8, line 2332, warning: undefined macro "TIP"
+[3000] Utils.pm:395> WARN - BibTeX subsystem: /var/folders/zg/pqc2w6kj1ysfljd581nsqcrc0000gn/T/biber_tmp_M6n9/33e59b5ca9ec342068223d604c3f8d55_71837.utf8, line 2353, warning: undefined macro "SIGGRAPH"
+[3000] Utils.pm:395> WARN - I didn't find a database entry for 'imagenet' (section 0)
+[3001] Utils.pm:395> WARN - I didn't find a database entry for 'deng2009' (section 0)
+[3001] Utils.pm:395> WARN - I didn't find a database entry for 'Huang2017' (section 0)
+[3317] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[3317] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[3317] Biber.pm:4168> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[3317] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[3565] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[3751] bbl.pm:757> INFO - Output to main.bbl
+[3759] Biber.pm:128> INFO - WARNINGS: 13

@@ -1,0 +1,88 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {american}{}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.1}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits. Our approach achieves higher accuracy in less computation than the HRNet and MDEQ baselines across exits. Early exiting (EE) makes progressive predictions. Redesigned heads (RH) improve early predictions (exits 1 and 2). Confidence Adaptivity (CA) reduces computation. \relax }}{11}{table.caption.17}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.2}{\ignorespaces Accuracy (PCKh@0.5) and computation (GFLOPs) on MPII pose estimation at the last exit and averaged for all exits. Early exits (EE) make progress predictions, redesigned heads (RH) improve accuracy, and confidence adaptivity (CA) reduces computation. \relax }}{13}{table.caption.20}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.3}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius. \relax }}{16}{table.caption.29}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.4}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different adaptivity settings. \relax }}{16}{table.caption.31}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2.5}{\ignorespaces Accuracy (mIoU) and inference computation (GFLOPs) for PASCAL-Context semantic segmentation. \relax }}{17}{table.caption.33}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.1}{\ignorespaces Results (accuracy) for $L_1$-norm based filter pruning~\cite {li2016pruning}. ``Pruned Model'' is the model pruned from the large model. Configurations of Model and Pruned Model are both from the original paper. \relax }}{28}{table.caption.45}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.2}{\ignorespaces Results (accuracy) for ThiNet~\cite {luo2017thinet}. Names such as ``VGG-GAP'' and ``ResNet50-30\%'' are pruned models whose configurations are defined in~\cite {luo2017thinet}. To accommodate the effects of different frameworks between our implementation and the original paper's, we compare relative accuracy drop from the unpruned large model. For example, for the pruned model VGG-Conv, $-$1.23 is relative to 71.03 on the left, which is the reported accuracy of the unpruned large model VGG-16 in the original paper; $-$2.75 is relative to 71.51 on the left, which is VGG-16's accuracy in our implementation. \relax }}{28}{table.caption.46}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.3}{\ignorespaces Results (accuracy) for Regression based Feature Reconstruction~\cite {he2017channel}. Pruned models such as ``VGG-16-5x'' are defined in~\cite {he2017channel}. Similar to \autoref {thinet}, we compare relative accuracy drop from unpruned large models.\relax }}{29}{table.caption.47}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.4}{\ignorespaces Results (accuracy) for Network Slimming~\cite {liu2017learning}. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. The same ratios for each model are used as the original paper. \relax }}{30}{table.caption.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.5}{\ignorespaces Results (accuracy) for residual block pruning using Sparse Structure Selection~\cite {huang2018data}. In the original paper no fine-tuning is required so there is a ``Pruned'' column instead of ``Fine-tuned'' as before. \relax }}{30}{table.caption.50}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.6}{\ignorespaces Results (accuracy) for unstructured pruning~\cite {han2015learning}. ``Prune Ratio'' denotes the percentage of parameters pruned in the set of all convolutional weights. \relax }}{31}{table.caption.52}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.7}{\ignorespaces Network architectures obtained by pruning 60\% channels on VGG-16 (in total 13 conv-layers) using Network Slimming. Width and Width* are number of channels in the original and pruned architectures, averaged over 5 runs.\relax }}{33}{table.caption.55}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.8}{\ignorespaces Comparisons with the Lottery Ticket Hypothesis~\cite {lottery} on a structured pruning method ($L_1$-norm based filter pruning~\cite {li2016pruning}) with two initial learning rates: 0.1 and 0.01. In both cases, using winning tickets does not bring improvement on accuracy.\relax }}{37}{table.caption.62}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.9}{\ignorespaces Comparisons with the Lottery Ticket Hypothesis~\cite {lottery} for one-shot unstructured pruning~\cite {han2015learning} with two initial learning rates: 0.1 and 0.01. The same results are visualized in \autoref {iterative-3}. Using the winning ticket as initialization only brings improvement when the learning rate is small (0.01), however such small learning rate leads to a lower accuracy than the widely used large learning rate (0.1).\relax }}{38}{table.caption.63}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.10}{\ignorespaces Results (accuracy) for Soft Filter Pruning~\cite {he2018sfp} without pretrained models.\relax }}{39}{table.caption.65}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.11}{\ignorespaces Results (accuracy) for Soft Filter Pruning~\cite {he2018sfp} using pretrained models.\relax }}{40}{table.caption.66}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.12}{\ignorespaces Results (mAP) for pruning on detection task. The pruned models are chosen from~\cite {li2016pruning}. Prune-C refers to pruning on classifcation pre-trained weights, Prune-D refers to pruning after the weights are transferred to detection task. Scratch-E/B means pre-training the pruned model from scratch on classification and transfer to detection.\relax }}{40}{table.caption.68}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.13}{\ignorespaces Results (accuracy) for Network Slimming~\cite {liu2017learning} when the models are aggressively pruned. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. Larger ratios are used than the original paper of~\cite {liu2017learning}. \relax }}{41}{table.caption.70}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.14}{\ignorespaces Results (accuracy) for $L_1$-norm based filter pruning~\cite {li2016pruning} when the models are aggressively pruned. \relax }}{41}{table.caption.71}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.15}{\ignorespaces Results (accuracy) for unstructured pruning~\cite {han2015learning} when the models are aggressively pruned. \relax }}{42}{table.caption.72}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.16}{\ignorespaces ``Fine-tune-40'' stands for fine-tuning 40 epochs and so on. Scratch-E models are trained for 160 epochs. We observe that fine-tuning for more epochs does not help improve the accuracy much, and models trained from scratch can still perform on par with fine-tuned models. \relax }}{42}{table.caption.74}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.17}{\ignorespaces Results for $L_1$-norm filter pruning~\cite {li2016pruning} when the training schedule of the large model is extended from 160 to 300 epochs. \relax }}{43}{table.caption.76}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.18}{\ignorespaces Sparsity patterns of PreResNet-164 pruned on CIFAR-10 by Network Slimming shown in \autoref {arch-search-negative} (left) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of channels to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).\relax }}{44}{table.caption.80}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.19}{\ignorespaces Average sparsity patterns of 3$\times $3 kernels of PreResNet-110 pruned on CIFAR-100 by unstructured pruning shown in \autoref {arch-search-negative} (middle) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).\relax }}{45}{table.caption.81}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.20}{\ignorespaces Average sparsity patterns of 3$\times $3 kernels of DenseNet-40 pruned on CIFAR-100 by unstructured pruning shown in \autoref {arch-search-negative} (right) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).\relax }}{45}{table.caption.82}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.21}{\ignorespaces Sparsity patterns of VGG-16 pruned on CIFAR-10 by Network Slimming shown in Figure~\ref {arch-search} (left) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of channels to be kept. For each prune ratio, the latter stages tend to have more redundancy than earlier stages.\relax }}{46}{table.caption.83}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.1}{\ignorespaces \textbf {Classification accuracy on ImageNet-1K.} Similar to Transformers, ConvNeXt{} also shows promising scaling behavior with higher-capacity models and a larger (pre-training) dataset. Inference throughput is measured on a V100 GPU, following~\cite {Liu2021swin}. On an A100 GPU, ConvNeXt{} can have a much higher throughput than Swin Transformer. See Appendix~\ref {sec:a100}. ({\fontfamily {mvs}\fontencoding {U}\fontseries {m}\fontshape {n}\selectfont \char 84})ViT results with 90-epoch AugReg~\cite {steiner2021train} training, provided through personal communication with the authors.\relax }}{60}{table.caption.108}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.2}{\ignorespaces \textbf {Comparing isotropic ConvNeXt{} and ViT.} Training memory is measured on V100 GPUs with 32 per-GPU batch size.\relax }}{61}{table.caption.113}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.3}{\ignorespaces caption}}{62}{table.caption.115}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.4}{\ignorespaces caption}}{63}{table.caption.117}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.5}{\ignorespaces \textbf {ImageNet-1K/22K (pre-)training settings}. Multiple stochastic depth rates (e.g., 0.1/0.4/0.5/0.5) are for each model (e.g., ConvNeXt{}-T/S/B/L) respectively.\relax }}{65}{table.caption.122}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.6}{\ignorespaces \textbf {ImageNet-1K fine-tuning settings}. Multiple values (e.g., 0.8/0.95) are for each model (e.g., ConvNeXt{}-B/L) respectively. \relax }}{66}{table.caption.123}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.7}{\ignorespaces caption}}{67}{table.caption.126}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.8}{\ignorespaces \textbf {Detailed architecture specifications} for ResNet-50, ConvNeXt{}-T and Swin-T.\relax }}{68}{table.caption.128}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.9}{\ignorespaces caption}}{69}{table.caption.129}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.10}{\ignorespaces caption}}{69}{table.caption.130}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.11}{\ignorespaces \textbf {Detailed results for modernizing a ResNet-50.} Mean and standard deviation are obtained by training the network with three different random seeds.\relax }}{70}{table.caption.133}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.12}{\ignorespaces \textbf {Detailed results for modernizing a ResNet-200.}\relax }}{71}{table.caption.134}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {4.13}{\ignorespaces \textbf {Inference throughput comparisons on an A100 GPU.} Using TF32 data format and ``channel last'' memory layout, ConvNeXt{} enjoys up to $\sim $49\% higher throughput compared with a Swin Transformer with similar FLOPs.\relax }}{72}{table.caption.136}%

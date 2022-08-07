@@ -15,7 +15,7 @@ We also compare with the ``Lottery Ticket Hypothesis''~\cite{lottery}, and find 
 Over-parameterization is a widely-recognized property of deep neural networks~\cite{lowrank1, deep}, which leads to high computational cost and high memory footprint for inference. As a remedy, \emph{network pruning}~\cite{obd,obs,han2015learning, nvidia, li2016pruning} has been identified as an effective technique to improve the  efficiency of deep networks for applications with limited computational budget. A typical procedure of network pruning consists of three stages: 1) train a large, over-parameterized model (sometimes there are pretrained models available), 2) prune the trained large model according to a certain criterion, and 3) fine-tune the pruned model to regain the lost performance.
 
 % \begin{wrapfigure}{r}[0pt]{0.47\linewidth}
-\begin{figure}
+\begin{figure}[!htbp]
   \begin{center}
     \includegraphics[width=0.68\textwidth]{fig1_pipeline-crop.pdf}
   \end{center}
@@ -47,7 +47,7 @@ The contradiction between some of our results and those reported in the literatu
 
 Our results advocate a rethinking of existing structured network pruning algorithms. It seems that the over-parameterization during the first-stage training is not as beneficial as previously thought. Also, inheriting weights from a large model is not necessarily optimal, and might trap the pruned model into a bad local minimum, even if the weights are considered ``important'' by the pruning criterion. Instead, our results suggest that the value of automatic structured pruning algorithms sometimes lie in identifying efficient structures and performing implicit architecture search, rather than selecting ``important'' weights. For most structured pruning methods which prune channels/filters, this corresponds to searching the number of channels in each layer. In section 5, we discuss this viewpoint through carefully designed experiments, and show the patterns in the pruned model could provide design guidelines for efficient architectures.
 
-The rest of the paper is organized as follows: in Section 2, we introduce background and some related works on network pruning; in Section 3, we describe our methodology for training the pruned model from scratch; in Section \ref{sec:exp} we experiment on various pruning methods and show our main results for both pruning methods with predefined or automatically discovered target architectures; in Section 5, we discuss the value of automatic pruning methods in searching efficient network architectures; in Section 6 we compare with the recently proposed ``Lottery Ticket Hypothesis''~\cite{lottery}; in Section 7 we discuss some implications and conclude the paper.
+% The rest of the paper is organized as follows: in Section 2, we introduce background and some related works on network pruning; in Section 3, we describe our methodology for training the pruned model from scratch; in Section \ref{sec:exp} we experiment on various pruning methods and show our main results for both pruning methods with predefined or automatically discovered target architectures; in Section 5, we discuss the value of automatic pruning methods in searching efficient network architectures; in Section 6 we compare with the recently proposed ``Lottery Ticket Hypothesis''~\cite{lottery}; in Section 7 we discuss some implications and conclude the paper.
 
 
 \section{Background}
@@ -317,7 +317,7 @@ For unstructured magnitude-based pruning~\cite{han2015learning}, we conducted a 
 \end{minipage}
     \caption{
       Pruned architectures obtained by different approaches, all \emph{trained from scratch}, averaged over 5 runs.  
-      Architectures obtained by  automatic pruning methods (\emph{Left:} Network Slimming~\cite{liu2017learning}, \emph{Right:} Unstructured pruning~\cite{han2015learning}) have better parameter efficiency than uniformly pruning channels or sparsifying weights in the whole network. }  
+      Architectures obtained by automatic pruning methods have better parameter efficiency than uniformly pruning channels or sparsifying weights in the whole network. }  
     \label{arch-search}
 \end{figure*}
 
@@ -903,7 +903,7 @@ Stage 5 & 0.871 & 0.751 & 0.626 & 0.486 & 0.352 & 0.132 \\ \hline
 \end{table}
 
 
-\section{Discussion and Conclusion}
+\section{Conclusions}
 Our results encourage more careful and fair baseline evaluations of structured pruning methods. In addition to high accuracy, training predefined target models from scratch has the following benefits over conventional network pruning procedures:
 a) since the model is smaller, we can train the model using less GPU memory and possibly faster than training the original large model;
 b) there is no need to implement the pruning criterion and procedure, which sometimes  requires fine-tuning layer by layer~\cite{luo2017thinet} and/or needs to be customized for different network architectures~\cite{li2016pruning, liu2017learning};

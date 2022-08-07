@@ -1,9 +1,0 @@
-[0] Config.pm:311> INFO - This is Biber 2.16
-[0] Config.pm:314> INFO - Logfile is 'thesis.blg'
-[128] biber-darwin:340> INFO - === Sun Aug  7, 2022, 01:18:28
-[201] Biber.pm:415> INFO - Reading 'thesis.bcf'
-[363] Biber.pm:952> INFO - Found 93 citekeys in bib section 0
-[390] Biber.pm:4340> INFO - Processing section 0
-[439] Biber.pm:4531> INFO - Looking for bibtex format file '/Users/zhuangl/Google Drive/My Drive/thesis/reference.bib' for section 0
-[707] Utils.pm:411> ERROR - Cannot find '/Users/zhuangl/Google Drive/My Drive/thesis/reference.bib'!
-[708] Biber.pm:132> INFO - ERRORS: 1
