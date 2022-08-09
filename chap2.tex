@@ -1,7 +1,8 @@
-\chapter{Anytime Dense Prediction with Confidence Adaptivity}
+\chapter{Anytime Dense Prediction by Confidence}
+\label{chap:}
 
 \section{Overview}
-In this chapter, we introduce a method for anytime dense visual recognition, which allows neural networks inference to be more flexible. Anytime inference requires a model to make a progression of predictions which might be halted at any time. Prior research on anytime visual recognition has mostly focused on image classification. We propose the first unified and end-to-end approach for anytime dense prediction. A cascade of ``exits'' is attached to the model to make multiple predictions. We redesign the exits to account for the depth and spatial resolution of the features for each exit. To reduce total computation, and make full use of prior predictions, we develop a novel spatially adaptive approach to avoid further computation on regions where early predictions are already sufficiently confident. Our full method, named anytime dense prediction with confidence (ADP-C), achieves the same level of final accuracy as the base model, and meanwhile significantly reduces total computation. We evaluate our method on Cityscapes semantic segmentation and MPII human pose estimation: ADP-C enables anytime inference without sacrificing accuracy while also reducing the total FLOPs of its base models by 44.4\% and 59.1\%. We compare with anytime inference by deep equilibrium networks and feature-based stochastic sampling, showing that ADP-C dominates both across the accuracy-computation curve. Our code is available at \url{https://github.com/liuzhuang13/anytime}. This chapter also serves as an example for typical efficient neural network inference methods, so that we are ready to present our work on examining scaling methods' mechanisms in next chapters
+In this chapter, we introduce a method for anytime dense visual recognition, which allows neural networks inference to be more flexible. Anytime inference requires a model to make a progression of predictions which might be halted at any time. Prior research on anytime visual recognition has mostly focused on image classification. We propose the first unified and end-to-end approach for anytime dense prediction. A cascade of ``exits'' is attached to the model to make multiple predictions. We redesign the exits to account for the depth and spatial resolution of the features for each exit. To reduce total computation, and make full use of prior predictions, we develop a novel spatially adaptive approach to avoid further computation on regions where early predictions are already sufficiently confident. Our full method, named anytime dense prediction with confidence (ADP-C), achieves the same level of final accuracy as the base model, and meanwhile significantly reduces total computation. We evaluate our method on Cityscapes semantic segmentation and MPII human pose estimation: ADP-C enables anytime inference without sacrificing accuracy while also reducing the total FLOPs of its base models by 44.4\% and 59.1\%. We compare with anytime inference by deep equilibrium networks and feature-based stochastic sampling, showing that ADP-C dominates both across the accuracy-computation curve. This chapter also serves as an example for typical efficient neural network inference methods, so that we are ready to present our work on examining scaling methods' mechanisms in next chapters. Our code is available at \url{https://github.com/liuzhuang13/anytime}.
 
 \section{Introduction}
 Deep convolutional networks \cite{alexnet,resnet} achieve high accuracy but at significant computational cost.
@@ -22,7 +23,7 @@ Time constraints vary, but the inference time of a standard deep network does no
     \label{fig:teaser}
 \end{figure}
 
-\emph{Anytime} inference (Fig.~\ref{fig:teaser}) mitigates this issue by bringing flexibility to model computation.
+\emph{Anytime} inference (Figure~\ref{fig:teaser}) mitigates this issue by bringing flexibility to model computation.
 An anytime algorithm \cite{dean1988analysis} gradually improves its results as more computation time is given.
 It can be interrupted at any point during its computation to return a result as system or user requirements demand.
 In this way, the time to the first output is reduced while the quality of the last output is preserved.
@@ -50,7 +51,7 @@ Exits might suffice for anytime image classification, but dense prediction tasks
 Simple regions may need less processing while complex ones need more.
 Standard inference applies an equal amount of computation at every pixel without taking advantage of spatial structure.
 Our spatially adaptive anytime inference scheme decides whether or not to continue computation at each exit and position.
-We mask the output of each exit by thresholding the confidence of its predictions: the remaining computation for sufficiently confident pixels is then reduced (Fig.~\ref{fig:fig1}).
+We mask the output of each exit by thresholding the confidence of its predictions: the remaining computation for sufficiently confident pixels is then reduced (Figure~\ref{fig:fig1}).
 For each masked pixel, its prediction will be persisted in the following exits, as it is already sufficiently confident.
 In the following layers, the features for the masked pixel will be interpolated, rather than convolved, and therefore reduce computation.
 The confidence measure can depend on the task, e.g., in segmentation, it could be the entropy of class predictions.
@@ -77,7 +78,7 @@ The output of the anytime model depends on the budget given, and we denote it as
 Assuming $L$ is the task loss and $y$ is the ground truth, the per-instance loss is $L(f\left(x, B\left(x, t\right)\right), y)$.
 This leads to the expected training loss to be $\mathop{\mathbb{E}}_{(x,y)\sim (X, Y), t\sim T}[L(f\left(x, B\left(x, t\right)\right), y)]$, where $(X, Y)$ is the input-output joint distribution and $T$ is the distribution modeling the time or event variable.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \includegraphics[width=\textwidth]{fig1.pdf}
 \caption{%
 Proposed anytime dense prediction with confidence (ADP-C) approach. 
@@ -93,7 +94,7 @@ The network takes the input $x$, forwards it through intermediate layers, and fi
 The concrete form of the head depends on the task. 
 For dense prediction, the head is usually one or multiple convolutions that output spatial maps representing pixel-wise predictions. 
 
-To obtain an anytime model, we attach multiple heads to the network, branching from its intermediate features (Fig.~\ref{fig:fig1}).
+To obtain an anytime model, we attach multiple heads to the network, branching from its intermediate features (Figure~\ref{fig:fig1}).
 We call these additional heads \emph{early exits}, since they allow the network to give early predictions and stop the inference at the current layer.
 Suppose we add $k$ early exits at intermediate layers with layer indices $l_1 \dots, l_k$.
 We denote the intermediate features at these layers $F_{l_1}(x) \dots, F_{l_k}(x)$, and the functions represented by the early exits $E_1 \dots$, $E_k$. 
@@ -106,7 +107,7 @@ L_{total} = \sum_{i=1}^{k+1} {w_i}L(\hat{y}_i, y)
 where $w_i$ is the weight coefficient at exit $i$.
 The original network, together with the added exits, will be trained end-to-end to optimize this total loss function.
 In experiments, we set all weights equal to 1.
-This corresponds to the minimization of the expected loss in Sec.~\ref{sec:anytime} when the exiting probabilities at all exits are equal.
+This corresponds to the minimization of the expected loss in Section~\ref{sec:anytime} when the exiting probabilities at all exits are equal.
 We find this to be a simple yet effective scheme.
 
 For anytime inference, as the network propagates features through its layers, if the computation budget is reached or the user asks the model to stop, it will output the latest $\hat{y}_{i}$ that is already computed.
@@ -131,12 +132,12 @@ The following convolution provides the opportunity to learn new coarser-level fe
 After several (denoting this number as $D$) ``pool-conv'' layers, we upsample the features back to the original output resolution, with an equal number ($D$) of bilinear interpolation and $1\times1$ convolution layers.
 The output of this ``interpolate-conv'' sequence will be the prediction $\hat{y}_i$ at this exit.
 This is important for ensuring spatial accuracy for pixel-level dense prediction tasks.
-Our redesigned exits are essentially small ``encoder-decoder'' modules (Fig.~\ref{fig:fig1}), where the encoder downsamples the features, the decoder upsamples them back.
+Our redesigned exits are essentially small ``encoder-decoder'' modules (Figure~\ref{fig:fig1}), where the encoder downsamples the features, the decoder upsamples them back.
 
 The downsampling ratio at each exit is determined by $D$, the number of consecutive ``pool-conv'' layers.
 Intuitively, features at earlier layers are more fine-level, and the exit branching from them can potentially benefit from more downsampling.
 In experiments, we use an encoder with $D=N-i$ downsampling operations at exit $i$, where $N$ is the total number of exits, including the original last exit.
-Empirically we find this strategy works well, and alternative strategies are compared in Sec.~\ref{sec:analysis}. 
+Empirically we find this strategy works well, and alternative strategies are compared in Section~\ref{sec:analysis}. 
 
 Finally, in all early exits, the first convolution will transform the number of channels to a fixed number for all exits.
 By setting the channel width relatively small, we can still save computation while adding layers with this redesigned encoder-decoder head structure.
@@ -149,7 +150,7 @@ For instance, the inner part of a large sky segment may be easy to recognize, wh
 
 Once an early prediction is made, we can inspect the ``confidence'' at each position.
 As an example, for semantic segmentation, the maximum probability over all classes can serve as a confidence measure.
-If the confidence has passed a pre-defined threshold at certain positions (green squares on predictions in Fig.~\ref{fig:fig1}), we may decide these predictions are likely to be correct, and not continue the computation of further layers at this position.
+If the confidence has passed a pre-defined threshold at certain positions (green squares on predictions in Figure~\ref{fig:fig1}), we may decide these predictions are likely to be correct, and not continue the computation of further layers at this position.
 Suppose the pixels of the early prediction $\hat{y}_i$ are indexed by $p$, we form a mask $M_i$:
 \begin{equation}
 \label{eqn:mask}
@@ -159,7 +160,7 @@ M_i(p) =
     1,              & \text{otherwise}
 \end{cases}
 \end{equation}
-For any convolution layer between exit $i$ ($E_i$) and the next exit $i+1$ ($E_{i+1}$), we could choose whether to perform or skip computation at position $p$ based on the mask (Fig.~\ref{fig:fig1}).
+For any convolution layer between exit $i$ ($E_i$) and the next exit $i+1$ ($E_{i+1}$), we could choose whether to perform or skip computation at position $p$ based on the mask (Figure~\ref{fig:fig1}).
 Assuming $C$ is a convolution layer with input $f_{in}$, then by applying the mask, the output $f_{out}$ at position $p$ becomes:
 \begin{equation}
 \label{eqn:mask_conv}
@@ -244,7 +245,7 @@ We examine anytime prediction with the MDEQ by decoding intermediate iterates of
 To the best of our knowledge, this is the first study of anytime implicit modeling, as \cite{bai2020multiscale} only reports the predictions of implicit models at equilibrium, and does not produce or inspect intermediate predictions.
 We use the ``small'' version of the MDEQ \cite{bai2020multiscale} and the 4th, 6th, 8th, and 10th iterations of its equilibrium optimization to bound the amount of computation and align its iterations with our architecture's stages. 
 
-\paragraph{Feature-Based Stochastic Sampling.} We follow \cite{xie2020spatially} in using internal features to predict masking positions, with the Gumbel-Softmax trick \cite{jang2016categorical} used for sampling. We use a $3\times3$ convolution upon the features for exits (Fig. \ref{fig:fig1}) for mask prediction until the next exit. During training, an $L_1$ sparsity regularization is applied on the stochastic continuous mask values, and only during inference the mask values are discretized. The interpolation procedure is the same as in our method. This baseline is evaluated on HRNet-W18.
+\paragraph{Feature-Based Stochastic Sampling.} We follow \cite{xie2020spatially} in using internal features to predict masking positions, with the Gumbel-Softmax trick \cite{jang2016categorical} used for sampling. We use a $3\times3$ convolution upon the features for exits (Figure \ref{fig:fig1}) for mask prediction until the next exit. During training, an $L_1$ sparsity regularization is applied on the stochastic continuous mask values, and only during inference the mask values are discretized. The interpolation procedure is the same as in our method. This baseline is evaluated on HRNet-W18.
 
 \subsection{Experimental Settings}
 \label{app:train}
@@ -261,16 +262,17 @@ We evaluate HRNet-W48 and HRNet-W18 for this task.
 
 
 Redesigned heads (RH) use our encoder-decoder structure for exits.
-Since we have 4 exits in total, we repeat the downsampling operation 3/2/1 times at exit 1/2/3 to generate larger-scale features for earlier exits, as described in Sec.~\ref{sec:rh}.
+Since we have 4 exits in total, we repeat the downsampling operation 3/2/1 times at exit 1/2/3 to generate larger-scale features for earlier exits, as described in Section~\ref{sec:rh}.
 We set the number of channels at all exits to 128/64 for HRNet-W48/W18.
 For confidence adaptivity (CA), we use the maximum probability among all classes as the confidence measure, and set the confidence threshold in Eqn.~\ref{eqn:mask} to be 99.8\% based on cross-validation.
 For CA, the computation for each input can differ, so we report the average FLOPs across all validation images at each exit. 
 
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
-\footnotesize
+\small
+\resizebox{\textwidth}{!}{
 \begin{tabular}{c|l|ccccc|ccccc}
 \hline
 \multicolumn{2}{c|}{}                            & \multicolumn{5}{c}{Accuracy (mIoU)}         & \multicolumn{5}{|c}{Computation (GFLOPs)}            \\ \hline
@@ -282,9 +284,9 @@ For CA, the computation for each input can differ, so we report the average FLOP
 \multirow{2}{*}{Ours}      
                            & EE + RH (HRNet)    & 44.6 & 60.2 & 76.6 & 79.9 & 65.3 & 41.9  & 105.6 & 368.0 & 701.3  & 304.2 \\
                            & ADP-C: EE + RH + CA (HRNet) & 44.3 & 60.1 & 76.8 & \textbf{81.3} & \textbf{65.7} & 41.9  & 93.9  & 259.3 & \textbf{387.1}  & \textbf{195.6} \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{%
-Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits.
+Accuracy and inference computation for Cityscapes semantic segmentation with four exits.
 Our approach achieves higher accuracy in less computation than the HRNet and MDEQ baselines across exits.
 Early exiting (EE) makes progressive predictions.
 Redesigned heads (RH) improve early predictions (exits 1 and 2).
@@ -303,14 +305,14 @@ This is possibly due to a potential regularization effect of confidence adaptivi
 
 
 
-The same results are plotted in Fig.~\ref{fig:result} (left).
+The same results are plotted in Figure~\ref{fig:result} (left).
 The plot shows accuracy ($y$-axis) and computation ($x$-axis) tradeoffs: points to the upper left indicate better anytime performance.
 The baseline HRNet is represented by a red cross, while anytime models are plotted as curves with a point for each prediction.
-We plot the results for the smaller HRNet-W18 model in Fig.~\ref{fig:result} (middle).
+We plot the results for the smaller HRNet-W18 model in Figure~\ref{fig:result} (middle).
 RH improves early prediction accuracy from the basic early exiting model, and CA substantially reduces computation at later exits.
 The full model reaches the same-level of accuracy as the baseline HRNet with much less total computation. We note that our model with confidence values as mask indicators also outperforms the feature-based mask sampling method in the accuracy-computation tradeoff, demonstrating that confidence is effective at filtering out redundant computation despite its simplicity.
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
 \includegraphics[width=\textwidth]{result_20220317.pdf}
 \caption{%
 Accuracy and computation at four exits across architectures and tasks.
@@ -366,13 +368,13 @@ EE + RH (HRNet)    & 90.26               & 79.16              & 9.55            
 ADP-C: EE + RH + CA (HRNet) & 90.20               & 79.04              & 3.88                & 2.44               \\ \hline
 \end{tabular}
 \caption{%
-Accuracy (PCKh@0.5) and computation (GFLOPs) on MPII pose estimation at the last exit and averaged for all exits.
+Accuracy and computation on MPII pose estimation at the last exit and averaged for all exits.
 Early exits (EE) make progress predictions, redesigned heads (RH) improve accuracy, and confidence adaptivity (CA) reduces computation.
 }
 \label{tab:pose}
 \end{table}
  
-Fig.~\ref{fig:result} (right) and Table~\ref{tab:pose} show the results.
+Figure~\ref{fig:result} (right) and Table~\ref{tab:pose} show the results.
 We observe a similar trend to segmentation: RH improves accuracy and CA reduces FLOPs.
 In this case, ADP-C reduces computation by 59.1\% (9.49 to 3.88 GFLOPs) while accuracy only drops by 0.13\% relative to the baseline HRNet. 
 
@@ -381,7 +383,7 @@ In this case, ADP-C reduces computation by 59.1\% (9.49 to 3.88 GFLOPs) while ac
 \label{sec:analysis}
 
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
 \includegraphics[width=\textwidth]{visualize_final.png}
 \caption{%
 Visualizations of ADP-C results.
@@ -396,7 +398,7 @@ Confidence adaptivity excludes calculation on already confident pixels (green) i
 
 \subsection{Visualizations} 
 To inspect our anytime predictions and masking on Cityscapes, we visualize ADP-C exit results on a validation image with HRNet-W48.
-Fig.~\ref{fig:vis} shows the predictions, confidence maps, and computation masks across exits.
+Figure~\ref{fig:vis} shows the predictions, confidence maps, and computation masks across exits.
 With each exit, the prediction accuracy improves, especially in more detailed areas with more segments.
 The confidence maps are shown with high lighter/yellow and low darker/green.
 Most unconfident points lie around segment boundaries, and the interior of large stuff segments (road, vegetation) are already confident at early exits.
@@ -413,18 +415,18 @@ On average, 19.3\%, 38.4\%, 63.0\% pixels are masked out at exit 1, 2, 3, respec
 
 
 \subsection{Downsampling at Early Exits.}
-In Sec.~\ref{sec:rh}, we described how many consecutive downsampling operations we use at each exit, by $D = N -i$, which means we use $D=3/2/1$ consecutive ``pool-conv'' layers for downsampling at exit $1/2/3$.
+In Section~\ref{sec:rh}, we described how many consecutive downsampling operations we use at each exit, by $D = N -i$, which means we use $D=3/2/1$ consecutive ``pool-conv'' layers for downsampling at exit $1/2/3$.
 Here we compare this strategy with $D=1/1/1$ and $3/3/3$, where the same level of downsampling and hence the same head structure is used at all exits, on HRNet-W18. 
-Fig.~\ref{fig:twofigs} (left) shows that our adopted $D=3/2/1$ strategy obtains the highest accuracy at all exits among these choices.
+Figure~\ref{fig:twofigs} (left) shows that our adopted $D=3/2/1$ strategy obtains the highest accuracy at all exits among these choices.
 
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
 \centering
-   \begin{subfigure}{0.45\linewidth} \centering
-     \includegraphics[scale=0.47]{head_short.pdf}
+   \begin{subfigure}{0.48\linewidth} \centering
+     \includegraphics[scale=0.48]{head_short.pdf}
    \end{subfigure}
-   \begin{subfigure}{0.45\linewidth} \centering
-     \includegraphics[scale=0.47]{crit.pdf}
+   \begin{subfigure}{0.48\linewidth} \centering
+     \includegraphics[scale=0.48]{crit.pdf}
    \end{subfigure}
 \caption{Analysis of ADP-C. \emph{Left:} comparing downsampling strategies. $D=3/2/1$ means downsampling the features $3/2/1$ times at exit $1/2/3$. \emph{Right:} comparison between different masking criteria.} 
 \label{fig:twofigs}
@@ -437,7 +439,7 @@ Here we consider a few alternatives.
 One is to mask out the top $k\%$ (by max prob.) of the pixels at each exit, regardless of their values.
 We also consider thresholding on the entropy of the probability distribution.
 In addition, we compare them with random masking.
-We use HRNet-W18, change the ratio or threshold for a wide range, and present the average mIoU vs. GFLOPs on all exits at Fig.~\ref{fig:twofigs} (right). 
+We use HRNet-W18, change the ratio or threshold for a wide range, and present the average mIoU vs. GFLOPs on all exits at Figure~\ref{fig:twofigs} (right). 
 For this ablation, adaptivity is only applied during inference.
 
 
@@ -473,10 +475,10 @@ These spatially adaptive models reduce computation, but are not anytime: they do
 
 \section{Additional Studies}
 \subsection{Ablation on Interpolation Radius}
-In the main paper, we use a default radius of $r=7$ when interpolating masked-out features (Eqn.~\ref{eqn:lambda} and following text). Here we demonstrate that the radius of 7 is reasonable through an ablation experiment, whose results are listed in Table~\ref{tab:radius}. The experiment is conducted with HRNet-W18 on Cityscapes semantic segmentation, with both redesigned head (RH) and confidence adaptivity (CA). We observe that a radius of 7 outperforms lower ones (3 and 5) in the average mIoU slightly, with minimal FLOPs addition, due to the fact that interpolation is done channel-wise. A further increase of radius to 9 does not bring significant gain in final or average mIoU.
-\begin{table}[h]
+We use a default radius of $r=7$ when interpolating masked-out features (Eqn.~\ref{eqn:lambda} and following text). Here we demonstrate that the radius of 7 is reasonable through an ablation experiment, whose results are listed in Table~\ref{tab:radius}. The experiment is conducted with HRNet-W18 on Cityscapes semantic segmentation, with both redesigned head (RH) and confidence adaptivity (CA). We observe that a radius of 7 outperforms lower ones (3 and 5) in the average mIoU slightly, with minimal FLOPs addition, due to the fact that interpolation is done channel-wise. A further increase of radius to 9 does not bring significant gain in final or average mIoU.
+\begin{table}[!htbp]
 \centering
-\footnotesize
+\small
 \begin{tabular}{cc|ccccc|ccccc}
 \hline
 \multicolumn{2}{c|}{}                            & \multicolumn{5}{c}{Accuracy (mIoU)}         & \multicolumn{5}{|c}{Computation (GFLOPs)}            \\ \hline
@@ -488,16 +490,16 @@ In the main paper, we use a default radius of $r=7$ when interpolating masked-ou
 \end{tabular}
 \vspace{0ex}
 \caption{%
-Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius.
+Accuracy and inference computation for Cityscapes semantic segmentation with four exits under different settings of interpolation radius. A minor increase in mIoU and GFLOPs is observed with a larger radius.
 }
 \label{tab:radius}
 \end{table}
 
 \subsection{Inference-Only Confidence Adaptivity}
-\begin{table}[h]
+\begin{table}[!htbp]
 \vspace{0ex}
 \centering
-\footnotesize
+\small
 \begin{tabular}{cc|ccccc|ccccc}
 \hline
 \multicolumn{2}{c|}{}                            & \multicolumn{5}{c}{Accuracy (mIoU)}         & \multicolumn{5}{|c}{Computation (GFLOPs)}            \\ \hline
@@ -507,12 +509,12 @@ Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segme
 & Inference-only & 44.61 &  59.97 &  76.37 &  79.69 & 65.16     & 41.9 &  94.1 &  291.8 & 484.8 & 228.1  \\ \hline
 \end{tabular}
 \caption{%
-Accuracy (mIoU) and inference computation (GFLOPs) for Cityscapes semantic segmentation with four exits under different adaptivity settings.
+Accuracy and inference computation for Cityscapes semantic segmentation with four exits under different adaptivity settings.
 }
 \label{tab:inference-only}
 \end{table}
 
-In the experiment section of the main paper, confidence adaptivity is used in both training and inference. Here we compare this with the setting where adaptivity is only used for inference in Table~\ref{tab:inference-only}. We use HRNet-W48 with redesigned heads (RH) on Cityscapes for this experiment. ``No Adaptivity'' corresponds to the ``EE + RH'' row in Table~\ref{tab:semseg}. We observe that using adaptivity only at inference hurts the accuracy, compared with using it at both training and inference. It also increases the average FLOPs at exit 3 and 4.
+By default, confidence adaptivity is used in both training and inference. Here we compare this with the setting where adaptivity is only used for inference in Table~\ref{tab:inference-only}. We use HRNet-W48 with redesigned heads (RH) on Cityscapes for this experiment. ``No Adaptivity'' corresponds to the ``EE + RH'' row in Table~\ref{tab:semseg}. We observe that using adaptivity only at inference hurts the accuracy, compared with using it at both training and inference. It also increases the average FLOPs at exit 3 and 4.
 
 
 
@@ -524,9 +526,9 @@ The confidence threshold is set to 99.5\%. We observe RH improve the accuracy in
 
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{table}[h]
+\begin{table}[!htbp]
 \centering
-\footnotesize
+\small
 \begin{tabular}{c|l|ccccc|ccccc}
 \hline
 \multicolumn{2}{c|}{}                              & \multicolumn{5}{c}{Accuracy (mIoU)}         & \multicolumn{5}{|c}{Computation (GFLOPs)}            \\ \hline
@@ -539,26 +541,26 @@ The confidence threshold is set to 99.5\%. We observe RH improve the accuracy in
                            & ADP-C: EE + RH + CA (HRNet) & 14.51 & 19.18 & 39.00 & 49.27 & 30.49 & 4.5 & 11.1  & 38.1 & \textbf{62.7}  & 29.1 \\ \hline
 \end{tabular}
 \caption{%
-Accuracy (mIoU) and inference computation (GFLOPs) for PASCAL-Context semantic segmentation. 
+Accuracy and inference computation for PASCAL-Context semantic segmentation. 
 }
 \label{tab:pascal}
 \end{table}
 
-
+\clearpage
 \subsection{More Visualizations}
 \label{app:vis}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000000_017476.png}
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000001_005184.png}
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000001_028335.png}
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000001_037705.png}
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000001_064130.png}
 \includegraphics[width=.50\textwidth]{vis_supp/input_gt_frankfurt_000001_080391.png}
-\caption{Input and ground truth of the example validation images visualized in Fig.~\ref{fig:vis1} and Fig.~\ref{fig:vis2}}
+\caption{Input and ground truth of the example validation images visualized in Figure~\ref{fig:vis1} and Figure~\ref{fig:vis2}}
 \label{fig:gt}
 \end{figure}
-We present more visualizations of the same type as Fig.~\ref{fig:vis} in the main paper, in Fig.~\ref{fig:vis1} and \ref{fig:vis2}. Their input and ground truth are shown in Fig.~\ref{fig:gt} in the same order. We can see the same trend as discussed in the main paper still holds: the model will mask out confident points that are inside large segments (e.g., road, vegetable), which are mostly already predicted correctly in early exits.
+We present more visualizations of the same type as Figure~\ref{fig:vis}, in Figure~\ref{fig:vis1} and \ref{fig:vis2}. Their input and ground truth are shown in Figure~\ref{fig:gt} in the same order. We can see the same trend as discussed previously still holds: the model will mask out confident points that are inside large segments (e.g., road, vegetable), which are mostly already predicted correctly in early exits.
 
 \begin{figure}[!htbp]
 \includegraphics[width=\textwidth]{vis_supp/visualize_final_frankfurt_000000_017476.png}

@@ -1,4 +1,5 @@
 \chapter{Rethinking the Value of Network Pruning}
+\label{chap:rethink}
 
 \section{Overview}
 Compared with the \emph{adaptive} computation anytime inference method in the last chapter, \emph{static} neural network pruning methods try to reduce computation of a neural network in a input-agnostic manner. They are generally popular for scaling down models in practice due to their simplicity, effectiveness and sometimes better hardware compatibility. In this chapter, we examine what the true underlying mechanism is behind their success. 
@@ -28,7 +29,7 @@ Generally, there are two common beliefs behind this pruning procedure. First, it
 Second, both the pruned architecture \emph{and} its associated weights are believed to be essential for obtaining the final efficient model~\cite{han2015learning}. Thus most existing pruning techniques choose to \emph{fine-tune} a pruned model instead of training it from scratch. The preserved weights after pruning are usually considered to be critical, as how to accurately select the set of important weights is a very active research topic in the literature~\cite{nvidia,li2016pruning,luo2017thinet, he2017channel, liu2017learning,pfa}.
 
 
-In this work, we show that both of the beliefs mentioned above are not necessarily true for \emph{structured} pruning methods, which prune at the levels of convolution channels or larger. Based on an extensive empirical evaluation of state-of-the-art pruning algorithms on multiple datasets with multiple network architectures, we make two surprising observations. First, for structured pruning methods with predefined target network architectures (\autoref{auto}), directly training the small target model from random initialization can achieve the same, if not better, performance, as the model obtained from the three-stage pipeline.
+In this work, we show that both of the beliefs mentioned above are not necessarily true for \emph{structured} pruning methods, which prune at the levels of convolution channels or larger. Based on an extensive empirical evaluation of state-of-the-art pruning algorithms on multiple datasets with multiple network architectures, we make two surprising observations. First, for structured pruning methods with predefined target network architectures (Figure~\ref{auto}), directly training the small target model from random initialization can achieve the same, if not better, performance, as the model obtained from the three-stage pipeline.
 In this case, starting with a large model is not necessary and one could instead directly train the target model from scratch.
 Second, for structured pruning methods with auto-discovered target networks, training the pruned model from scratch can also achieve comparable or even better performance than fine-tuning. This observation shows that for these pruning methods, what matters more may be the obtained architecture, instead of the preserved weights, despite training the large model is needed to find that target architecture. 
 Interestingly, for a \emph{unstructured} pruning method~\cite{han2015learning} that prunes individual parameters, we found that training from scratch can mostly achieve comparable accuracy with pruning and fine-tuning on smaller-scale datasets, but fails to do so on the large-scale ImageNet benchmark.
@@ -45,9 +46,9 @@ The contradiction between some of our results and those reported in the literatu
 \end{figure}
 
 
-Our results advocate a rethinking of existing structured network pruning algorithms. It seems that the over-parameterization during the first-stage training is not as beneficial as previously thought. Also, inheriting weights from a large model is not necessarily optimal, and might trap the pruned model into a bad local minimum, even if the weights are considered ``important'' by the pruning criterion. Instead, our results suggest that the value of automatic structured pruning algorithms sometimes lie in identifying efficient structures and performing implicit architecture search, rather than selecting ``important'' weights. For most structured pruning methods which prune channels/filters, this corresponds to searching the number of channels in each layer. In section 5, we discuss this viewpoint through carefully designed experiments, and show the patterns in the pruned model could provide design guidelines for efficient architectures.
+Our results advocate a rethinking of existing structured network pruning algorithms. It seems that the over-parameterization during the first-stage training is not as beneficial as previously thought. Also, inheriting weights from a large model is not necessarily optimal, and might trap the pruned model into a bad local minimum, even if the weights are considered ``important'' by the pruning criterion. Instead, our results suggest that the value of automatic structured pruning algorithms sometimes lie in identifying efficient structures and performing implicit architecture search, rather than selecting ``important'' weights. For most structured pruning methods which prune channels/filters, this corresponds to searching the number of channels in each layer. In Section~\ref{sec:arch}, we discuss this viewpoint through carefully designed experiments, and show the patterns in the pruned model could provide design guidelines for efficient architectures.
 
-% The rest of the paper is organized as follows: in Section 2, we introduce background and some related works on network pruning; in Section 3, we describe our methodology for training the pruned model from scratch; in Section \ref{sec:exp} we experiment on various pruning methods and show our main results for both pruning methods with predefined or automatically discovered target architectures; in Section 5, we discuss the value of automatic pruning methods in searching efficient network architectures; in Section 6 we compare with the recently proposed ``Lottery Ticket Hypothesis''~\cite{lottery}; in Section 7 we discuss some implications and conclude the paper.
+% The rest of the paper is organized as follows: in Section 2, we introduce background and some related works on network pruning; in Section 3, we describe our methodology for training the pruned model from scratch; in Section~\ref{sec:exp} we experiment on various pruning methods and show our main results for both pruning methods with predefined or automatically discovered target architectures; in Section 5, we discuss the value of automatic pruning methods in searching efficient network architectures; in Section 6 we compare with the recently proposed ``Lottery Ticket Hypothesis''~\cite{lottery}; in Section 7 we discuss some implications and conclude the paper.
 
 
 \section{Background}
@@ -61,14 +62,14 @@ In contrast, \emph{structured} pruning methods prune at the level of channels or
 
 %random, to prune or not to prune, etc.
 Our work is also related to some recent studies on the characteristics of pruning algorithms.~\cite{recovering} shows that random channel pruning~\cite{compact} can perform on par with a variety of more sophisticated pruning criteria, demonstrating the plasticity of network models. 
-In the context of unstructured pruning, The Lottery Ticket Hypothesis~\cite{lottery} conjectures that  certain connections together with their randomly initialized weights, can enable a comparable accuracy with the original network when trained in isolation. We provide comparisons between~\cite{lottery} and this work in Section \ref{ap:lottery}.~\cite{toprune} shows that training a small-dense model cannot achieve the same accuracy as a pruned large-sparse model with identical memory footprint. In this work, we reveal a different and rather surprising characteristic of structured network pruning methods: fine-tuning the pruned model with inherited weights is not better than training it from scratch; the resulting pruned architectures are more likely to be what brings the benefit.
+In the context of unstructured pruning, The Lottery Ticket Hypothesis~\cite{lottery} conjectures that  certain connections together with their randomly initialized weights, can enable a comparable accuracy with the original network when trained in isolation. We provide comparisons between~\cite{lottery} and this work in Section~\ref{ap:lottery}.~\cite{toprune} shows that training a small-dense model cannot achieve the same accuracy as a pruned large-sparse model with identical memory footprint. In this work, we reveal a different and rather surprising characteristic of structured network pruning methods: fine-tuning the pruned model with inherited weights is not better than training it from scratch; the resulting pruned architectures are more likely to be what brings the benefit.
 
 
 \section{Methodology}
 In this section, we describe in detail our methodology for training a small target model from scratch.
 
 
-\subsection{Target Pruned Architectures} We first divide network pruning methods into two categories. In a pruning pipeline, the target pruned model's architecture can be determined by either a human (i.e., predefined) or the pruning algorithm (i.e., automatic) (see \autoref{auto}).
+\subsection{Target Pruned Architectures} We first divide network pruning methods into two categories. In a pruning pipeline, the target pruned model's architecture can be determined by either a human (i.e., predefined) or the pruning algorithm (i.e., automatic) (see Figure~\ref{auto}).
 
 When a human predefines the target architecture, a common criterion is the ratio of channels to prune in each layer. For example, we may want to prune 50\% channels in each layer of VGG. In this case, no matter which specific channels are pruned, the pruned target architecture remains the same, because the pruning algorithm only \emph{locally} prunes the least important 50\% channels in each layer. In practice, the ratio in each layer is usually selected through empirical studies or heuristics. Examples of predefined structured pruning include~\cite{li2016pruning},~\cite{luo2017thinet},~\cite{he2017channel} and~\cite{he2018sfp}
 
@@ -77,7 +78,7 @@ When the target architecture is automatically determined by a pruning algorithm,
 Unstructured pruning~\cite{han2015learning, vdropout, l0sparse} also falls in the category of automatic methods, where the positions of pruned weights are determined by the training process and the pruning algorithm, and it is usually not possible to predefine the positions of zeros before training starts.
 
 \subsection{Datasets, Network Architectures and Pruning Methods}
-In the network pruning literature, CIFAR-10, CIFAR-100~\cite{cifar}, and ImageNet~\cite{deng2009} datasets are the de-facto benchmarks, while VGG~\cite{vgg}, ResNet~\cite{resnet} and DenseNet ~\cite{densenet} are the common network architectures. 
+In the network pruning literature, CIFAR-10, CIFAR-100~\cite{cifar}, and ImageNet~\cite{imagenet} datasets are the de-facto benchmarks, while VGG~\cite{vgg}, ResNet~\cite{resnet} and DenseNet ~\cite{densenet} are the common network architectures. 
 We evaluate four predefined pruning methods,~\cite{li2016pruning},~\cite{luo2017thinet},~\cite{he2017channel},~\cite{he2018sfp}, two automatic structured pruning methods,~\cite{liu2017learning},~\cite{ huang2018data}, and one unstructured pruning method~\cite{han2015learning}. For the first six methods, we evaluate using the same (target model, dataset) pairs as presented in the original paper to keep our results comparable. For the last one~\cite{han2015learning}, we use the aforementioned architectures instead, since the ones in the original paper are no longer state-of-the-art. On CIFAR datasets, we run each experiment with 5 random seeds, and report the mean and standard deviation of the accuracy. 
 
 \subsection{Training Budget}
@@ -94,12 +95,12 @@ For random weight initialization, we adopt the scheme proposed in~\cite{he2015de
 
 \section{Experiments}
 \label{sec:exp}
-In this section we present our experimental results comparing training pruned models from scratch and fine-tuning from inherited weights, for both predefined and automatic (Figure \ref{auto}) structured pruning, as well as a magnitude-based unstructured pruning method~\cite{han2015learning}. We put the results and discussions on a pruning method (Soft Filter pruning~\cite{he2018sfp}) in Appendix \ref{sec:sfp}, and include an experiment on transfer learning from image classification to object detection in Appendix \ref{sec:transfer}.
+In this section we present our experimental results comparing training pruned models from scratch and fine-tuning from inherited weights, for both predefined and automatic (Figure~\ref{auto}) structured pruning, as well as a magnitude-based unstructured pruning method~\cite{han2015learning}. We put the results and discussions on a pruning method (Soft Filter pruning~\cite{he2018sfp}) in Section~\ref{sec:sfp}, and include an experiment on transfer learning from image classification to object detection in Section~\ref{sec:transfer}.
 
 
 \subsection{Predefined Structured Pruning}
 \textbf{$L_1$-norm based Filter Pruning~\cite{li2016pruning}} is one of the earliest works on filter/channel pruning for convolutional networks. In each layer, a certain percentage of filters with smaller $L_1$-norm will be pruned. 
-\autoref{pruning-filters} shows our results. The Pruned Model column shows the list of predefined target models (see~\cite{li2016pruning} for configuration details on each model). We observe that in each row, scratch-trained models achieve at least the same level of accuracy as fine-tuned models, with Scratch-B slightly higher than Scratch-E in most cases. On ImageNet, both Scratch-B models are better than the fine-tuned ones by a noticeable margin. 
+Table~\ref{pruning-filters} shows our results. The Pruned Model column shows the list of predefined target models (see~\cite{li2016pruning} for configuration details on each model). We observe that in each row, scratch-trained models achieve at least the same level of accuracy as fine-tuned models, with Scratch-B slightly higher than Scratch-E in most cases. On ImageNet, both Scratch-B models are better than the fine-tuned ones by a noticeable margin. 
 
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
@@ -119,7 +120,7 @@ Dataset                   & Model                       & Unpruned              
                           &                             &                                                        & ResNet-34-B  & 72.29                                       & 72.55                                       & \multicolumn{1}{c}{\textbf{72.91}}     \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for $L_1$-norm based filter pruning~\cite{li2016pruning}. 
+\caption{Results (accuracy \% by default) for $L_1$-norm based filter pruning~\cite{li2016pruning}. 
 ``Pruned Model'' is the model pruned from the large model. Configurations of Model and Pruned Model are both from the original paper. 
 }
 \label{pruning-filters}
@@ -148,15 +149,15 @@ Dataset                   & Unpruned               & Strategy                   
                         \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for ThiNet~\cite{luo2017thinet}. Names such as ``VGG-GAP'' and ``ResNet50-30\%'' are pruned models whose configurations are defined in~\cite{luo2017thinet}. To accommodate the effects of different frameworks between our implementation and the original paper's, we compare relative accuracy drop from the unpruned large model. For example, for the pruned model VGG-Conv, $-$1.23 is relative to 71.03 on the left, which is the reported accuracy of the unpruned large model VGG-16 in the original paper; $-$2.75 is relative to 71.51 on the left, which is VGG-16's accuracy in our implementation.
+\caption{Results for ThiNet~\cite{luo2017thinet}. Names such as ``VGG-GAP'' and ``ResNet50-30\%'' are pruned models whose configurations are defined in~\cite{luo2017thinet}. To accommodate the effects of different frameworks between our implementation and the original paper's, we compare relative accuracy drop from the unpruned large model. For example, for the pruned model VGG-Conv, $-$1.23 is relative to 71.03 on the left, which is the reported accuracy of the unpruned large model VGG-16 in the original paper; $-$2.75 is relative to 71.51 on the left, which is VGG-16's accuracy in our implementation.
 }
 \label{thinet}
 \end{table}
 
-\textbf{ThiNet~\cite{luo2017thinet}} greedily prunes the channel that has the smallest effect on the next layer's activation values.  As shown in \autoref{thinet}, for VGG-16 and ResNet-50, both Scratch-E and Scratch-B can almost always achieve better performance than the fine-tuned model, often by a significant margin. The only exception is Scratch-E for VGG-Tiny, where the model is pruned very aggressively from VGG-16 (FLOPs reduced by 15$\times$), and as a result, drastically reducing the training budget for Scratch-E. The training budget of Scratch-B for this model is also 7 times smaller than the original large model, yet it can achieve the same level of accuracy as the fine-tuned model.
+\textbf{ThiNet~\cite{luo2017thinet}} greedily prunes the channel that has the smallest effect on the next layer's activation values.  As shown in Table~\ref{thinet}, for VGG-16 and ResNet-50, both Scratch-E and Scratch-B can almost always achieve better performance than the fine-tuned model, often by a significant margin. The only exception is Scratch-E for VGG-Tiny, where the model is pruned very aggressively from VGG-16 (FLOPs reduced by 15$\times$), and as a result, drastically reducing the training budget for Scratch-E. The training budget of Scratch-B for this model is also 7 times smaller than the original large model, yet it can achieve the same level of accuracy as the fine-tuned model.
 
 
-\textbf{Regression based Feature Reconstruction~\cite{he2017channel}} prunes channels by minimizing the feature map reconstruction error of the next layer. In contrast to ThiNet~\cite{luo2017thinet}, this optimization problem is solved by LASSO regression. Results are shown in \autoref{channel-pruning}. Again, in terms of relative accuracy drop from the large models, scratch-trained models are better than the fine-tuned models.
+\textbf{Regression based Feature Reconstruction~\cite{he2017channel}} prunes channels by minimizing the feature map reconstruction error of the next layer. In contrast to ThiNet~\cite{luo2017thinet}, this optimization problem is solved by LASSO regression. Results are shown in Table~\ref{channel-pruning}. Again, in terms of relative accuracy drop from the large models, scratch-trained models are better than the fine-tuned models.
 
 
 \renewcommand{\arraystretch}{1.2}
@@ -167,17 +168,17 @@ Dataset                   & Unpruned               & Strategy                   
 \begin{tabular}{c|c|cc}
 \hline
 Dataset                   & Unpruned              & Strategy             & Pruned Model                                      \\ \hline
-\multirow{8}{*}{ImageNet} & VGG-16                 & \multicolumn{1}{c}{} & VGG-16-5x                                         \\ \cline{2-4} 
+\multirow{8}{*}{ImageNet} & VGG-16                 & \multicolumn{1}{c}{} & VGG-16-5$\times$                                        \\ \cline{2-4} 
                           & 71.03                  & Fine-tuned           & $-$2.67                                           \\ \cline{2-4} 
                           & \multirow{2}{*}{71.51} & Scratch-E              & $-$3.46                                           \\
                           &                        & Scratch-B       & \textbf{$-$0.51} \\ \cline{2-4}\cline{2-4}
-                          & ResNet-50              & \multicolumn{1}{l}{} & ResNet-50-2x                                      \\ \cline{2-4} 
+                          & ResNet-50              & \multicolumn{1}{l}{} & ResNet-50-2$\times$                                      \\ \cline{2-4} 
                           & 75.51                  & Fine-tuned           & $-$3.25                                           \\ \cline{2-4} 
                           & \multirow{2}{*}{76.13} & Scratch-E              & $-$1.55 \\
                           &                        & Scratch-B       & \textbf{$-$1.07}
                         \\ \hline
 \end{tabular}}
-\caption{Results (accuracy) for Regression based Feature Reconstruction~\cite{he2017channel}. Pruned models such as ``VGG-16-5x'' are defined in~\cite{he2017channel}. Similar to \autoref{thinet}, we compare relative accuracy drop from unpruned large models.}
+\caption{Results for Regression based Feature Reconstruction~\cite{he2017channel}. Pruned models such as ``VGG-16-5$\times$'' are defined in~\cite{he2017channel}. Similar to Table~\ref{thinet}, we compare relative accuracy drop from unpruned large models.}
 \label{channel-pruning}
 \end{table}
 
@@ -186,7 +187,7 @@ Dataset                   & Unpruned              & Strategy             & Prune
 
 
 \textbf{Network Slimming~\cite{liu2017learning}}
- imposes $L_1$-sparsity on channel-wise scaling factors from Batch Normalization layers~\cite{bn} during training, and prunes channels with lower scaling factors afterward. Since the channel scaling factors are compared across layers, this method produces automatically discovered target architectures. As shown in \autoref{network-slimming}, for all networks, the small models trained from scratch can reach the same accuracy as the fine-tuned models. More specifically, we found that Scratch-B consistently outperforms (8 out of 10 experiments) the fine-tuned models, while Scratch-E is slightly worse but still mostly within the standard deviation.
+ imposes $L_1$-sparsity on channel-wise scaling factors from Batch Normalization layers~\cite{bn} during training, and prunes channels with lower scaling factors afterward. Since the channel scaling factors are compared across layers, this method produces automatically discovered target architectures. As shown in Table~\ref{network-slimming}, for all networks, the small models trained from scratch can reach the same accuracy as the fine-tuned models. More specifically, we found that Scratch-B consistently outperforms (8 out of 10 experiments) the fine-tuned models, while Scratch-E is slightly worse but still mostly within the standard deviation.
  
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
@@ -211,12 +212,12 @@ Dataset
 ImageNet     & VGG-11   & \multicolumn{1}{c}{70.84}   & \multicolumn{1}{c}{50\%}   & \multicolumn{1}{c}{68.62}   & \multicolumn{1}{c}{70.00}  & \textbf{71.18} \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for Network Slimming~\cite{liu2017learning}. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. The same ratios for each model are used as the original paper. 
+\caption{Results for Network Slimming~\cite{liu2017learning}. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. The same ratios for each model are used as the original paper. 
 }
 \label{network-slimming}
 \end{table}
 
-\textbf{Sparse Structure Selection~\cite{huang2018data}} also uses sparsified scaling factors to prune structures, and can be seen as a generalization of Network Slimming. Other than channels, pruning can be on residual blocks in ResNet or groups in ResNeXt~\cite{Xie2017}. We examine residual blocks pruning, where ResNet-50 are pruned to be ResNet-41, ResNet-32 and ResNet-26. \autoref{sparse} shows our results. On average Scratch-E outperforms pruned models, and for all models Scratch-B is better than both.
+\textbf{Sparse Structure Selection~\cite{huang2018data}} also uses sparsified scaling factors to prune structures, and can be seen as a generalization of Network Slimming. Other than channels, pruning can be on residual blocks in ResNet or groups in ResNeXt~\cite{Xie2017}. We examine residual blocks pruning, where ResNet-50 are pruned to be ResNet-41, ResNet-32 and ResNet-26. Table~\ref{sparse} shows our results. On average Scratch-E outperforms pruned models, and for all models Scratch-B is better than both.
 
 
 \renewcommand{\arraystretch}{1.2}
@@ -230,7 +231,7 @@ ImageNet     & VGG-11   & \multicolumn{1}{c}{70.84}   & \multicolumn{1}{c}{50\%}
                              &                            &                        & ResNet-32    & 74.18 & 73.77    & \textbf{74.67}       \\
                              &                            &                        & ResNet-26    & 71.82                           & 72.55 & \textbf{73.41}    \\ \hline
 \end{tabular}
-\caption{Results (accuracy) for residual block pruning using Sparse Structure Selection~\cite{huang2018data}. In the original paper no fine-tuning is required so there is a ``Pruned'' column instead of ``Fine-tuned'' as before. 
+\caption{Results for residual block pruning using Sparse Structure Selection~\cite{huang2018data}. In the original paper no fine-tuning is required so there is a ``Pruned'' column instead of ``Fine-tuned'' as before. 
 % On average, Scratch-E  outperforms models obtained after pruning.
 }
 \label{sparse}
@@ -278,28 +279,28 @@ Because all the network architectures we evaluated are fully-convolutional (exce
                                                \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for unstructured pruning~\cite{han2015learning}. ``Prune Ratio'' denotes the percentage of parameters pruned in the set of all convolutional weights. }
+\caption{Results for unstructured pruning~\cite{han2015learning}. ``Prune Ratio'' denotes the percentage of parameters pruned in the set of all convolutional weights. }
 \label{weight-level}
 \end{table}
 
-As shown in \autoref{weight-level}, on the smaller-scale CIFAR datasets, when the pruned ratio is small ($\le$ 80\%), 
+As shown in Table~\ref{weight-level}, on the smaller-scale CIFAR datasets, when the pruned ratio is small ($\le$ 80\%), 
 Scratch-E sometimes falls short of the fine-tuned results, but Scratch-B is able to perform at least on par with the latter. However, we observe that in some cases, when the prune ratio is large (95\%), fine-tuning can outperform training from scratch. 
 On the large-scale ImageNet dataset, we note that the Scratch-B result is mostly worse than fine-tuned result by a noticable margin, despite at a decent accuracy level. 
- This could be due to the increased difficulty of directly training on the highly sparse networks (CIFAR), or the scale/complexity of the dataset itself (ImageNet). Another possible reason is that compared with structured pruning, unstructured pruning significantly changes the weight distribution (more details in Appendix \ref{sec:dist}). The difference in scratch-training behaviors also suggests an important difference between structured and unstructured pruning.
+ This could be due to the increased difficulty of directly training on the highly sparse networks (CIFAR), or the scale/complexity of the dataset itself (ImageNet). Another possible reason is that compared with structured pruning, unstructured pruning significantly changes the weight distribution (more details in Section~\ref{sec:dist}). The difference in scratch-training behaviors also suggests an important difference between structured and unstructured pruning.
 
 \section{Network Pruning as Architecture search}
 \label{sec:arch}
 
 While we have shown that, for structured pruning, the inherited weights in the pruned architecture are not better than random, the pruned architecture itself turns out to be what brings the efficiency benefits. 
-In this section, we assess the value of architecture search for automatic network pruning algorithms (\autoref{auto}) by comparing pruning-obtained models and uniformly pruned models. Note that the connection between network pruning and architecture learning has also been made in prior works~\cite{han2015learning,liu2017learning,gordon2018morphnet,huang2018condensenet}, but to our knowledge we are the first to isolate the effect of inheriting weights and solely compare pruning-obtained architectures with uniformly pruned ones, by training both of them from scratch.
+In this section, we assess the value of architecture search for automatic network pruning algorithms (Figure~\ref{auto}) by comparing pruning-obtained models and uniformly pruned models. Note that the connection between network pruning and architecture learning has also been made in prior works~\cite{han2015learning,liu2017learning,gordon2018morphnet,huang2018condensenet}, but to our knowledge we are the first to isolate the effect of inheriting weights and solely compare pruning-obtained architectures with uniformly pruned ones, by training both of them from scratch.
 
 
 \subsection{Parameter Efficiency of Pruned Architectures}
-In \autoref{arch-search}(left), we compare the parameter efficiency of architectures obtained by an automatic channel pruning method (Network Slimming~\cite{liu2017learning}),  with a naive predefined pruning strategy that uniformly prunes the same percentage of channels in each layer. All architectures are trained from random initialization for the same number of epochs. We see that the architectures obtained by Network Slimming are more parameter efficient, as they could achieve the same level of accuracy using 5$\times$ fewer parameters than uniformly pruning architectures. 
-For unstructured magnitude-based pruning~\cite{han2015learning}, we conducted a similar experiment shown in \autoref{arch-search} (right). Here we uniformly sparsify all individual weights at a fixed probability, and the architectures obtained this way are much less efficient than the pruned architectures. 
+In Figure~\ref{arch-search}(left), we compare the parameter efficiency of architectures obtained by an automatic channel pruning method (Network Slimming~\cite{liu2017learning}),  with a naive predefined pruning strategy that uniformly prunes the same percentage of channels in each layer. All architectures are trained from random initialization for the same number of epochs. We see that the architectures obtained by Network Slimming are more parameter efficient, as they could achieve the same level of accuracy using 5$\times$ fewer parameters than uniformly pruning architectures. 
+For unstructured magnitude-based pruning~\cite{han2015learning}, we conducted a similar experiment shown in Figure~\ref{arch-search} (right). Here we uniformly sparsify all individual weights at a fixed probability, and the architectures obtained this way are much less efficient than the pruned architectures. 
 
  
-\begin{figure*}[!ht]
+\begin{figure}[!ht]
 \centering
 \begin{minipage}{.47\textwidth}
  \begin{subfigure}{\textwidth}
@@ -319,7 +320,7 @@ For unstructured magnitude-based pruning~\cite{han2015learning}, we conducted a 
       Pruned architectures obtained by different approaches, all \emph{trained from scratch}, averaged over 5 runs.  
       Architectures obtained by automatic pruning methods have better parameter efficiency than uniformly pruning channels or sparsifying weights in the whole network. }  
     \label{arch-search}
-\end{figure*}
+\end{figure}
 
 
 
@@ -357,7 +358,7 @@ Layer & Width & Width*       & Layer & Width & Width*       \\ \hline
 \end{table*}
 % \end{table*}
 
-We also found the channel/weight pruned architectures exhibit very consistent patterns (see \autoref{width} and Figure \ref{sparsity}). 
+We also found the channel/weight pruned architectures exhibit very consistent patterns (see Table~\ref{width} and Figure~\ref{sparsity}). 
 This suggests the original large models may be redundantly designed for the task and the pruning algorithm can help us improve the efficiency. 
 This also confirms the value of automatic pruning methods for searching efficient models on the architectures evaluated.
 
@@ -392,9 +393,9 @@ This also confirms the value of automatic pruning methods for searching efficien
 
 \subsection{More Analysis} 
 However, there also exist cases where the architectures obtained by pruning are not better than uniformly pruned ones.
-% and we defer the results and analysis in Appendix \ref{sec:additional} due to space limit. Continuing on \autoref{sec:arch}, 
+% and we defer the results and analysis in Appendix~\ref{sec:additional} due to space limit. Continuing on \ref{sec:arch}, 
 We present such results in 
-\autoref{arch-search-negative}, where the architectures obtained by pruning (blue) are not significantly more efficient than uniform pruned architectures (red). This phenomenon happens more likely on modern architectures like ResNets and DenseNets. When we investigate the sparsity patterns of those pruned architectures (shown in Table \ref{sparsity-5}, \ref{sparsity-6} and \ref{sparsity-8} in  Appendix~\ref{sec:additional}), we find that they exhibit near-uniform sparsity patterns across stages, which might be the reason why it can only perform on par with uniform pruning. In contrast, for VGG, the pruned sparsity patterns can always beat the uniform ones as shown in \autoref{arch-search} and \autoref{arch-search-2}. We also show the sparsity patterns of VGG pruned by Network Slimming~\cite{liu2017learning} in \autoref{sparsity-2} of Appendix~\ref{sec:additional}, and they are rather far from uniform. Compared to ResNet and DenseNet, we can see that VGG's redundancy is rather imbalanced across layer stages. Network pruning techniques may help us identify the redundancy better in the such cases.
+Figure~\ref{arch-search-negative}, where the architectures obtained by pruning (blue) are not significantly more efficient than uniform pruned architectures (red). This phenomenon happens more likely on modern architectures like ResNets and DenseNets. When we investigate the sparsity patterns of those pruned architectures (shown in Table~\ref{sparsity-5},~\ref{sparsity-6} and~\ref{sparsity-8} in Section~\ref{sec:additional}), we find that they exhibit near-uniform sparsity patterns across stages, which might be the reason why it can only perform on par with uniform pruning. In contrast, for VGG, the pruned sparsity patterns can always beat the uniform ones as shown in Figure~\ref{arch-search} and \ref{arch-search-2}. We also show the sparsity patterns of VGG pruned by Network Slimming~\cite{liu2017learning} in Table~\ref{sparsity-2} of Section~\ref{sec:additional}, and they are rather far from uniform. Compared to ResNet and DenseNet, we can see that VGG's redundancy is rather imbalanced across layer stages. Network pruning techniques may help us identify the redundancy better in the such cases.
 
 \subsection{Generalizable Design Principles from Pruned Architectures} 
 Given that the automatically discovered architectures tend to be parameter efficient on the VGG networks, one may wonder: can we derive generalizable principles from them on how to design a better architecture? We conduct several experiments to answer this question.
@@ -427,10 +428,10 @@ Given that the automatically discovered architectures tend to be parameter effic
 
 
 For Network Slimming, we use the average number of channels in each layer stage (layers with the same feature map size) from pruned architectures to construct a new set of architectures, and we call this approach ``Guided Pruning'';
-for magnitude-based pruning, we analyze the sparsity patterns (Figure \ref{sparsity}) in the pruned architectures,
-and apply them to construct a new set of sparse models, which we call ``Guided Sparsification''. The results are shown in \autoref{arch-search-2}. It can be seen that for both Network Slimming (\autoref{arch-search-2} left) and unstructured pruning (\autoref{arch-search-2} right), guided design of architectures (green) can perform on par with pruned architectures (blue).
+for magnitude-based pruning, we analyze the sparsity patterns (Figure~\ref{sparsity}) in the pruned architectures,
+and apply them to construct a new set of sparse models, which we call ``Guided Sparsification''. The results are shown in Figure~\ref{arch-search-2}. It can be seen that for both Network Slimming (Figure~\ref{arch-search-2} left) and unstructured pruning (Figure~\ref{arch-search-2} right), guided design of architectures (green) can perform on par with pruned architectures (blue).
 
-Interestingly, these guided design patterns can sometimes be transferred to a different VGG-variant and/or dataset. In \autoref{arch-search-2}, we distill the patterns of pruned architectures from VGG-16 on CIFAR-10 and apply them to design efficient VGG-19 on CIFAR-100. These sets of architectures are denoted as ``Transferred Guided Pruning/Sparsification''. We can observe that they (brown) may sometimes be slightly worse than architectures directly pruned (blue), but are significantly better than uniform pruning/sparsification (red). In these cases, one does not need to train a large model  to obtain an efficient model as well, as transferred design patterns can help us achieve the efficiency directly. 
+Interestingly, these guided design patterns can sometimes be transferred to a different VGG-variant and/or dataset. In Figure~\ref{arch-search-2}, we distill the patterns of pruned architectures from VGG-16 on CIFAR-10 and apply them to design efficient VGG-19 on CIFAR-100. These sets of architectures are denoted as ``Transferred Guided Pruning/Sparsification''. We can observe that they (brown) may sometimes be slightly worse than architectures directly pruned (blue), but are significantly better than uniform pruning/sparsification (red). In these cases, one does not need to train a large model  to obtain an efficient model as well, as transferred design patterns can help us achieve the efficiency directly. 
 
 
 \subsection{Discussions with Conventional Architecture Search Methods} 
@@ -438,7 +439,7 @@ Popular techniques for network architecture search include reinforcement learnin
 
 Recently,~\cite{gordon2018morphnet} uses a similar pruning technique to Network Slimming~\cite{liu2017learning} to automate the design of network architectures;~\cite{amc} prune channels using reinforcement learning and automatically compresses the architecture. On the other hand, in the network architecture search literature, sharing/inheriting trained parameters~\cite{sharing,darts} during searching has become a popular approach for  reducing the training budgets, but once the target architecture is found, it is still trained from scratch to maximize the accuracy. 
 
-\section{Experimenting with Lottery Ticket Hypothesis}
+\section{Experimenting with the Lottery Ticket Hypothesis}
 \label{ap:lottery}
 
 The Lottery Ticket Hypothesis~\cite{lottery} conjectures that inside the large network, a sub-network together with their initialization makes the training particularly effective, and together they are termed the ``winning ticket''. In this hypothesis, the original initialization of the sub-network (before large model training) is needed for it to achieve competitive performance when trained in isolation. Their experiments show that training the sub-network with randomly re-initialized weights performs worse than training it with the original initialization inside the large network. In contrast, our work does not require reuse of the original initialization of the pruned model, and shows that random initialization is enough for the pruned model to achieve competitive performance. 
@@ -466,7 +467,7 @@ The conclusions seem to be contradictory, but there are several important differ
  \end{subfigure}
 \end{minipage}
     \caption{
-    Comparisons with the Lottery Ticket Hypothesis~\cite{lottery} for iterative/one-shot unstructured  pruning~\cite{han2015learning} with two initial learning rates 0.1 and 0.01, on CIFAR-10 dataset. Each point is averaged over 5 runs. Using the winning ticket as initialization only brings improvement when the learning rate is small (0.01), however such small learning rate leads to a lower accuracy than the widely used large learning rate (0.1).}
+    Comparisons with the Lottery Ticket Hypothesis for iterative/one-shot unstructured pruning~\cite{han2015learning} with two initial learning rates 0.1 and 0.01, on CIFAR-10 dataset. Each point is averaged over 5 runs. Using the winning ticket as initialization only brings improvement when the learning rate is small (0.01), however such small learning rate leads to a lower accuracy than the widely used large learning rate (0.1).}
     \label{lottery-figure-1}
 \end{figure*}
 
@@ -506,11 +507,11 @@ Dataset                   & Model                       & Unpruned              
 \end{tabular}
 \caption{Initial learning rate 0.01}
 \end{subtable}
-\caption{Comparisons with the Lottery Ticket Hypothesis~\cite{lottery} on a structured pruning method ($L_1$-norm based filter pruning~\cite{li2016pruning}) with two initial learning rates: 0.1 and 0.01. In both cases, using winning tickets does not bring improvement on accuracy.}
+\caption{Comparisons with the Lottery Ticket Hypothesis on a structured pruning method ($L_1$-norm based filter pruning~\cite{li2016pruning}) with two initial learning rates: 0.1 and 0.01. In both cases, using winning tickets does not bring improvement on accuracy.}
 \label{lottery-2}
 \end{table}
 
-We test the Lottery Ticket Hypothesis by comparing the models trained with original initialization (``winning ticket'') and that trained from randomly re-initialized weights. We experiment with two choices of initial learning rate (0.1 and 0.01) with a stepwise decay schedule, using momentum SGD. 0.1 is used in our previous experiments and most prior works on CIFAR and ImageNet. Following~\cite{lottery}, we investigate both iterative pruning (prune 20\% in each iteration) and one-shot pruning for unstructured pruning. We show our results for unstructured  pruning~\cite{han2015learning} in \autoref{lottery-figure-1} and \autoref{lottery-1}, and $L_1$-norm based filter pruning~\cite{li2016pruning}  in \autoref{lottery-2}.
+We test the Lottery Ticket Hypothesis by comparing the models trained with original initialization (``winning ticket'') and that trained from randomly re-initialized weights. We experiment with two choices of initial learning rate (0.1 and 0.01) with a stepwise decay schedule, using momentum SGD. 0.1 is used in our previous experiments and most prior works on CIFAR and ImageNet. Following~\cite{lottery}, we investigate both iterative pruning (prune 20\% in each iteration) and one-shot pruning for unstructured pruning. We show our results for unstructured  pruning~\cite{han2015learning} in Figure~\ref{lottery-figure-1} and Table~\ref{lottery-1}, and $L_1$-norm based filter pruning~\cite{li2016pruning} in Table~\ref{lottery-2}.
 
 
 
@@ -562,7 +563,7 @@ Dataset                    & Model                   & Unpruned          & Prune
 \caption{One-shot pruning with initial learning rate 0.01}
 \label{subtable-4}
 \end{subtable}
-\caption{Comparisons with the Lottery Ticket Hypothesis~\cite{lottery} for one-shot unstructured  pruning~\cite{han2015learning} with two initial learning rates: 0.1 and 0.01. The same results are visualized in \autoref{iterative-3}. Using the winning ticket as initialization only brings improvement when the learning rate is small (0.01), however such small learning rate leads to a lower accuracy than the widely used large learning rate (0.1).}
+\caption{Comparisons with the Lottery Ticket Hypothesis for one-shot unstructured  pruning~\cite{han2015learning} with two initial learning rates: 0.1 and 0.01. The same results are visualized in Figure~\ref{iterative-3}. Using the winning ticket as initialization only brings improvement when the learning rate is small (0.01), however such small learning rate leads to a lower accuracy than the widely used large learning rate (0.1).}
 \label{lottery-1}
 \end{table}
 
@@ -570,7 +571,7 @@ Dataset                    & Model                   & Unpruned          & Prune
 
 
 
-From \autoref{lottery-figure-1} and \autoref{lottery-1}, we see that for unstructured  pruning, using the original initialization as in~\cite{lottery} only provides advantage over random initialization with small initial learning rate 0.01. For structured pruning as~\cite{li2016pruning}, it can be seen from \autoref{lottery-2} that using the original initialization is only on par with random initialization for both large and small initial learning rates. In both cases, we can see that the small learning rate gives lower accuracy than the widely-used large learning rate. To summarize, in our evaluated settings, the winning ticket only brings improvement in the case of unstructured pruning, with small initial learning rate, but this small learning rate yields inferior accuracy compared with the widely-used large learning rate. Note that~\cite{lottery} also report in their Section 5, that the winning ticket cannot be found on ResNet-18/VGG using the large learning rate. The reason why the original initialization is helpful when the learning rate is small, might be the weights of the final trained model are not too far from the original initialization due to the small parameter updating stepsize.
+From Figure~\ref{lottery-figure-1} and Table~\ref{lottery-1}, we see that for unstructured  pruning, using the original initialization as in~\cite{lottery} only provides advantage over random initialization with small initial learning rate 0.01. For structured pruning as~\cite{li2016pruning}, it can be seen from Table~\ref{lottery-2} that using the original initialization is only on par with random initialization for both large and small initial learning rates. In both cases, we can see that the small learning rate gives lower accuracy than the widely-used large learning rate. To summarize, in our evaluated settings, the winning ticket only brings improvement in the case of unstructured pruning, with small initial learning rate, but this small learning rate yields inferior accuracy compared with the widely-used large learning rate. Note that~\cite{lottery} also report in their Section 5, that the winning ticket cannot be found on ResNet-18/VGG using the large learning rate. The reason why the original initialization is helpful when the learning rate is small, might be the weights of the final trained model are not too far from the original initialization due to the small parameter updating stepsize.
 
 
 
@@ -578,7 +579,7 @@ From \autoref{lottery-figure-1} and \autoref{lottery-1}, we see that for unstruc
 \subsection{Results on Soft Filter Pruning}
 \label{sec:sfp}
 
-\textbf{Soft Filter Pruning (SFP)~\cite{he2018sfp}} prunes filters every epoch during training but also keeps updating the pruned filters, i.e., the pruned weights have the chance to be recovered. In the original paper, SFP can either run upon a random initialized model or a pretrained model. It falls into the category of predefined methods (\autoref{auto}). \autoref{sfp-1} shows our results without using pretrained models and \autoref{sfp-2} shows the results with a pretrained model. We use authors' official code~\cite{he2018sfp} for obtaining the results. It can be seen that Scratch-E outperforms pruned models for most of the time and Scratch-B outperforms pruned models in nearly all cases. Therefore, our observation also holds on this method.
+\textbf{Soft Filter Pruning (SFP)~\cite{he2018sfp}} prunes filters every epoch during training but also keeps updating the pruned filters, i.e., the pruned weights have the chance to be recovered. In the original paper, SFP can either run upon a random initialized model or a pretrained model. It falls into the category of predefined methods (Figure~\ref{auto}). Table~\ref{sfp-1} shows our results without using pretrained models and Table~\ref{sfp-2} shows the results with a pretrained model. We use authors' official code~\cite{he2018sfp} for obtaining the results. It can be seen that Scratch-E outperforms pruned models for most of the time and Scratch-B outperforms pruned models in nearly all cases. Therefore, our observation also holds on this method.
 
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.25}
@@ -606,7 +607,7 @@ Dataset                    & Model                       & Unpruned             
                            & ResNet-50                   & 76.15                & 30\%        & 74.61       & 74.98       & \textbf{75.56}       \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for Soft Filter Pruning~\cite{he2018sfp} without pretrained models.}
+\caption{Results for Soft Filter Pruning~\cite{he2018sfp} without pretrained models.}
 \label{sfp-1}
 \end{table}
 
@@ -624,7 +625,7 @@ Dataset                   & Model                      & Unpruned & Prune Ratio 
                           & ResNet-110                 &   \multirow{1}{*}{93.77 ($\pm$0.23)}       & 30\%        & 93.46 ($\pm$0.19) & 93.89 ($\pm$0.17) & \textbf{94.37} ($\pm$0.24) \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for Soft Filter Pruning~\cite{he2018sfp} using pretrained models.}
+\caption{Results for Soft Filter Pruning~\cite{he2018sfp} using pretrained models.}
 \label{sfp-2}
 \end{table}
 
@@ -636,7 +637,7 @@ Dataset                   & Model                      & Unpruned & Prune Ratio 
 
 We have shown that for structured pruning the small pruned model can be trained from scratch to match the accuracy of the fine-tuned model in classification tasks. To see whether this phenomenon would also hold for transfer learning to other vision tasks, we evaluate the $L_1$-norm based filter pruning method~\cite{li2016pruning} on the PASCAL VOC object detection task, using Faster-RCNN~\cite{Ren2015}. 
 
-Object detection frameworks usually require transferring model weights pre-trained on ImageNet classification, and one can perform pruning either before or after the weight transfer. More specifically, the former could be described as ``train on classification, prune on classification, fine-tune on classification, transfer to detection'', while the latter is ``train on classification, transfer to detection, prune on detection, fine-tune on detection''. We call these two approaches Prune-C (classification) and Prune-D (detection) respectively, and report the results in \autoref{det-prune}. With a slight abuse of notation, here Scratch-E/B denotes "train the small model on classification, transfer to detection", and is different from the setup of detection without ImageNet pre-training as in~\cite{dsod}.
+Object detection frameworks usually require transferring model weights pre-trained on ImageNet classification, and one can perform pruning either before or after the weight transfer. More specifically, the former could be described as ``train on classification, prune on classification, fine-tune on classification, transfer to detection'', while the latter is ``train on classification, transfer to detection, prune on detection, fine-tune on detection''. We call these two approaches Prune-C (classification) and Prune-D (detection) respectively, and report the results in Table~\ref{det-prune}. With a slight abuse of notation, here Scratch-E/B denotes "train the small model on classification, transfer to detection", and is different from the setup of detection without ImageNet pre-training as in~\cite{dsod}.
 
 \begin{table}[ht]
 \begin{minipage}{\linewidth}
@@ -658,14 +659,14 @@ Object detection frameworks usually require transferring model weights pre-train
 \end{table}
 
 For this experiment, we adopt the code and default hyper-parameters from~\cite{jjfaster2rcnn}, and use PASCAL VOC 07 trainval/test set as our training/test set. For backbone networks, we evaluate ResNet-34-A and ResNet-34-B from the $L_1$-norm based filter pruning~\cite{li2016pruning}, which are pruned from ResNet-34.
-\autoref{det-prune} shows our result, and we can see that the model trained from scratch can surpass the performance of fine-tuned models under the transfer setting.
+Table~\ref{det-prune} shows our result, and we can see that the model trained from scratch can surpass the performance of fine-tuned models under the transfer setting.
 
 
-Another interesting observation from \autoref{det-prune} is that Prune-C is able to outperform Prune-D, which is surprising since if our goal task is detection, directly pruning away weights that are considered unimportant for detection should presumably be better than pruning on the pre-trained classification models. We hypothesize that this might be because pruning early in the classification stage makes the final model less prone to being trapped in a bad local minimum caused by inheriting weights from the large model. This is in line with our observation that Scratch-E/B, which trains the small models from scratch starting even earlier at the classification stage, can achieve further performance improvement.
+Another interesting observation from Table~\ref{det-prune} is that Prune-C is able to outperform Prune-D, which is surprising since if our goal task is detection, directly pruning away weights that are considered unimportant for detection should presumably be better than pruning on the pre-trained classification models. We hypothesize that this might be because pruning early in the classification stage makes the final model less prone to being trapped in a bad local minimum caused by inheriting weights from the large model. This is in line with our observation that Scratch-E/B, which trains the small models from scratch starting even earlier at the classification stage, can achieve further performance improvement.
 
 \subsection{Aggressively Pruned Models}
 
-It would be interesting to see whether our observation still holds if the model is very aggressively pruned, since they might not have enough capacity to be trained from scratch and achieve decent accuracy. Here we provide results using Network Slimming~\cite{liu2017learning} and $L_1$-norm based filter pruning~\cite{li2016pruning}.  From \autoref{significant}, \autoref{significant-2} and \autoref{significant-3}, it can be seen that when the prune ratio is large, training from scratch is better than fine-tuned models by an even larger margin, and in this case fine-tuned models are significantly worse than the unpruned models. Note that in \autoref{thinet}, the VGG-Tiny model we evaluated for ThiNet~\cite{luo2017thinet} is also a very aggressively pruned model (FLOPs reduced by 15$\times$ and parameters reduced by 100$\times$).
+It would be interesting to see whether our observation still holds if the model is very aggressively pruned, since they might not have enough capacity to be trained from scratch and achieve decent accuracy. Here we provide results using Network Slimming~\cite{liu2017learning} and $L_1$-norm based filter pruning~\cite{li2016pruning}.  From Table~\ref{significant}, Table~\ref{significant-2} and Table~\ref{significant-3}, it can be seen that when the prune ratio is large, training from scratch is better than fine-tuned models by an even larger margin, and in this case fine-tuned models are significantly worse than the unpruned models. Note that in Table~\ref{thinet}, the VGG-Tiny model we evaluated for ThiNet~\cite{luo2017thinet} is also a very aggressively pruned model (FLOPs reduced by 15$\times$ and parameters reduced by 100$\times$).
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.15}
 \begin{table}[!htbp]
@@ -684,7 +685,7 @@ Dataset                   & Model                          & Unpruned           
 CIFAR-100                 & DenseNet-40                    & 73.82 ($\pm$0.34)                  & 80\%        & 69.60 ($\pm$0.22) & 71.04 ($\pm$0.36) & \textbf{71.45} ($\pm$0.30) \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for Network Slimming~\cite{liu2017learning} when the models are aggressively pruned. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. Larger ratios are used than the original paper of~\cite{liu2017learning}. 
+\caption{Results for Network Slimming~\cite{liu2017learning} when the models are aggressively pruned. ``Prune ratio'' stands for total percentage of channels that are pruned in the whole network. Larger ratios are used than the original paper of~\cite{liu2017learning}. 
 }
 \label{significant}
 \end{table}
@@ -702,7 +703,7 @@ Dataset                   & Model                       & Unpruned              
 \multirow{1}{*}{CIFAR-10} & ResNet-56                      & 93.14 ($\pm$0.12)  & 90\%   & 89.17 ($\pm$0.08)  & 91.02 ($\pm$0.12) & \textbf{91.93} ($\pm$0.26)                           \\ \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for $L_1$-norm based filter pruning~\cite{li2016pruning} when the models are aggressively pruned.
+\caption{Results for $L_1$-norm based filter pruning~\cite{li2016pruning} when the models are aggressively pruned.
 }
 \label{significant-2}
 \end{table}
@@ -720,7 +721,7 @@ Dataset                   & Model                       & Unpruned              
 \hline
 \end{tabular}
 }
-\caption{Results (accuracy) for unstructured  pruning~\cite{han2015learning} when the models are aggressively pruned.
+\caption{Results for unstructured  pruning~\cite{han2015learning} when the models are aggressively pruned.
 }
 \label{significant-3}
 \end{table}
@@ -746,16 +747,16 @@ Dataset                   & Model                                               
                           &                            & ResNet-110-B & 92.69 ($\pm$0.09)                           & 92.75 ($\pm$0.15) &  92.76 ($\pm$0.16)     &  \textbf{92.89} ($\pm$0.43)                      \\ \hline
 \end{tabular}
 }
-\caption{``Fine-tune-40'' stands for fine-tuning 40 epochs and so on. Scratch-E models are trained for 160 epochs. We observe that fine-tuning for more epochs does not help improve the accuracy much, and models trained from scratch can still perform on par with fine-tuned models.
+\caption{Results for extending fine-tuning. ``Fine-tune-40'' stands for fine-tuning 40 epochs and so on. Scratch-E models are trained for 160 epochs. We observe that fine-tuning for more epochs does not help improve the accuracy much, and models trained from scratch can still perform on par with fine-tuned models.
 }
 \label{finetune-more}
 \end{table}
-We use $L_1$-norm filter pruning~\cite{li2016pruning} for this experiment. \autoref{finetune-more} shows our results with different number of epochs for fine-tuning. It can be seen that fine-tuning for more epochs gives negligible accuracy increase and sometimes small decrease, and Scratch-E models are still on par with models fine-tuned for enough epochs.
+We use $L_1$-norm filter pruning~\cite{li2016pruning} for this experiment. Table~\ref{finetune-more} shows our results with different number of epochs for fine-tuning. It can be seen that fine-tuning for more epochs gives negligible accuracy increase and sometimes small decrease, and Scratch-E models are still on par with models fine-tuned for enough epochs.
 
 
 
 \subsection{Extending the Standard Training Schedule}
-In our experiments, we use the standard training schedule for both CIFAR (160 epochs) and ImageNet (90 epochs). Here we show that our observation still holds after we extend the standard training schedule. We use $L_1$-norm based filter pruning~\cite{li2016pruning} for this experiment. \autoref{enough-epochs} shows our results when we extend the standard training schedule of CIFAR from 160 to 300 epochs. We observe that scratch trained models still perform at least on par with fine-tuned models.
+In our experiments, we use the standard training schedule for both CIFAR (160 epochs) and ImageNet (90 epochs). Here we show that our observation still holds after we extend the standard training schedule. We use $L_1$-norm based filter pruning~\cite{li2016pruning} for this experiment. Table~\ref{enough-epochs} shows our results when we extend the standard training schedule of CIFAR from 160 to 300 epochs. We observe that scratch trained models still perform at least on par with fine-tuned models.
 
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
@@ -784,31 +785,26 @@ Dataset                   & Model                       & Unpruned              
 \begin{minipage}{\textwidth}
  \begin{subfigure}{\textwidth}
  \centering
-%  \includegraphics[width=\textwidth]{figures/channel-level-prune-dist-v2.pdf}
  \includegraphics[width=\textwidth]{channel-compressed.pdf}
- \label{arch-search-b1}
  \end{subfigure}
 \end{minipage}
 \begin{minipage}{\textwidth}
  \begin{subfigure}{\textwidth}
  \centering
-% \includegraphics[width=\textwidth]{figures/weight-level-prune-dist-v2.pdf}
 \includegraphics[width=\textwidth]{weight-compressed.pdf}
-%  \caption{}
- \label{arch-search-b}
  \end{subfigure}
 \end{minipage}
-    \caption{Weight distribution of convolutional layers for different pruning methods. We use VGG-16 and CIFAR-10 for this visualization. We compare the weight distribution of unpruned models,  fine-tuned models and scratch-trained models. \emph{Top}: Results for Network Slimming~\cite{liu2017learning}. \emph{Bottom}: Results for unstructured pruning~\cite{han2015learning}.}  
+    \caption{Weight distribution of convolutional layers for different pruning methods. We use VGG-16 and CIFAR-10 for this visualization. We compare the weight distribution of unpruned models,  fine-tuned models and scratch-trained models. \emph{Top}: Results for Network Slimming. \emph{Bottom}: Results for unstructured pruning.}  
     \label{dist}
 \end{figure}
 
-Accompanying the discussion in \autoref{sec:unstructured}, we show the weight distribution of unpruned large models, fine-tuned pruned models and scratch-trained pruned models, for two pruning methods: (structured) Network Slimming~\cite{liu2017learning} and unstructured pruning~\cite{han2015learning}. We choose VGG-16 and CIFAR-10 for visualization and compare the weight distribution of unpruned models, fine-tuned models and scratch-trained models. For Network Slimming, the prune ratio is 50\%. For unstructured pruning, the prune ratio is 80\%. \autoref{dist} shows our result.  We can see that the weight distribution of fine-tuned models and scratch-trained pruned models are  different from the unpruned large models -- the weights that are close to zero are much fewer.  This seems to imply that there are less redundant structures in the found pruned architecture, and support the view of architecture learning for automatic pruning methods.
+Accompanying the discussion in Section~\ref{sec:unstructured}, we show the weight distribution of unpruned large models, fine-tuned pruned models and scratch-trained pruned models, for two pruning methods: (structured) Network Slimming~\cite{liu2017learning} and unstructured pruning~\cite{han2015learning}. We choose VGG-16 and CIFAR-10 for visualization and compare the weight distribution of unpruned models, fine-tuned models and scratch-trained models. For Network Slimming, the prune ratio is 50\%. For unstructured pruning, the prune ratio is 80\%. Figure~\ref{dist} shows our result.  We can see that the weight distribution of fine-tuned models and scratch-trained pruned models are  different from the unpruned large models -- the weights that are close to zero are much fewer.  This seems to imply that there are less redundant structures in the found pruned architecture, and support the view of architecture learning for automatic pruning methods.
 
-For unstructured pruning, the fine-tuned model also has significantly different weight distribution from the scratch-trained model -- it has nearly no close-to-zero values. This might be a potential reason why sometimes  models trained from scratch cannot achieve the accuracy of the fine-tuned models, as shown in \autoref{weight-level}.
+For unstructured pruning, the fine-tuned model also has significantly different weight distribution from the scratch-trained model -- it has nearly no close-to-zero values. This might be a potential reason why sometimes  models trained from scratch cannot achieve the accuracy of the fine-tuned models, as shown in Table~\ref{weight-level}.
 
 \subsection{More Sparsity Patterns for Pruned Architectures}
 \label{sec:additional}
-In this section we provide the additional results on sparsity patterns for the pruned models, accompanying the discussions of ``More Analysis'' in Section \ref{sec:arch}.
+In this section we provide the additional results on sparsity patterns for the pruned models, accompanying the discussions of ``More Analysis'' in Section~\ref{sec:arch}.
 
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.2}
@@ -823,7 +819,7 @@ Stage 2 & 0.959 & 0.863 & 0.754 & 0.651 & 0.537 & 0.428 & 0.320 \\
 Stage 3 & 0.889 & 0.798 & 0.716 & 0.610 & 0.507 & 0.403 & 0.301 \\ \hline
 \end{tabular}
   \caption{
-      Sparsity patterns of PreResNet-164 pruned on CIFAR-10 by Network Slimming  shown in \autoref{arch-search-negative} (left) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of channels to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).}
+      Sparsity patterns of PreResNet-164 pruned on CIFAR-10 by Network Slimming shown in Figure~\ref{arch-search-negative} (left) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of channels to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform across stages.}
       \label{sparsity-5}
 \end{table}
 
@@ -848,7 +844,7 @@ Stage 3 & 0.889 & 0.798 & 0.716 & 0.610 & 0.507 & 0.403 & 0.301 \\ \hline
 \end{tabular}
 % }
   \caption{
-      Average sparsity patterns of 3$\times$3 kernels of PreResNet-110 pruned on CIFAR-100 by unstructured pruning shown in \autoref{arch-search-negative} (middle) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).}
+      Average sparsity patterns of 3$\times$3 kernels of PreResNet-110 pruned on CIFAR-100 by unstructured pruning shown in Figure~\ref{arch-search-negative} (middle) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform across stages.}
 \label{sparsity-6}
 \end{table}
 
@@ -874,7 +870,7 @@ Stage 3 & 0.889 & 0.798 & 0.716 & 0.610 & 0.507 & 0.403 & 0.301 \\ \hline
                          & 0.898   & 0.900  & 0.899  & 0.473   & 0.477  & 0.473  & 0.060  & 0.061  & 0.063  \\ \hline
 \end{tabular}
   \caption{
-      Average sparsity patterns of 3$\times$3 kernels of DenseNet-40 pruned on CIFAR-100 by unstructured pruning shown in \autoref{arch-search-negative} (right) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform (across stages).}
+      Average sparsity patterns of 3$\times$3 kernels of DenseNet-40 pruned on CIFAR-100 by unstructured pruning shown in Figure~\ref{arch-search-negative} (right) under different prune ratio. The top row denotes the total prune ratio. The values denote the ratio of weights to be kept. We can observe that for a certain prune ratio, the sparsity patterns are close to uniform across stages.}
 \label{sparsity-8}
 \end{table}
 

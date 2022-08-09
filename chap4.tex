@@ -1,4 +1,5 @@
 \chapter{A ConvNet for the 2020s}
+\label{chap:convnext}
 
 \section{Overview}
 Pruning is a popular type of methods for scaling \emph{down}. In the last chapter, through empirical study, we demonstrated the true value of structured pruning is not to obtain a specific set of weight values, but to identify a useful sub-architecture. Now we turn our focus on scaling \emph{up} computer vision neural architectures. 
@@ -6,7 +7,7 @@ Pruning is a popular type of methods for scaling \emph{down}. In the last chapte
 A classical example is the invention of ResNets~\cite{resnet} with its proposal of skip connections. Scaling a ``plain'' network without skip connections to tens of layers will cause the training loss to \emph{increase}, not to mention the worse test accuracy. However, a ResNet be scaled up to more than 100 layers with both improved training loss and test accuracy. In the 2020s, Vision Transformers~\cite{Dosovitskiy2021} start to show even greater scalability than convolution-based ResNets, with extremely large data and models. In this study, we try to understand what is behind Transformers' scaling success by comparing them with modernized ConvNets.
 
 
-As mentioned above, the ``Roaring 20s'' of visual recognition began with the introduction of Vision Transformers (ViTs), which quickly superseded ConvNets as the state-of-the-art image classification model. A vanilla ViT, on the other hand, faces difficulties when applied to general computer vision tasks such as object detection and semantic segmentation. It is the hierarchical Transformers (e.g., Swin Transformers) that reintroduced several ConvNet priors, making Transformers practically viable as a generic vision backbone and demonstrating remarkable performance on a wide variety of vision tasks. However, the effectiveness of such hybrid approaches is still largely credited to the intrinsic superiority of Transformers, rather than the inherent inductive biases of convolutions. In this work, we reexamine the design spaces and test the limits of what a pure ConvNet can achieve. We gradually ``modernize'' a standard ResNet toward the design of a vision Transformer, and discover several key components that contribute to the performance difference along the way. The outcome of this exploration is a family of pure ConvNet models dubbed ConvNeXt. Constructed entirely from standard ConvNet modules, ConvNeXts compete favorably with Transformers in terms of accuracy and scalability, achieving 87.8\% ImageNet top-1 accuracy and outperforming Swin Transformers on COCO detection and ADE20K segmentation, while maintaining the simplicity and efficiency of standard ConvNets. 
+As mentioned above, the ``Roaring 20s'' of visual recognition began with the introduction of Vision Transformers (ViTs), which quickly superseded ConvNets as the state-of-the-art image classification model. A vanilla ViT, on the other hand, faces difficulties when applied to general computer vision tasks such as object detection and semantic segmentation. It is the hierarchical Transformers (e.g., Swin Transformers) that reintroduced several ConvNet priors, making Transformers practically viable as a generic vision backbone and demonstrating remarkable performance on a wide variety of vision tasks. However, the effectiveness of such hybrid approaches is still largely credited to the intrinsic superiority of Transformers, rather than the inherent inductive biases of convolutions. In this work, we reexamine the design spaces and test the limits of what a pure ConvNet can achieve. We gradually ``modernize'' a standard ResNet toward the design of a vision Transformer, and discover several key components that contribute to the performance difference along the way. The outcome of this exploration is a family of pure ConvNet models dubbed ConvNeXt. Constructed entirely from standard ConvNet modules, ConvNeXts compete favorably with Transformers in terms of accuracy and scalability, achieving 87.8\% ImageNet top-1 accuracy and outperforming Swin Transformers on COCO detection and ADE20K segmentation, while maintaining the simplicity and efficiency of standard ConvNets. Our code is available at \url{https://github.com/facebookresearch/ConvNeXt}.
 
 
 \section{Introduction}
@@ -17,8 +18,8 @@ Looking back at the 2010s, the decade was marked by the monumental progress and 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{teaser.pdf}
-\caption{\textbf{ImageNet-1K classification} results for \cb ConvNets and \vb vision Transformers. Each bubble's area is proportional to FLOPs of a variant in a model family. ImageNet-1K/22K models here take 224$^2$/384$^2$ images respectively. ResNet and ViT results were obtained with improved training procedures over the original papers. We demonstrate that a standard ConvNet model can achieve the same level of scalability as hierarchical vision Transformers while being much simpler in design.}
-\label{fig:teaser}
+\caption{ImageNet-1K classification results for \cb ConvNets and \vb vision Transformers. Each bubble's area is proportional to FLOPs of a variant in a model family. ImageNet-1K/22K models here take 224$^2$/384$^2$ images respectively. ResNet and ViT results were obtained with improved training procedures over the original papers. We demonstrate that a standard ConvNet model can achieve the same level of scalability as hierarchical vision Transformers while being much simpler in design.}
+\label{fig:teaser_convnext}
 \end{figure}
 
 The full dominance of ConvNets in computer vision was not a coincidence: in many application scenarios, a ``sliding window'' strategy is intrinsic to visual processing, particularly when working with high-resolution images. ConvNets have several built-in inductive biases that make them well-suited to a wide variety of computer vision applications. The most important one is translation equivariance, which is a desirable property for tasks like objection detection. ConvNets are also inherently efficient due to the fact that when used in a sliding-window manner, the computations are shared~\cite{Sermanet2014}. For many decades, this has been the default use of ConvNets, generally on limited object categories such as digits \cite{lecun1998gradient}, faces \cite{vaillant1994original,rowley1998neural} and pedestrians \cite{sermanet2013pedestrian, dollar2010fastest}. Entering the 2010s, the region-based detectors \cite{rcnn, Girshick2015, Ren2015, He2017} further elevated ConvNets to the position of being the fundamental building block in a visual recognition system. 
@@ -37,7 +38,7 @@ we investigate the architectural distinctions between ConvNets and Transformers 
 Our research is intended to bridge the gap between the pre-ViT and post-ViT eras for ConvNets, as well as to test the limits of what a pure ConvNet can achieve. 
 
 To do this, we start with a standard ResNet (\eg ResNet-50) trained with an improved procedure. We gradually ``modernize'' the architecture to the construction of a hierarchical vision Transformer (\eg Swin-T). Our exploration is directed by a key question: \emph{How do design decisions in Transformers impact ConvNets' performance?} We discover several key components that contribute to the performance difference along the way. As a result, we propose a family of \textit{pure ConvNets} dubbed \cnn{}. 
-We evaluate \cnn{s} on a variety of vision tasks such as ImageNet classification~\cite{Deng2009}, object detection/segmentation on COCO\cite{Lin2014}, and semantic segmentation on ADE20K~\cite{Zhou2019}. Surprisingly, \cnn{s}, constructed entirely from standard ConvNet modules, compete favorably with Transformers in terms of accuracy, scalability and robustness across all major benchmarks. 
+We evaluate \cnn{s} on a variety of vision tasks such as ImageNet classification~\cite{imagenet}, object detection/segmentation on COCO\cite{Lin2014}, and semantic segmentation on ADE20K~\cite{Zhou2019}. Surprisingly, \cnn{s}, constructed entirely from standard ConvNet modules, compete favorably with Transformers in terms of accuracy, scalability and robustness across all major benchmarks. 
 ConvNeXt maintains the efficiency of standard ConvNets, and the fully-convolutional nature for both training and testing makes it extremely simple to implement.
 
 We hope the new observations and discussions can challenge some common beliefs and encourage people to rethink the importance of convolutions in computer vision.
@@ -46,14 +47,14 @@ We hope the new observations and discussions can challenge some common beliefs a
 \begin{figure}[!htbp] 
 \centering
 \includegraphics[width=0.66\textwidth]{morph_main_v3}
-\caption{We modernize a standard ConvNet (ResNet) towards the design of a hierarchical vision Transformer (Swin), without introducing any attention-based modules. The foreground bars are model accuracies in the ResNet-50/Swin-T FLOP regime; results for the ResNet-200/Swin-B regime are shown with the gray bars. A hatched bar means the modification is not adopted. Detailed results for both regimes are in the appendix. Many Transformer architectural choices can be incorporated in a ConvNet, and they lead to increasingly better performance. In the end, our pure ConvNet model, named ConvNeXt, can outperform the Swin Transformer.}
+\caption{We modernize a standard ConvNet (ResNet) towards the design of a hierarchical vision Transformer (Swin), without introducing any attention-based modules. The foreground bars are model accuracies in the ResNet-50/Swin-T FLOP regime; results for the ResNet-200/Swin-B regime are shown with the gray bars. A hatched bar means the modification is not adopted. Detailed results for both regimes are in Section~\ref{sec:modernizing}. Many Transformer architectural choices can be incorporated in a ConvNet, and they lead to increasingly better performance. In the end, our pure ConvNet model, named ConvNeXt, can outperform the Swin Transformer.}
 \label{fig:morph_main}
 \end{figure}
 %##################################################################################################
 
 \section{Modernizing a ConvNet: a Roadmap}
 \label{sec:modernizing}
-In this section, we provide a trajectory going from a ResNet to a ConvNet that bears a resemblance to Transformers. We consider two model sizes in terms of FLOPs, one is the ResNet-50 / Swin-T regime with FLOPs around $4.5\times 10^9$ and the other being ResNet-200 / Swin-B regime which has FLOPs around $15.0\times 10^9$. For simplicity, we will present the results with the ResNet-50 / Swin-T complexity models. The conclusions for higher capacity models are consistent and results can be found in Appendix~\ref{sec:modernizing_result}.
+In this section, we provide a trajectory going from a ResNet to a ConvNet that bears a resemblance to Transformers. We consider two model sizes in terms of FLOPs, one is the ResNet-50 / Swin-T regime with FLOPs around $4.5\times 10^9$ and the other being ResNet-200 / Swin-B regime which has FLOPs around $15.0\times 10^9$. For simplicity, we will present the results with the ResNet-50 / Swin-T complexity models. The conclusions for higher capacity models are consistent and results can be found in Section~\ref{sec:modernizing_result}.
 
 At a high level, our explorations are directed to investigate and follow different levels of designs from a Swin Transformer while maintaining the network's simplicity as a standard ConvNet. The roadmap of our exploration is as follows. Our starting point is a ResNet-50 model. We first train it with similar training techniques used to train vision Transformers and obtain much improved results compared to the original ResNet-50. This will be our baseline. We then study a series of design decisions which we summarized as 1) macro design, 2) ResNeXt, 3) inverted bottleneck, 4) large kernel size, and 5) various layer-wise micro designs. In Figure~\ref{fig:morph_main}, we show the procedure and the results we are able to achieve with each step of the ``network modernization''. Since network complexity is closely correlated with the final performance, the FLOPs are roughly controlled over the course of the exploration, though at intermediate steps the FLOPs might be higher or lower than the reference models. All models are trained and evaluated on ImageNet-1K.
 
@@ -63,7 +64,7 @@ Apart from the design of the network architecture, the training procedure also a
 Not only did vision Transformers bring a new set of modules and architectural design decisions, but they also introduced different training techniques (\eg AdamW optimizer) to vision.
 This pertains mostly to the optimization strategy and associated hyper-parameter settings.
 Thus, the first step of our exploration is to train a baseline model with the vision Transformer training procedure, in this case, ResNet-50/200. 
-Recent studies~\cite{bello2021revisiting, Wightman2021resnet} demonstrate that a set of modern training techniques can significantly enhance the performance of a simple ResNet-50 model. In our study, we use a training recipe that is close to DeiT's~\cite{Touvron2020} and Swin Transformer's~\cite{Liu2021swin}. The training is extended to 300 epochs from the original 90 epochs for ResNets. We use the AdamW optimizer~\cite{Loshchilov2019}, data augmentation techniques such as Mixup~\cite{Zhang2018a}, Cutmix~\cite{Yun2019}, RandAugment~\cite{Cubuk2020}, Random Erasing~\cite{Zhong2020}, and regularization schemes including Stochastic Depth~\cite{Huang2017} and Label Smoothing~\cite{Szegedy2016a}. The complete set of hyper-parameters we use can be found in Appendix~\ref{subsec:setting}. By itself, this enhanced training recipe increased the performance of the ResNet-50 model from 76.1\% \cite{torchvision} to 78.8\% (+2.7\%), implying that a significant portion of the performance difference between traditional ConvNets and vision Transformers may be due to the training techniques. We will use this fixed training recipe with the same hyperparameters throughout the ``modernization'' process. Each reported accuracy on the ResNet-50 regime is an average obtained from training with three different random seeds.
+Recent studies~\cite{bello2021revisiting, Wightman2021resnet} demonstrate that a set of modern training techniques can significantly enhance the performance of a simple ResNet-50 model. In our study, we use a training recipe that is close to DeiT's~\cite{Touvron2020} and Swin Transformer's~\cite{Liu2021swin}. The training is extended to 300 epochs from the original 90 epochs for ResNets. We use the AdamW optimizer~\cite{Loshchilov2019}, data augmentation techniques such as Mixup~\cite{Zhang2018a}, Cutmix~\cite{Yun2019}, RandAugment~\cite{Cubuk2020}, Random Erasing~\cite{Zhong2020}, and regularization schemes including Stochastic Depth~\cite{Huang2016deep} and Label Smoothing~\cite{Szegedy2016a}. The complete set of hyper-parameters we use can be found in Section~\ref{subsec:setting}. By itself, this enhanced training recipe increased the performance of the ResNet-50 model from 76.1\% \cite{torchvision} to 78.8\% (+2.7\%), implying that a significant portion of the performance difference between traditional ConvNets and vision Transformers may be due to the training techniques. We will use this fixed training recipe with the same hyperparameters throughout the ``modernization'' process. Each reported accuracy on the ResNet-50 regime is an average obtained from training with three different random seeds.
 
 \subsection{Macro Design}
 We now analyze Swin Transformers' macro network design. Swin Transformers follow ConvNets~\cite{vgg, resnet} to use a multi-stage design, where each stage has a different feature map resolution. There are two interesting design considerations: the stage compute ratio, and the ``stem cell'' structure.
@@ -103,7 +104,7 @@ In this part of the exploration, we focus on the behavior of large convolutional
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{inverted_v2.pdf}
-\caption{\textbf{Block modifications and resulted specifications.} \textbf{(a)} is a ResNeXt block; in \textbf{(b)} we create an inverted bottleneck block and in \textbf{(c)} the position of the spatial depthwise conv layer is moved up.}
+\caption{Block modifications and resulted specifications. (a) is a ResNeXt block; in (b) we create an inverted bottleneck block and in (c) the position of the spatial depthwise conv layer is moved up.}
 \label{fig:inverted}
 \end{figure}
 
@@ -131,7 +132,7 @@ One minor distinction between a Transformer and a ResNet block is that Transform
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.75\textwidth]{block_v4.pdf}
-\caption{\textbf{Block designs} for a ResNet, a Swin Transformer, and a \cnn. Swin Transformer's block is more sophisticated due to the presence of multiple specialized modules and two residual connections. For simplicity, we note the linear layers in Transformer MLP blocks also as ``1$\times$1 convs'' since they are equivalent.}
+\caption{Block designs for a ResNet, a Swin Transformer, and a \cnn. Swin Transformer's block is more sophisticated due to the presence of multiple specialized modules and two residual connections. For simplicity, we note the linear layers in Transformer MLP blocks also as ``1$\times$1 convs'' since they are equivalent.}
 \label{fig:block}
 \end{figure}
 
@@ -183,7 +184,7 @@ In the next section, we will scale up our \cnn{} models both in terms of data an
 
 
 \subsection{Settings}
-The ImageNet-1K dataset consists of 1000 object classes with 1.2M training images. We report ImageNet-1K top-1 accuracy on the validation set. We also conduct pre-training on ImageNet-22K, a larger dataset of 21841 classes (a superset of the 1000 ImageNet-1K classes) with $\sim$14M images for pre-training, and then fine-tune the pre-trained model on ImageNet-1K for evaluation.  We summarize our training setups below. More details can be found in Appendix~\ref{sec:setting}. 
+The ImageNet-1K dataset consists of 1000 object classes with 1.2M training images. We report ImageNet-1K top-1 accuracy on the validation set. We also conduct pre-training on ImageNet-22K, a larger dataset of 21841 classes (a superset of the 1000 ImageNet-1K classes) with $\sim$14M images for pre-training, and then fine-tune the pre-trained model on ImageNet-1K for evaluation.  We summarize our training setups below. More details can be found in Section~\ref{sec:setting}. 
 
 \paragraph{Training on ImageNet-1K.} We train \cnn{}s for 300 epochs using AdamW~\cite{Loshchilov2019} with a learning rate of 4e-3. There is a 20-epoch linear warmup and a cosine decaying schedule afterward. We use a batch size of 4096 and a weight decay of 0.05. For data augmentations, we adopt common schemes including Mixup~\cite{Zhang2018a}, Cutmix~\cite{Yun2019}, RandAugment~\cite{Cubuk2020}, and Random Erasing~\cite{Zhong2020}. We regularize the networks with Stochastic Depth~\cite{Huang2016deep} and Label Smoothing~\cite{Szegedy2016a}. Layer Scale~\cite{Touvron2021GoingDW} of initial value 1e-6 is applied. We use Exponential Moving Average (EMA)~\cite{Polyak1992} as we find it alleviates larger models' overfitting.
 
@@ -281,7 +282,7 @@ Compared with ViTs/Swin Transformers, \cnn{}s are simpler to fine-tune at differ
 \hline
 \end{tabular}
 \normalsize
-\caption{\textbf{Classification accuracy on ImageNet-1K.} Similar to Transformers, \cnn{} also shows promising scaling behavior with higher-capacity models and a larger (pre-training) dataset. Inference throughput is measured on a V100 GPU, following~\cite{Liu2021swin}. On an A100 GPU, \cnn{} can have a much higher throughput than Swin Transformer. See Appendix~\ref{sec:a100}. (\Telefon)ViT results with 90-epoch AugReg~\cite{steiner2021train} training, provided through personal communication with the authors.}
+\caption{Classification accuracy on ImageNet-1K. Similar to Transformers, \cnn{} also shows promising scaling behavior with higher-capacity models and a larger (pre-training) dataset. Inference throughput is measured on a V100 GPU, following~\cite{Liu2021swin}. On an A100 GPU, \cnn{} can have a much higher throughput than Swin Transformer. See Section~\ref{sec:a100}. (\Telefon) ViT results with 90-epoch AugReg~\cite{steiner2021train} training, provided through personal communication with the authors.}
 \label{tab:imagenet-system}
 \end{table}
 
@@ -298,11 +299,11 @@ These experiments are important since a widely held view is that vision Transfor
  
 On ImageNet-1K, EfficientNetV2-L, a searched architecture equipped with advanced modules (such as Squeeze-and-Excitation~\cite{hu2018squeeze}) and progressive training procedure achieves top performance. However, with ImageNet-22K pre-training, ConvNeXt is able to outperform EfficientNetV2, further demonstrating the importance of large-scale training.
 
-In Appendix~\ref{sec:robustness}, we discuss robustness and out-of-domain generalization results for \cnn{}.
+In Section~\ref{sec:robustness}, we discuss robustness and out-of-domain generalization results for \cnn{}.
 
 \subsection{Isotropic \cnn{} \vs ViT}
 \label{subsec:isotropic} 
-In this ablation, we examine if our \cnn{} block design is generalizable to ViT-style~\cite{Dosovitskiy2021} isotropic architectures which have no downsampling layers and keep the same feature resolutions (\eg 14$\times$14) at all depths. We construct isotropic \cnn{}-S/B/L using the same feature dimensions as ViT-S/B/L (384/768/1024). Depths are set at 18/18/36 to match the number of parameters and FLOPs. The block structure remains the same (Fig.~\ref{fig:block}).
+In this ablation, we examine if our \cnn{} block design is generalizable to ViT-style~\cite{Dosovitskiy2021} isotropic architectures which have no downsampling layers and keep the same feature resolutions (\eg 14$\times$14) at all depths. We construct isotropic \cnn{}-S/B/L using the same feature dimensions as ViT-S/B/L (384/768/1024). Depths are set at 18/18/36 to match the number of parameters and FLOPs. The block structure remains the same (Figure~\ref{fig:block}).
 We use the supervised training results from DeiT \cite{Touvron2020} for ViT-S/B and MAE~\cite{he2021masked} for ViT-L, as they employ improved training procedures over the original ViTs \cite{Dosovitskiy2021}. \cnn{} models are trained with the same settings as before, but with longer warmup epochs. Results for ImageNet-1K at 224$^2$ resolution are in Table \ref{tab:non-hie}. We observe \cnn{} can perform generally on par with ViT, showing that our \cnn{} block design is competitive when used in non-hierarchical models. 
 
 %##################################################################################################
@@ -323,7 +324,7 @@ We use the supervised training results from DeiT \cite{Touvron2020} for ViT-S/B 
 \gr
 \cb \cnn{}-L (\textit{iso.})      & 306M& 59.7G  &  94.4  & 20.4 & 82.6 \\
 \end{tabular}
-\caption{\textbf{Comparing isotropic \cnn{} and ViT.} Training memory is measured on V100 GPUs with 32 per-GPU batch size.}
+\caption{Comparing isotropic \cnn{} and ViT. Training memory is measured on V100 GPUs with 32 per-GPU batch size.}
 \label{tab:non-hie}
 \end{table}
 %##################################################################################################
@@ -331,7 +332,7 @@ We use the supervised training results from DeiT \cite{Touvron2020} for ViT-S/B 
 \section{Experiments on Downstream Tasks}
 \subsection{Object detection and segmentation on COCO.}
 
-We fine-tune Mask R-CNN~\cite{He2017} and Cascade Mask R-CNN~\cite{Cai2018} on the COCO dataset with \cnn{} backbones. Following Swin Transformer~\cite{Liu2021swin}, we use multi-scale training, AdamW optimizer, and a 3$\times$ schedule. Further details and hyper-parameter settings can be found in Appendix~\ref{subsec:downstream-setting}.
+We fine-tune Mask R-CNN~\cite{He2017} and Cascade Mask R-CNN~\cite{Cai2018} on the COCO dataset with \cnn{} backbones. Following Swin Transformer~\cite{Liu2021swin}, we use multi-scale training, AdamW optimizer, and a 3$\times$ schedule. Further details and hyper-parameter settings can be found in Section~\ref{subsec:downstream-setting}.
 
 
 Table~\ref{tab:coco} shows object detection and instance segmentation results comparing Swin Transformer, \cnn{}, and traditional ConvNet such as ResNeXt. Across different model complexities, \cnn{} achieves on-par or better performance than Swin Transformer. When scaled up to bigger models (\cnn{}-B/L/XL) pre-trained on ImageNet-22K, in many cases \emph{ConvNeXt is significantly better} (\eg +1.0 AP) than Swin Transformers in terms of box and mask AP.
@@ -374,14 +375,14 @@ backbone & FLOPs & FPS & $\text{AP}^{\text{box}}$ & $\text{AP}^{\text{box}}_{50}
 \cb \cnn{}-XL$^\ddag$     & 1898G & 8.6     & \textbf{55.2} & 74.2 & 59.9 & \textbf{47.7} & 71.6 & 52.2\\
 \end{tabular}
 } 
-\caption[caption]{\textbf{COCO object detection and segmentation results} using Mask-RCNN and Cascade Mask-RCNN. $^\ddag$ indicates that the model is pre-trained on ImageNet-22K. ImageNet-1K pre-trained Swin results are from their Github repository~\cite{swindetcode}. AP numbers of the ResNet-50 and X101 models are from \cite{Liu2021swin}. We measure FPS on an A100 GPU. FLOPs are calculated with image size (1280, 800).
+\caption{COCO object detection and segmentation results using Mask-RCNN and Cascade Mask-RCNN. $^\ddag$ indicates that the model is pre-trained on ImageNet-22K. ImageNet-1K pre-trained Swin results are from their Github repository~\cite{swindetcode}. AP numbers of the ResNet-50 and X101 models are from \cite{Liu2021swin}. We measure FPS on an A100 GPU. FLOPs are calculated with image size (1280, 800).
 \label{tab:coco}
 }
 \end{table}
 
 
 \subsection{Semantic segmentation on ADE20K.}
-We also evaluate \cnn{} backbones on the ADE20K semantic segmentation task with UperNet~\cite{Xiao2018}. All model variants are trained for 160K iterations with a batch size of 16. Other experimental settings follow~\cite{Bao2021} (see Appendix~\ref{subsec:downstream-setting} for more details). In Table \ref{tab:seg}, we report validation mIoU with multi-scale testing. \cnn{} models can achieve competitive performance across different model capacities, further validating the effectiveness of our architecture design. 
+We also evaluate \cnn{} backbones on the ADE20K semantic segmentation task with UperNet~\cite{Xiao2018}. All model variants are trained for 160K iterations with a batch size of 16. Other experimental settings follow~\cite{Bao2021} (see Section~\ref{subsec:downstream-setting} for more details). In Table \ref{tab:seg}, we report validation mIoU with multi-scale testing. \cnn{} models can achieve competitive performance across different model capacities, further validating the effectiveness of our architecture design. 
 
 \begin{table}[!htbp]
     \centering
@@ -412,12 +413,12 @@ backbone & input crop. & mIoU & \#param. & FLOPs  \\
 \cb \cnn{}-XL$^\ddag$ & 640$^2$ & \textbf{54.0} &  391M & 3335G  \\
 \Xhline{1.0pt}
 \end{tabular}
-    \caption[caption]{\textbf{ADE20K validation results} using UperNet~\cite{Xiao2018}. $^\ddag$ indicates IN-22K  pre-training. Swins' results are from its GitHub repository~\cite{swincode}. Following Swin, we report mIoU results with multi-scale testing. FLOPs are based on input sizes of (2048, 512) and (2560, 640) for IN-1K and IN-22K pre-trained models, respectively.}
+    \caption{ADE20K validation results using UperNet~\cite{Xiao2018}. $^\ddag$ indicates IN-22K  pre-training. Swins' results are from its GitHub repository~\cite{swincode}. Following Swin, we report mIoU results with multi-scale testing. FLOPs are based on input sizes of (2048, 512) and (2560, 640) for IN-1K and IN-22K pre-trained models, respectively.}
     \label{tab:seg}
     \normalsize
 \end{table}
 
-\subsection{Remarks on model efficiency.} Under similar FLOPs, models with depthwise convolutions are known to be slower and consume more memory than ConvNets with only dense convolutions. It is natural to ask whether the design of \cnn{} will render it practically inefficient. As demonstrated throughout the paper, the inference throughputs of \cnn{s} are comparable to or exceed that of Swin Transformers. This is true for both classification and other tasks requiring higher-resolution inputs (see Table~\ref{tab:imagenet-system},\ref{tab:coco} for comparisons of throughput/FPS). Furthermore, we notice that training \cnn{s} requires less memory than training Swin Transformers. For example, training Cascade Mask-RCNN using \cnn{}-B backbone consumes 17.4GB of peak memory with a per-GPU batch size of 2, while the reference number for Swin-B is 18.5GB.
+\subsection{Remarks on model efficiency.} Under similar FLOPs, models with depthwise convolutions are known to be slower and consume more memory than ConvNets with only dense convolutions. It is natural to ask whether the design of \cnn{} will render it practically inefficient. As demonstrated before, the inference throughputs of \cnn{s} are comparable to or exceed that of Swin Transformers. This is true for both classification and other tasks requiring higher-resolution inputs (see Table~\ref{tab:imagenet-system},\ref{tab:coco} for comparisons of throughput/FPS). Furthermore, we notice that training \cnn{s} requires less memory than training Swin Transformers. For example, training Cascade Mask-RCNN using \cnn{}-B backbone consumes 17.4GB of peak memory with a per-GPU batch size of 2, while the reference number for Swin-B is 18.5GB.
 In comparison to vanilla ViT, both \cnn{} and Swin Transformer exhibit a more favorable accuracy-FLOPs trade-off due to the local computations. It is worth noting that this improved efficiency is a result of the \emph{ConvNet inductive bias}, and is not directly related to the self-attention mechanism in vision Transformers.
 
 
@@ -430,10 +431,6 @@ The original ViT~\cite{Dosovitskiy2021} first studied a hybrid configuration, an
 \subsection{Recent convolution-based approaches} 
 Han \emph{et al.}~\cite{han2021demystifying} show that local Transformer attention is equivalent to inhomogeneous dynamic depthwise conv. The MSA block in Swin is then replaced with a dynamic or regular depthwise convolution, achieving comparable performance to Swin. A concurrent work ConvMixer~\cite{convmixer} demonstrates that, in small-scale settings, depthwise convolution can be used as a promising mixing strategy. ConvMixer uses a smaller patch size to achieve the best results, making the throughput much lower than other baselines. GFNet~\cite{rao2021global} adopts Fast Fourier Transform (FFT) for token mixing. FFT is also a form of convolution, but with a global kernel size and circular padding. Unlike many recent Transformer or ConvNet designs, one primary goal of our study is to provide an in-depth look at the process of modernizing a standard ResNet and achieving state-of-the-art performance.
 
-
-
-% \section*{\Large{Appendix}}
-% In this Appendix, we provide further experimental details (\S \ref{sec:setting}), robustness evaluation results (\S \ref{sec:robustness}), more modernization experiment results (\S\ref{sec:modernizing_result}), and a detailed network specification (\S \ref{sec:arch}). We further benchmark model throughput on A100 GPUs (\S \ref{sec:a100}). Finally, we discuss the limitations (\S \ref{sec:limit}) and societal impact (\S \ref{sec:impact}) of our work.
 
 \section{Full Experimental Settings}
 \label{sec:setting}
@@ -480,7 +477,7 @@ gradient clip & None & None \\
 exp. mov. avg. (EMA) \cite{Polyak1992} & 0.9999 & None\\
 
 \end{tabular}
-\caption{\textbf{ImageNet-1K/22K (pre-)training settings}. Multiple stochastic depth rates (e.g., 0.1/0.4/0.5/0.5) are for each model (e.g., \cnn{}-T/S/B/L) respectively.}
+\caption{ImageNet-1K/22K (pre-)training settings. Multiple stochastic depth rates (e.g., 0.1/0.4/0.5/0.5) are for each model (e.g., \cnn{}-T/S/B/L) respectively.}
 \label{tab:train_detail}
 \end{table}
 
@@ -518,7 +515,7 @@ head init scale & 0.001 & 0.001 \\
 gradient clip & None & None \\
 exp. mov. avg. (EMA) & None & None(T-L)/0.9999(XL) \\
 \end{tabular}
-\caption{\textbf{ImageNet-1K fine-tuning settings}. Multiple values (e.g., 0.8/0.95) are for each model (e.g., \cnn{}-B/L) respectively. }
+\caption{ImageNet-1K fine-tuning settings. Multiple values (e.g., 0.8/0.95) are for each model (e.g., \cnn{}-B/L) respectively. }
 \label{tab:ft_detail}
 \end{table}
 
@@ -558,10 +555,12 @@ backbone & input crop. & mIoU \\
 \cb \cnn{}-XL$^\ddag$ & 640$^2$ & {53.6}  \\
 \Xhline{1.0pt}
 \end{tabular}
-    \caption[caption]{\textbf{ADE20K validation results} with single-scale testing.}
+    \caption{ADE20K validation results with single-scale testing.}
     \label{tab:seg-ss}
     \normalsize
 \end{table}
+
+
 
 \subsection{Detailed Architectures}
 \label{sec:arch}
@@ -642,34 +641,13 @@ $28.3 \times 10^6$ \\
 \end{tabular}
 }
 \normalsize
-\caption{\textbf{Detailed architecture specifications} for ResNet-50, \cnn{}-T and Swin-T.}
+\caption{Detailed architecture specifications for ResNet-50, \cnn{}-T and Swin-T.}
 \label{table:arch-spec}
 \end{table*}
 
 
 
-\begin{table}[!htbp]
-    \centering
-    % \small
-\addtolength{\tabcolsep}{-2.1pt}
-\begin{tabular}{lcc}
-backbone & input crop. & mIoU \\
-\Xhline{1.0pt}
-\multicolumn{3}{c}{\scriptsize{ImageNet-1K pre-trained}} \\
-\cb \cnn{}-T &  512$^2$ & {46.0} \\
-\cb \cnn{}-S &  512$^2$ & {48.7}  \\
-\cb \cnn{}-B &  512$^2$ & {49.1}  \\
-\hline
-\multicolumn{3}{c}{\scriptsize{ImageNet-22K pre-trained}} \\
-\cb \cnn{}-B$^\ddag$ & 640$^2$ & {52.6}  \\
-\cb \cnn{}-L$^\ddag$ & 640$^2$ & {53.2}  \\
-\cb \cnn{}-XL$^\ddag$ & 640$^2$ & {53.6}  \\
-\Xhline{1.0pt}
-\end{tabular}
-    \caption[caption]{\textbf{ADE20K validation results} with single-scale testing.}
-    \label{tab:seg-ss}
-    \normalsize
-\end{table}
+
 
 \begin{table}[!htbp]
 \tablestyle{7.3pt}{1.1}
@@ -697,7 +675,7 @@ backbone & input crop. & mIoU \\
         {ConvNeXt-XL} & 22K/384$^2$ &  179.0 / 350.2 & \textbf{87.8} & \textbf{38.8} & \textbf{27.1} & \textbf{69.3} & \textbf{68.2} & \textbf{55.0}  \\
     \end{tabular}
 } 
-\caption[caption]{\textbf{Robustness evaluation of ConvNeXt}. We do not make use of any specialized modules or additional fine-tuning procedures. \label{tab:robustness}}
+\caption{Robustness evaluation of ConvNeXt. We do not make use of any specialized modules or additional fine-tuning procedures. \label{tab:robustness}}
 \end{table}
 %##################################################################################################
 
@@ -720,7 +698,7 @@ Here we provide detailed tabulated results for the \emph{modernization} experime
 
 For ResNet-200, the initial number of blocks at each stage is (3, 24, 36, 3). We change it to Swin-B's (3, 3, 27, 3) at the step of changing stage ratio. This drastically reduces the FLOPs, so at the same time, we also increase the width from 64 to 84 to keep the FLOPs at a similar level. After the step of adopting depthwise convolutions, we further increase the width to 128 (same as Swin-B's) as a separate step. 
 
-The observations on the ResNet-200 regime are mostly consistent with those on ResNet-50 as described in the main paper. One interesting difference is that inverting dimensions brings a larger improvement at ResNet-200 regime than at ResNet-50 regime (+0.79\% \vs +0.14\%). The performance gained by increasing kernel size also seems to saturate at kernel size 5 instead of 7. Using fewer normalization layers also has a bigger gain compared with the ResNet-50 regime (+0.46\% \vs +0.14\%).
+The observations on the ResNet-200 regime are mostly consistent with those on ResNet-50 as described before. One interesting difference is that inverting dimensions brings a larger improvement at ResNet-200 regime than at ResNet-50 regime (+0.79\% \vs +0.14\%). The performance gained by increasing kernel size also seems to saturate at kernel size 5 instead of 7. Using fewer normalization layers also has a bigger gain compared with the ResNet-50 regime (+0.46\% \vs +0.14\%).
 
 
 
@@ -757,7 +735,7 @@ separate d.s. conv (\cnn{}-T)     & 81.97 $\pm$ 0.06 &4.49 \\
 Swin-T \cite{Liu2021swin}       &81.30 &4.50 \\
 \shline
 \end{tabular}
-\caption{\textbf{Detailed results for modernizing a ResNet-50.} Mean and standard deviation are obtained by training the network with three different random seeds.}
+\caption{Detailed results for modernizing a ResNet-50. Mean and standard deviation are obtained by training the network with three different random seeds.}
 \label{tab:modernizing-t}
 \end{table}
 
@@ -795,7 +773,7 @@ separate d.s. conv (\cnn{}-B) &83.60 &15.35 \\
 Swin-B\cite{Liu2021swin}  &83.50 &15.43 \\
 \shline
 \end{tabular}
-\caption{\textbf{Detailed results for modernizing a ResNet-200.}}
+\caption{Detailed results for modernizing a ResNet-200.}
 \label{tab:modernizing-b}
 \end{table}
 
@@ -861,7 +839,7 @@ We present the results in Table~\ref{tab:a100}. Swin Transformers and \cnn{}s bo
 
 \end{tabular}
 \normalsize
-\caption{\textbf{Inference throughput comparisons on an A100 GPU.} Using TF32 data format and ``channel last'' memory layout, \cnn{} enjoys up to $\sim$49\% higher throughput compared with a Swin Transformer with similar FLOPs.}
+\caption{Inference throughput comparisons on an A100 GPU. Using TF32 data format and ``channel last'' memory layout, \cnn{} enjoys up to $\sim$49\% higher throughput compared with a Swin Transformer with similar FLOPs.}
 \label{tab:a100}
 \end{table}
 
@@ -874,7 +852,7 @@ We demonstrate ConvNeXt, a pure ConvNet model, can perform as good as a hierarch
 
 \subsection{Societal Impact}
 \label{sec:impact}
-In the 2020s, research on visual representation learning began to place enormous demands on computing resources. While larger models and datasets improve performance across the board, they also introduce a slew of challenges. ViT, Swin, and ConvNeXt all perform best with their huge model variants. Investigating those model designs inevitably results in an increase in carbon emissions. One important direction, and a motivation for our paper, is to strive for simplicity --- with more sophisticated modules, the network's design space expands enormously, obscuring critical components that contribute to the performance difference. Additionally, large models and datasets present issues in terms of model robustness and fairness. 
+In the 2020s, research on visual representation learning began to place enormous demands on computing resources. While larger models and datasets improve performance across the board, they also introduce a slew of challenges. ViT, Swin, and ConvNeXt all perform best with their huge model variants. Investigating those model designs inevitably results in an increase in carbon emissions. One important direction, and a motivation for our work, is to strive for simplicity --- with more sophisticated modules, the network's design space expands enormously, obscuring critical components that contribute to the performance difference. Additionally, large models and datasets present issues in terms of model robustness and fairness. 
 Further investigation on the robustness behavior of ConvNeXt vs. Transformer will be an interesting research direction. In terms of data, our findings indicate that ConvNeXt models benefit from pre-training on large-scale datasets. While our method makes use of the publicly available ImageNet-22K dataset, individuals may wish to acquire their own data for pre-training. A more circumspect and responsible approach to data selection is required to avoid potential concerns with data biases.
 
 \section{Conclusions}

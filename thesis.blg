@@ -1,0 +1,9 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'thesis.blg'
+[113] biber-darwin:340> INFO - === Sun Aug  7, 2022, 05:00:56
+[150] Biber.pm:415> INFO - Reading 'thesis.bcf'
+[277] Biber.pm:952> INFO - Found 2 citekeys in bib section 0
+[303] Biber.pm:4340> INFO - Processing section 0
+[326] Biber.pm:4531> INFO - Looking for bibtex format file 'references.bib' for section 0
+[341] bibtex.pm:1689> INFO - LaTeX decoding ...
+[362] bibtex.pm:1494> INFO - Found BibTeX data source 'references.bib'
