@@ -200,12 +200,12 @@ To my parents, Lilin Miao and Qing Liu
 \listoftables
 
 \begin{acknowledgements}
-I want to thank all people who have helped or supported me during my Ph.D. journey. First, I would like to express my sincere gratitude to my advisor Prof. Trevor Darrell. Trevor has continued to guide me on how to do quality and impactful research, while also giving me the freedom to work on research topics that I'm interested in. His advices on both high-level research directions and execution plans have always been helpful. He would not withhold critical opinions either, which pushed me to distill and refine my work until it is above the high standard he sets and can withstand challenges. Of course, the help and lessons from Trevor are more than on research. When I was having a hard time getting my papers accepted, Trevor always expressed his strongest support and reassured me the value of my research. The career advices from him are also invaluable. I would also like to thank Prof. Joseph Gonzalez, Prof. Jiantao Jiao, and Dr. Saining Xie for being on my dissertation committee, who gave me lots of useful advices in delivering my dissertation talk and writing this thesis.
+I want to thank all people who have helped or supported me during my Ph.D. journey. First, I would like to express my sincere gratitude to my advisor Prof. Trevor Darrell. Trevor has continued to guide me on how to do quality and impactful research, while also giving me the freedom to work on research topics that I'm interested in. His advices on both high-level research directions and execution plans have always been helpful. He would not withhold critical opinions either, which pushed me to distill and refine my work until it is above the high standard he sets and can withstand challenges. Of course, the help and lessons from Trevor are more than on research. When I was having a hard time getting my papers accepted, Trevor always expressed his strongest support and reassured me the value of my research. The career advices from him are also invaluable. I would also like to thank Prof. Joseph Gonzalez, Prof. Jiantao Jiao, and Dr. Saining Xie for being on my dissertation committee, who gave me lots of useful advices in delivering my dissertation talk and preparing this thesis.
 
 I was fortunate enough to have other excellent mentors during my Ph.D. study. I would like to thank Vladlen Koltun for supervising me during my internship at Intel Labs, where I worked with wonderful colleagues John Lambert and Ozan Sener. I want to thank Evan Shelhamer, who mentored me during my internship at Adobe Research, and has been giving continued support throughout the rest of my Ph.D. I am also grateful to Saining Xie for giving me the opportunity for an internship at Facebook AI Research and guided me through the research project. I want to thank Hanzi Mao for her crucial help in this project too. Additionally, I am thankful to Junyan Zhu and Tinghui Zhou who mentored me as senior students in my earlier Ph.D. years. 
 % , which also led to my first full-time job as a Research Scentist at FAIR after my Ph.D. journey.
 
-I am also grateful to my research mentors and collaborators before I came to Berkeley. It was in Prof. Kilian Weinberger's group at Cornell University that I started my journey in the field of deep learning, during my visit there in 2016. I want to thank Gao Huang, Yu Sun and Shuang Li who helped me learn the basics of deep learning research there. I would like to thank Jianguo Li for taking me as a research intern at Intel Labs China when I was a senior undergraduate, and the great mentorship he gave. I'm also grateful to Prof. Andrew Yao, who built the undergraduate program at Tsinghua that led me into the world of computer science. I want to thank Shiquan Wang, Farong Zhou, Huijuan Wang, Niya Wei and all my other teachers since childhood who committed their lives into the education of next generations.
+I am also grateful to my mentors and collaborators before I came to Berkeley. It was in Prof. Kilian Weinberger's group at Cornell University that I started my journey in the field of deep learning, during my visit there in 2016. I want to thank Gao Huang, Yu Sun and Shuang Li who helped me learn the basics of deep learning research there. I would like to thank Jianguo Li for taking me as a research intern at Intel Labs China when I was a senior undergraduate, and the great mentorship he gave. I'm also grateful to Prof. Andrew Yao, who built the undergraduate program at Tsinghua that led me into the world of computer science. I want to thank Shiquan Wang, Farong Zhou, Huijuan Wang, Niya Wei and all my other teachers since childhood who committed their lives into the education of next generations.
 
 My gratitude goes to my other collaborators, colleagues and friends, at Berkeley or otherwise. I want to thank Bingyi Kang, Chubai Chen, Guanhua Wang, Zhiqiang Shen, Xiang Gao, 
 Xuanlin Li, Mingjie Sun, Hung-Ju Wang, Zhiqiu Xu, Joseph Jin, Maolin Mao, Yinbo Chen, Brandon Hsieh, 
@@ -234,6 +234,11 @@ Finally, I would like to thank my parents Lilin Miao and Qing Liu, and my grandp
 \chapter{Introduction}
 
 % history of deep learning
+The basic diagram of deep learning~\cite{} dates back to decades ago with the proposal of gradient-based back-propagation algorithms~\cite{}. Since as early as in 1980s, ConvNets have been applied for computer vision tasks such as hand-written digits recognition. However, the true power of deep learning has only been revealed since 2012, with the invention of AlexNet model which won the ImageNet large-scale image classification challenge that year. Increasing data availability, advancement of compute technologies, and improved algorithms are three pillars for this continued success through today. The progress is made possible by the joint effort of , and has yet to shown signs of slowing down with the recent rise of large models~\cite{}.
+
+Deep learning has not only made remarkable commercial impact, but also changed the workflow of machine learning practioners and researchers - the machine learning community has shifted from using hand-crafted features~\cite{Lowe2004,Dalal2005} with shallow models (e.g., SVM~\cite{Cortes1995}), to automatically extracting feature representations with multi-layer neural networks. Hand-crafted features are often highly task-specific and not generalizable, and it is often an dull process to design them. The transition has greatly freed the hands and minds of researchers, allowing them to focus more on the modeling aspect.
+
+The promise of automatic representation learning is encouraging, but the real picture is not as bright. In practice, the network structure has a huge influcence on the quality of the learned representations. Now the human has to design the \emph{architecture} of the neural network. 
 
 % briefly computer vision and visual recognition
 % moving from hand crafted features to deep learning
@@ -250,42 +255,52 @@ Finally, I would like to thank my parents Lilin Miao and Qing Liu, and my grandp
 
 
 \section{Thesis Organization}
+In this thesis, we explore the design of neural network architectures for visual recognition from both efficiency and scalability perspectives. Despite each chapter has a different emphasis, we aim to provide useful guidelines or models for practical purposes, and at the same time distill useful insights that can help us understand the underlying mechanisms of neural network learnings. 
+
+In Chapter~\ref{chap:anytime}, we introduce an approach for pixel-wise dense prediction tasks in computer vison, that not reduces the network' computational cost and makes them more efficient, but also allow the inference to be more flexible. In a typical machine learning setting, a user needs to wait until the model completes its inference process before seeing its first prediction. In certain scenarios this can be undesirable, e.g., an excessively long waiting time at a low-end device. We propose a framework that allows \emph{anytime} prediction, i.e., the model can give intermediate outputs at anytime during the inference when the user asks so. We adopt an early exiting framework from anytime image classification, and motivate our method by the fact that not all pixels need the same amount of computation. Some pixels are easier, and they may be accurate enough in early exits, while others are harder and need deeper compute. We use the prediction confidence as such difficulty indicator. The resultinig anytime framework can reduce up to half of the original compute while maintaining the final prediction. The method can be considered ``adaptive'' as the compute spent on each image and each location are different, thus making the models more efficient.
+
+In Chapter~\ref{chap:rethink}, we conduct an empirical study on popular neural network pruning methods. Pruning are widely used for reducing neural networks' sizes and compute. It differs from our anytime method above in that they are ``static'', i.e., the reduction of compute is solely on model and input-agnostic. The typical pruning pipeline is to train a large model first, and then prune part of its weights according to a certain criterion, and finally fine-tuning the remaining structure. Inheriting the kept weights from the large model is considered important as those weights are believed to be important. We conduct a through empirical study by comparing this traditional procedure with a embarassingly simple baseline - training the smaller model from scratch. For structured pruning, to our surprise, this baseline can either match or beat the fine-tuned results. This prompts us to rethink the true value of network pruning. Our results show that pruning acts more like neural architecture search than selections of important weights, and encourages future research to employ more rigorous baseline comparisons.
+
+In Chapter~\ref{chap:convnext}, we turn our eyes on ConvNet scalability. Vision Transformers are increasingly popular in computer vision since the year 2020, shadowing ConvNets. They exhibit superb scaling behavior when trained with large models and huge data. This desirable outcome is usually attributed to their self-attention mechanism, which are drastically different from convolutions. We take a closer look by analyzing the other confounding factors -- training recipes and detailed architecture designs. When we incorporate these strategies used by Transformers into a baseline ConvNet step by step, we observe consistent performance improvement. Our final models, ConvNeXts, show the same scalability as vision Transformers. This study highlights the siginficance of seemingly detailed design choices, and showcases when used collectively they can considerably change the behavior of an architecture. It also reminds us of the importantce of ConvNet inductive biases in visual recognition.
+
 % organization layout
 
 
-\graphicspath{ {./anytime_figures/} }
-\include{chap2}
+% \graphicspath{ {./anytime_figures/} }
+% \include{chap2}
 
-\graphicspath{ {./rethinking_figures/} }
-\include{chap3}
+% \graphicspath{ {./rethinking_figures/} }
+% \include{chap3}
 
-\graphicspath{ {./convnext_figures/} }
-\include{chap4}
+% \graphicspath{ {./convnext_figures/} }
+% \include{chap4}
 
-\chapter{Discussions}
-In conclusion, this thesis presents three works that either proposes an new architectural framework or study existing architectures for visual recognition applications. In Chapter 
+\chapter{Conclusion}
+% \section{Summary}
+This thesis presents three works that either proposes an new architectural framework or study existing architectures for visual recognition applications. The two goals we focus on are efficiency, which stands for pursuit of small, fast, flexible yet accurate models; and scalability, which aims for superb model accuracy when we have large compute and data. In Chapter~\ref{chap:anytime}, we described a method that enables both anytime and more efficient inference for pixel-wise visual recognition tasks. The framework was built on early exiting from neural networks. We further equipped it with confidence adaptivity, motivated by the observation that certain regions tend to be recognized accurately enough even at early exits. In Chapter~\ref{chap:rethink}, we studied a more popular family of solutions for scaling models down - pruning. The central empirical finding was that training the same pruned model from scratch is at least on par with fine-tuning it, for structured pruning methods. Our results suggested pruning's value does not lie in identifying important weights, but instead they act as a form of network architecture search. This encourages a more thorough comparison with baseline methods for future research. In Chapter~\ref{chap:convnext}, we look at vision Transformers, which seem much more scalable than ConvNets, from a similar challenging angle. Our ``modernizing'' process gradually incorporated various training techniques and detailed architecture designs borrowed from vision Transformers into vanilla ResNets, and the eventual models, ConvNeXts, were able to surpass the performance of vision Transformers in several visual recognition benchmarks. Our results prompt the community to reevaluate the importance of convolutional inductive baises in computer vision. 
 
-\section{Future Works}
-\subsection{Studying Inductive Biases}
-Just as Chapter~\ref{chap:convnext} demonstrated, the comparison between ConvNets and Transformers are often conflated with detailed architecture specifications, thus leading to an underestimation of ConvNets' potential. In our work, ConvNeXts are mainly compared with Swin-Transformers, not vanilla ViTs. Swin-Transformer still differ from ViTs in that they incorporate \emph{hierarchical features}, \emph{local computation}. 
+Our studies on both scaling down (pruning) and scaling up (vision Transformers) emphasizes the need for comparing with more carefully designed baselines, and attributing the reasons for performance improvement accurately. In additional to helping us gain a deeper understanding on neural network properties, it could lead to much simpler algorithms that are easier to work with in practice.
 
-The debate between ConvNets \vs Transformers are sometimes 
+\section{Future Directions}
+% \subsection{Studying Inductive Biases}
+\paragraph{Inductive Biases for Vision}
+Just as Chapter~\ref{chap:convnext} demonstrated, the comparison between ConvNets and Transformers are often conflated with detailed architecture design choices, thus leading to an underestimation of ConvNets' potential. If we also look at other recent works in the architecture world, e.g., ConvMixer~\cite{convmixer}, GFNet~\cite{rao2021global}, MLP-Mixer~\cite{}, ResMLP~\cite{touvron2021resmlp}, PoolFormer~\cite{yu2021metaformer} and others, we found there are three major choices on inductive biases in designing networks: 1. hierarchical or plain features.  If it uses hierarchical features, the representation resolution gradually goes down with downsampling, and typically the number of features gradually increases. If it is plain, the same feature resolutions and dimensions across the network; 2. local or global computation. This has to do with each layer's operation, whether the representation in the new layer takes inputs from all spatial locations in the previous layer, or only a local neighborhood; 3. spatial mixing, i.e., using self-attention, convolution, MLP, pooling or other alternative operations. Each network is an instantiation of various choices on these three, among other more detailed designs including activations, normalizations, etc. For example, ConvNeXt differ from ViTs in all three aspects. Which ones of these three play the most important role in affecting a network's performance at small scale, and the network's scaling behavior? The understanding in the community about this question is still very much qualitative, despite there are recent studies~\ref{}. An empirical study on different model and data regimes may help us learn about the effects of these common inductive biases used in computer vision.
 
-\subsection{Self-Supervised Learning}
-All results in this dissertation 
+% The debate between ConvNets \vs Transformers are sometimes 
 
-\subsection{Multi-modal Learning}
+\paragraph{Self-Supervised Learning.}
+We have evaluated our proposed models and algorithms at a variety of visual recognition tasks, including image classification, object detection, semantic segmentation and human pose estimation. Despite that, all models presented in this dissertation are trained in a supervised manner, with human annotations. This is undesirable for multiple reasons: 1. The heavy human effort involved in labeling prevents the training data from being scaled; 2. human annotations can be inaccurate of incorrect; 3. the discrete one-hot classification of images, objects or pixels are not fully representative of their semantic meaning. Recent efforts in visual self-supervised learning have shown promises in surpassing supervised learning. Promising directions include contrastive learning~\cite{He2020,}, prediction-based learning~\cite{Grill2020,Caron2021}, and masked image modeling~\cite{Bao2021,he2021masked}. In particular, masked image modeling methods have shown potential to surpass supervised learning in representation power, using ViTs as backbones. However, in our preliminary studies on ConvNeXts, we encountered some difficulties trying to achieving the results obtained by ViTs using masked image modeling, partly due to that ConvNets tend to average the features thus blurring the masked patches' representations. In future explorations we would like to investigate ways to circumvent this issue and develop competitive self-supervised methods for ConvNeXts.
+
+% \paragraph{Multi-modal Learning.}
+% While there is promise to build a unified AI system that handles a variety of tasks, potentially using Transformers, we believe different architectures could still thrive together. Such a giant model may not 
 
 
-While there is promise to build a unified AI system that handles a variety of tasks, potentially using Transformers, we believe different architectures could still thrive together. Such a giant model may not 
+% \section{Closing Remarks}
+% There has been an interesting debate in the AI community on the question ``Is scaling all you need?''. 
 
+% There are 
 
-\section{Closing Remarks}
-There has been an interesting debate in the AI community on the question ``Is scaling all you need?''. 
-
-There are 
-
-The question is, 
+% The question is, 
 
 
 
